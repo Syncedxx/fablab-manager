@@ -5,71 +5,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FabLab Manager - Login</title>
-     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body>
+<body class="bg-slate-100 font-sans antialiased">
     <main>
-        <div id="geral" class="flex min-h-screen ">
-            <div id="painelEsquerda" class="flex flex-col gap-5 justify-center w-1/2 p-12 bg-slate-900 text-white ">
-                <div id="logo" class="flex flex-col gap-0.5">
-                    <h2 class="text-lg font-bold text-white">FabLab Manager</h2>
-                    <p class="text-xs font-semibold text-slate-400 uppercase">SENAI — SISTEMA DE GESTÃO</p>
+        <div id="geral" class="flex min-h-screen">
+            
+            <!-- Painel Esquerdo -->
+            <div id="painelEsquerda" class="flex flex-col gap-8 justify-center items-center w-1/2 p-12 bg-blue-950 text-white border-r border-blue-900">
+                
+                <div class="w-full max-w-md flex flex-col gap-8">
+                    <div id="logo" class="flex flex-col gap-0.5">
+                        <h2 class="text-xl font-bold tracking-wide text-white">FabLab Manager</h2>
+                        <p class="text-xs font-semibold text-blue-300 uppercase tracking-wider">SENAI — SISTEMA DE GESTÃO</p>
+                    </div>
+
+                    <div id="infoEsq" class="flex flex-col gap-5">
+                        <h1 class="text-3xl font-bold text-white leading-tight">Laboratório Digital<br>de Fabricação</h1>
+                        <p class="text-blue-200 text-sm leading-relaxed">
+                            Gerencie inventário, reservas de equipamentos e requisições de insumos em uma plataforma integrada.
+                        </p>
+
+                        <ul class="recursos flex flex-col gap-3 text-sm text-blue-100 mt-2">
+                            <li class="flex items-center gap-3">
+                                <span class="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">📦</span>
+                                Controle de estoque em tempo real
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">🖨️</span>
+                                Reserva de impressoras 3D, laser e CNC
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">✅</span>
+                                Fluxo de aprovação de requisições
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">🔔</span>
+                                Alertas de manutenção e estoque crítico
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div id="infoEsq" class="flex flex-col gap-5 ">
-                    <h1>Laboratório Digital de Fabricação</h1>
-                    <p>Gerencie inventário, reservas de equipamentos e requisições de insumos em uma plataforma integrada.</p>
+            </div>
 
-                    <ul class="recursos">
-                        <li>Controle de estoque em tempo real</li>
-                        <li>Reserva de impressoras 3D, laser e CNC</li>
-                        <li>Fluxo de aprovação de requisições</li>
-                        <li>Alertas de manutenção e estoque crítico</li>
-                    </ul>
+            <!-- Painel Direito -->
+            <div id="painelDireita" class="w-1/2 min-h-screen bg-slate-50 p-12 flex flex-col justify-center items-center">
+                
+                <div class="w-full max-w-sm space-y-6">
+                    
+                    <div id="textoIntro">
+                        <h1 class="text-2xl font-bold text-slate-900">Acesse o sistema</h1>
+                        <h2 class="text-xs text-slate-500 mt-1">Selecione seu perfil e insira suas credenciais.</h2>
+                    </div>
+
+                    <!-- Formulário -->
+                    <form id="formulario" class="space-y-4">
+                        <div>
+                            <p class="titulo-opcao text-xs font-semibold text-slate-700 mb-2">Perfil de acesso</p>
+                            <div class="campos-perfil grid grid-cols-3 gap-1.5 bg-slate-200/80 p-1 rounded-xl">
+                                
+                                <input type="radio" id="aluno" name="tipo_usuario" value="aluno" class="hidden peer/aluno" checked>
+                                <label for="aluno" class="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/aluno:bg-blue-600 peer-checked/aluno:text-white peer-checked/aluno:shadow-sm transition-all">
+                                    Aluno
+                                </label>
+
+                                <input type="radio" id="professor" name="tipo_usuario" value="professor" class="hidden peer/prof">
+                                <label for="professor" class="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/prof:bg-blue-600 peer-checked/prof:text-white peer-checked/prof:shadow-sm transition-all">
+                                    Professor
+                                </label>
+
+                                <input type="radio" id="admin" name="tipo_usuario" value="admin" class="hidden peer/admin">
+                                <label for="admin" class="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/admin:bg-blue-600 peer-checked/admin:text-white peer-checked/admin:shadow-sm transition-all">
+                                    Administrador
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="campos flex flex-col gap-1">
+                            <label for="txtemail" class="text-xs font-semibold text-slate-700">E-mail institucional</label>
+                            <input type="email" id="txtemail" name="email" placeholder="usuario@aluno.senai.br" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white">
+                        </div>
+
+                        <div class="campos flex flex-col gap-1">
+                            <div class="flex justify-between items-center">
+                                <label for="txtsenha" class="text-xs font-semibold text-slate-700">Senha</label>
+                                <a href="#" class="text-xs text-blue-600 hover:underline font-medium">Esqueci minha senha</a>
+                            </div>
+                            <input type="password" id="txtsenha" name="senha" placeholder="••••••••" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white">
+                        </div>
+
+                        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg text-sm transition-colors shadow-sm cursor-pointer">
+                            Entrar no sistema
+                        </button>
+                    </form>
+
+                    <!-- Atalhos Demo -->
+                    <div id="demonstracao" class="border border-slate-200 rounded-xl p-3 text-center bg-white">
+                        <p class="text-[10px] font-bold text-slate-400 tracking-wider mb-2 uppercase">ACESSO DE DEMONSTRAÇÃO</p>
+                        <div class="grid grid-cols-3 gap-2">
+                            <button type="button" class="py-1.5 px-2 text-xs text-blue-900 bg-blue-50 hover:bg-blue-100 rounded-lg font-medium transition-colors border border-blue-100">Aluno</button>
+                            <button type="button" class="py-1.5 px-2 text-xs text-blue-900 bg-blue-50 hover:bg-blue-100 rounded-lg font-medium transition-colors border border-blue-100">Professor</button>
+                            <button type="button" class="py-1.5 px-2 text-xs text-blue-900 bg-blue-50 hover:bg-blue-100 rounded-lg font-medium transition-colors border border-blue-100">Administrador</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
 
-            <div id="painelDireita" class="flex min-h-screen ">
-                <div id="textoIntro">
-                    <h1>Acesse o sistema</h1>
-                    <h2>Selecione seu perfil e insira suas credenciais.</h2>
-                </div>
-
-                <form id="formulario">
-                    <p class="titulo-opcao">Perfil de acesso</p>
-                    <div class="campos-perfil">
-                        <input type="radio" id="aluno" name="tipo_usuario" value="aluno" checked>
-                        <label for="aluno">Aluno</label>
-
-                        <input type="radio" id="professor" name="tipo_usuario" value="professor">
-                        <label for="professor">Professor</label>
-
-                        <input type="radio" id="admin" name="tipo_usuario" value="admin">
-                        <label for="admin">Administrador</label>
-                    </div>
-
-                    <div class="campos">
-                        <label for="txtemail">E-mail institucional</label>
-                        <input type="email" id="txtemail" name="email" placeholder="usuario@senai.edu.br">
-                    </div>
-
-                    <div class="campos">
-                        <label for="txtsenha">Senha</label>
-                        <a href="#">Esqueci minha senha</a>
-                        <input type="password" id="txtsenha" name="senha" placeholder="••••••••">
-                    </div>
-
-                    <button type="submit">Entrar no sistema</button>
-                </form>
-
-                <div id="demonstracao">
-                    <p>ACESSO DE DEMONSTRAÇÃO</p>
-                    <button type="button">Aluno</button>
-                    <button type="button">Professor</button>
-                    <button type="button">Administrador</button>
-                </div>
-            </div>
         </div>
     </main>
 </body>

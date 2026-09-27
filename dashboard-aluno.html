@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Fablab Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+    <main>
+        <div id="geral" class="flex min-h-screen">
+            <aside id="barraLateral" class="w-64 min-h-screen bg-[#0d1527] text-white p-6 flex flex-col gap-6 shrink-0">
+                <div class="flex flex-col gap-1">
+                    <!-- logo -->
+                    <h2 class="text-xl font-bold leading-tight text-white">FabLab Manager</h2>
+                    <p class="text-[10px] text-blue-300 font-semibold tracking-wider uppercase">SENAI — SISTEMA DE
+                        GESTÃO</p>
+                </div>
+
+                <hr class="border-slate-800 -mx-6 my-4 -mt-3">
+
+                <nav class="flex flex-col gap-2">
+                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">MENU</p>
+
+                    <!-- Todos os links com comportamento de Hover e Foco idênticos -->
+                    <a href="#" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>📊</span> Visão Geral
+                    </a>
+                    <a href="#" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>📦</span> Inventário
+                    </a>
+                    <a href="#" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>📅</span> Reservas
+                    </a>
+                    <a href="#" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>📄</span> Requisições
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Painel principal da direita -->
+            <div id="painelDireita" class="flex-1 p-8 flex flex-col gap-6">
+                
+                <!-- Header principal -->
+                <header class="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <div class="flex flex-col gap-0.5">
+                        <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">VISÃO GERAL</p>
+                        <h2 class="text-2xl font-bold text-slate-900">Olá, João</h2>
+                        <p class="text-xs text-slate-500">Aqui está o resumo do laboratório hoje.</p>
+                    </div>
+
+                    <!-- Avatar do usuário -->
+                    <div class="w-9 h-9 rounded-full bg-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center">
+                        JP
+                    </div>
+                </header>
+
+                <!-- Banner principal -->
+                <div class="bg-[#1b437c] text-white p-6 rounded-2xl flex justify-between items-center relative overflow-hidden">
+                    <div class="flex flex-col gap-2 z-10">
+                        <span class="inline-flex items-center gap-2 text-[11px] bg-emerald-500/20 text-emerald-300 font-medium px-2.5 py-0.5 rounded-full w-fit">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Laboratório aberto
+                        </span>
+                        <h3 class="text-xl font-bold">Pronto para criar?</h3>
+                        <p class="text-xs text-blue-100">Há 4 máquinas disponíveis e nenhum conflito na sua agenda de hoje.</p>
+                    </div>
+                    <button class="bg-blue-400 hover:bg-blue-300 text-slate-900 font-semibold text-xs px-4 py-2.5 rounded-lg transition-colors z-10 flex items-center gap-1.5 cursor-pointer">
+                        <span>+</span> Nova reserva
+                    </button>
+                </div>
+
+                <!-- Cards de estatísticas -->
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-xs flex flex-col gap-1">
+                        <span class="text-red-500 text-sm">⚠️</span>
+                        <span class="text-2xl font-bold text-slate-900 mt-1">3</span>
+                        <span class="text-xs font-semibold text-slate-800">Itens críticos</span>
+                        <span class="text-[10px] text-slate-400">Precisam de reposição</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-xs flex flex-col gap-1">
+                        <span class="text-blue-500 text-sm">📅</span>
+                        <span class="text-2xl font-bold text-slate-900 mt-1">12</span>
+                        <span class="text-xs font-semibold text-slate-800">Reservas hoje</span>
+                        <span class="text-[10px] text-slate-400">4 ainda disponíveis</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-xs flex flex-col gap-1">
+                        <span class="text-amber-500 text-sm">📋</span>
+                        <span class="text-2xl font-bold text-slate-900 mt-1">5</span>
+                        <span class="text-xs font-semibold text-slate-800">Pedidos abertos</span>
+                        <span class="text-[10px] text-slate-400">2 são seus</span>
+                    </div>
+
+                    <div class="bg-white p-4 rounded-xl border border-slate-100 shadow-xs flex flex-col gap-1">
+                        <span class="text-emerald-500 text-sm">🖨️</span>
+                        <span class="text-2xl font-bold text-slate-900 mt-1">4</span>
+                        <span class="text-xs font-semibold text-slate-800">Máquinas livres</span>
+                        <span class="text-[10px] text-slate-400">de 7 equipamentos</span>
+                    </div>
+                </div>
+
+                <!-- Seção inferior dividida em duas colunas -->
+                <div class="grid grid-cols-3 gap-6">
+                    
+                    <!-- Status das máquinas (Ocupa 2 colunas) -->
+                    <div class="col-span-2 bg-white p-5 rounded-xl border border-slate-100 shadow-xs flex flex-col gap-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-900">Status das máquinas</h4>
+                                <p class="text-[11px] text-slate-400">Atualizado agora</p>
+                            </div>
+                            <a href="#" class="text-xs text-blue-600 font-semibold hover:underline">Ver agenda</a>
+                        </div>
+
+                        <div class="flex flex-col divide-y divide-slate-100">
+                            <div class="py-3 flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <span class="p-2 bg-slate-50 rounded-lg text-slate-500 text-xs">🖨️</span>
+                                    <div>
+                                        <p class="text-xs font-semibold text-slate-800">Bambu Lab X1 Carbon</p>
+                                        <p class="text-[10px] text-slate-400">Impressão 3D</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">Livre</span>
+                            </div>
+
+                            <div class="py-3 flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <span class="p-2 bg-slate-50 rounded-lg text-slate-500 text-xs">🖨️</span>
+                                    <div>
+                                        <p class="text-xs font-semibold text-slate-800">Ender 5 Plus</p>
+                                        <p class="text-[10px] text-slate-400">Impressão 3D</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-semibold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full">Em uso até 15h</span>
+                            </div>
+
+                            <div class="py-3 flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <span class="p-2 bg-slate-50 rounded-lg text-slate-500 text-xs">🖨️</span>
+                                    <div>
+                                        <p class="text-xs font-semibold text-slate-800">Laser Cutter K40</p>
+                                        <p class="text-[10px] text-slate-400">Corte a laser</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-semibold text-red-500 bg-red-50 px-2.5 py-1 rounded-full">Manutenção</span>
+                            </div>
+
+                            <div class="py-3 flex justify-between items-center">
+                                <div class="flex items-center gap-3">
+                                    <span class="p-2 bg-slate-50 rounded-lg text-slate-500 text-xs">🖨️</span>
+                                    <div>
+                                        <p class="text-xs font-semibold text-slate-800">CNC Router 3018</p>
+                                        <p class="text-[10px] text-slate-400">Usinagem CNC</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">Livre</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Ações rápidas (Ocupa 1 coluna) -->
+                    <div class="bg-white p-5 rounded-xl border border-slate-100 shadow-xs flex flex-col gap-4">
+                        <div>
+                            <h4 class="text-sm font-bold text-slate-900">Ações rápidas</h4>
+                            <p class="text-[11px] text-slate-400">Acesse o que mais usa</p>
+                        </div>
+
+                        <div class="flex flex-col gap-2.5">
+                            <a href="#" class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors flex items-center justify-between group">
+                                <div class="flex items-center gap-3">
+                                    <span class="p-2 bg-blue-50 text-blue-600 rounded-lg text-xs">📅</span>
+                                    <div>
+                                        <p class="text-xs font-semibold text-slate-800">Reservar máquina</p>
+                                        <p class="text-[10px] text-slate-400">Escolha uma data e horário</p>
+                                    </div>
+                                </div>
+                                <span class="text-slate-300 text-xs group-hover:translate-x-0.5 transition-transform">›</span>
+                            </a>
+
+                            <a href="#" class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors flex items-center justify-between group">
+                                <div class="flex items-center gap-3">
+                                    <span class="p-2 bg-blue-50 text-blue-600 rounded-lg text-xs">📦</span>
+                                    <div>
+                                        <p class="text-xs font-semibold text-slate-800">Solicitar material</p>
+                                        <p class="text-[10px] text-slate-400">Crie um novo pedido</p>
+                                    </div>
+                                </div>
+                                <span class="text-slate-300 text-xs group-hover:translate-x-0.5 transition-transform">›</span>
+                            </a>
+
+                            <a href="#" class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors flex items-center justify-between group">
+                                <div class="flex items-center gap-3">
+                                    <span class="p-2 bg-blue-50 text-blue-600 rounded-lg text-xs">🔍</span>
+                                    <div>
+                                        <p class="text-xs font-semibold text-slate-800">Consultar estoque</p>
+                                        <p class="text-[10px] text-slate-400">Confira saldos disponíveis</p>
+                                    </div>
+                                </div>
+                                <span class="text-slate-300 text-xs group-hover:translate-x-0.5 transition-transform">›</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
