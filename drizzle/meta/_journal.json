@@ -1,0 +1,48 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1787272718892,
+      "tag": "0000_greedy_silver_sable",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1787280604103,
+      "tag": "0001_secret_spiral",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1787281519678,
+      "tag": "0002_chilly_peter_quill",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1787282014571,
+      "tag": "0003_groovy_the_watchers",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1787282392408,
+      "tag": "0004_sturdy_stark_industries",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1787285173076,
+      "tag": "0005_living_maddog",
+      "breakpoints": true
+    }
+  ]
+}

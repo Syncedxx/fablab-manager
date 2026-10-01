@@ -42,11 +42,29 @@
                         <span>📄</span> Requisições
                     </a>
                 </nav>
+
+                <div id="cardUsuario"
+                    class="mt-auto bg-[#172339] border border-slate-800 rounded-2xl p-4 grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 items-center">
+                    <div id="icone"
+                        class="w-10 h-10 rounded-full bg-blue-200 text-slate-900 text-sm flex items-center justify-center shrink-0">
+                        <span>Ex</span> <!--Nome do usuario que mudara de acordo com o usuario logado-->
+                    </div>
+
+                    <div id="nomeUsuario" class="flex flex-col min-w-0">
+                        <strong class="text-sm font-semibold text-white truncate">Nome Exemplo</strong>
+                        <small class="text-xs text-slate-400 truncate">Aluno - TDS 2026</small>
+                    </div>
+
+                    <a href="login.html" id="btnSair"
+                        class="col-span-2 flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-white transition-colors pt-1">
+                        <span>→]</span> Sair da conta
+                    </a>
+                </div>
             </aside>
 
             <!-- Painel principal da direita -->
             <div id="painelDireita" class="flex-1 p-8 flex flex-col gap-6">
-                
+
                 <!-- Header principal -->
                 <header class="flex justify-between items-center pb-4 border-b border-slate-200">
                     <div class="flex flex-col gap-0.5">
@@ -56,21 +74,28 @@
                     </div>
 
                     <!-- Avatar do usuário -->
-                    <div class="w-9 h-9 rounded-full bg-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center">
+                    <div
+                        class="w-9 h-9 rounded-full bg-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center">
                         JP
                     </div>
                 </header>
 
                 <!-- Banner principal -->
-                <div class="bg-[#1b437c] text-white p-6 rounded-2xl flex justify-between items-center relative overflow-hidden">
+                <div
+                    class="bg-[#1b437c] text-white p-6 rounded-2xl flex justify-between items-center relative overflow-hidden">
                     <div class="flex flex-col gap-2 z-10">
-                        <span class="inline-flex items-center gap-2 text-[11px] bg-emerald-500/20 text-emerald-300 font-medium px-2.5 py-0.5 rounded-full w-fit">
+                        <span
+                            class="inline-flex items-center gap-2 text-[11px] bg-emerald-500/20 text-emerald-300 font-medium px-2.5 py-0.5 rounded-full w-fit">
                             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Laboratório aberto
                         </span>
                         <h3 class="text-xl font-bold">Pronto para criar?</h3>
-                        <p class="text-xs text-blue-100">Há 4 máquinas disponíveis e nenhum conflito na sua agenda de hoje.</p>
+                        <p class="text-xs text-blue-100">Há 4 máquinas disponíveis e nenhum conflito na sua agenda de
+                            hoje.</p>
                     </div>
-                    <button class="bg-blue-400 hover:bg-blue-300 text-slate-900 font-semibold text-xs px-4 py-2.5 rounded-lg transition-colors z-10 flex items-center gap-1.5 cursor-pointer">
+
+                    <!--MANIPULANDO AQUI-->
+                    <button type="button" onclick="document.getElementById('modalReserva').classList.remove('hidden')"
+                        class="bg-blue-400 hover:bg-blue-300 text-slate-900 font-semibold text-xs px-4 py-2.5 rounded-lg transition-colors z-10 flex items-center gap-1.5 cursor-pointer">
                         <span>+</span> Nova reserva
                     </button>
                 </div>
@@ -108,9 +133,10 @@
 
                 <!-- Seção inferior dividida em duas colunas -->
                 <div class="grid grid-cols-3 gap-6">
-                    
+
                     <!-- Status das máquinas (Ocupa 2 colunas) -->
-                    <div class="col-span-2 bg-white p-5 rounded-xl border border-slate-100 shadow-xs flex flex-col gap-4">
+                    <div
+                        class="col-span-2 bg-white p-5 rounded-xl border border-slate-100 shadow-xs flex flex-col gap-4">
                         <div class="flex justify-between items-center">
                             <div>
                                 <h4 class="text-sm font-bold text-slate-900">Status das máquinas</h4>
@@ -128,7 +154,8 @@
                                         <p class="text-[10px] text-slate-400">Impressão 3D</p>
                                     </div>
                                 </div>
-                                <span class="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">Livre</span>
+                                <span
+                                    class="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">Livre</span>
                             </div>
 
                             <div class="py-3 flex justify-between items-center">
@@ -139,7 +166,9 @@
                                         <p class="text-[10px] text-slate-400">Impressão 3D</p>
                                     </div>
                                 </div>
-                                <span class="text-[10px] font-semibold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full">Em uso até 15h</span>
+                                <span
+                                    class="text-[10px] font-semibold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full">Em
+                                    uso até 15h</span>
                             </div>
 
                             <div class="py-3 flex justify-between items-center">
@@ -150,7 +179,8 @@
                                         <p class="text-[10px] text-slate-400">Corte a laser</p>
                                     </div>
                                 </div>
-                                <span class="text-[10px] font-semibold text-red-500 bg-red-50 px-2.5 py-1 rounded-full">Manutenção</span>
+                                <span
+                                    class="text-[10px] font-semibold text-red-500 bg-red-50 px-2.5 py-1 rounded-full">Manutenção</span>
                             </div>
 
                             <div class="py-3 flex justify-between items-center">
@@ -161,7 +191,8 @@
                                         <p class="text-[10px] text-slate-400">Usinagem CNC</p>
                                     </div>
                                 </div>
-                                <span class="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">Livre</span>
+                                <span
+                                    class="text-[10px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full">Livre</span>
                             </div>
                         </div>
                     </div>
@@ -174,7 +205,8 @@
                         </div>
 
                         <div class="flex flex-col gap-2.5">
-                            <a href="#" class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors flex items-center justify-between group">
+                            <a href="#"
+                                class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors flex items-center justify-between group">
                                 <div class="flex items-center gap-3">
                                     <span class="p-2 bg-blue-50 text-blue-600 rounded-lg text-xs">📅</span>
                                     <div>
@@ -182,10 +214,12 @@
                                         <p class="text-[10px] text-slate-400">Escolha uma data e horário</p>
                                     </div>
                                 </div>
-                                <span class="text-slate-300 text-xs group-hover:translate-x-0.5 transition-transform">›</span>
+                                <span
+                                    class="text-slate-300 text-xs group-hover:translate-x-0.5 transition-transform">›</span>
                             </a>
 
-                            <a href="#" class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors flex items-center justify-between group">
+                            <a href="#"
+                                class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors flex items-center justify-between group">
                                 <div class="flex items-center gap-3">
                                     <span class="p-2 bg-blue-50 text-blue-600 rounded-lg text-xs">📦</span>
                                     <div>
@@ -193,10 +227,12 @@
                                         <p class="text-[10px] text-slate-400">Crie um novo pedido</p>
                                     </div>
                                 </div>
-                                <span class="text-slate-300 text-xs group-hover:translate-x-0.5 transition-transform">›</span>
+                                <span
+                                    class="text-slate-300 text-xs group-hover:translate-x-0.5 transition-transform">›</span>
                             </a>
 
-                            <a href="#" class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors flex items-center justify-between group">
+                            <a href="#"
+                                class="p-3 border border-slate-100 rounded-xl hover:bg-slate-50 transition-colors flex items-center justify-between group">
                                 <div class="flex items-center gap-3">
                                     <span class="p-2 bg-blue-50 text-blue-600 rounded-lg text-xs">🔍</span>
                                     <div>
@@ -204,7 +240,8 @@
                                         <p class="text-[10px] text-slate-400">Confira saldos disponíveis</p>
                                     </div>
                                 </div>
-                                <span class="text-slate-300 text-xs group-hover:translate-x-0.5 transition-transform">›</span>
+                                <span
+                                    class="text-slate-300 text-xs group-hover:translate-x-0.5 transition-transform">›</span>
                             </a>
                         </div>
                     </div>
@@ -214,6 +251,66 @@
             </div>
         </div>
     </main>
+
+    <!--MANIPULANDO AQUI-->
+    <!--popup-->
+    <div id="modalReserva"
+        class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 flex flex-col gap-4">
+
+        <!--Cabeçalho-->
+        <div class="">
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm">Nova reserva</h3>
+                    <p class="text-[11px] text-slate-400">Escolha o equipamento, data e horário.</p>
+                </div>
+                <!--botao fechar-->
+                <button type="button" onclick="document.getElementById('modalReserva').classList.add('hidden')"
+                    class="text-slate-400 hover:text-slate-700 text-sm font-bold p-1">
+                    ✕
+                </button>
+            </div>
+
+            <!--Formulário Modal-->
+            <form class="flex flex-col gap-3">
+                <div class="flex flex-col gap-1">
+                    <label class="text-xs font-semibold text-slate-700">Máquina</label>
+                    <select
+                        class="w-full border border-slate-200 rounded-lg p-2 text-xs outline-none focus:ring-2 focus:ring-blue-600">
+                        <option>Bambu Lab X1 Carbon</option>
+                        <option>Ender 5 Plus</option>
+                        <option>CNC Router 3018</option>
+                    </select>
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-semibold text-slate-700">Data</label>
+                        <input type="date"
+                            class="w-full border border-slate-200 rounded-lg p-2 text-xs outline-none focus:ring-2 focus:ring-blue-600">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label class="text-xs font-semibold text-slate-700">Horário</label>
+                        <input type="time"
+                            class="w-full border border-slate-200 rounded-lg p-2 text-xs outline-none focus:ring-2 focus:ring-blue-600">
+                    </div>
+                </div>
+
+                <div class="flex justify-end gap-2 pt-3 border-t border-slate-100">
+                    <button type="button" onclick="document.getElementById('modalReserva').classList.add('hidden')"
+                        class="px-3 py-2 rounded-lg border border-slate-200 text-xs text-slate-600 hover:bg-slate-50 font-medium">
+                        Cancelar
+                    </button>
+                    <button type="submit"
+                        class="px-3 py-2 rounded-lg bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700">
+                        Confirmar
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
 </body>
 
 </html>
