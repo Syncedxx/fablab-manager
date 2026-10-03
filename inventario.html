@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estoque - FabLab Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+    <main>
+        <div id="geral" class="flex min-h-screen">
+            <aside id="barraLateral" class="w-64 min-h-screen bg-[#0d1527] text-white p-6 flex flex-col gap-6 shrink-0">
+                <div class="flex flex-col gap-1">
+                    <h2 class="text-xl font-bold leading-tight text-white">FabLab Manager</h2>
+                    <p class="text-[10px] text-blue-300 font-semibold tracking-wider uppercase">SENAI — SISTEMA DE
+                        GESTÃO</p>
+                </div>
+
+                <hr class="border-slate-800 -mx-6 my-4 -mt-3">
+
+                <nav class="flex flex-col gap-2">
+                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">MENU</p>
+
+                    <a href="#" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>📊</span> Visão Geral
+                    </a>
+                    <a href="#" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>📦</span> Inventário
+                    </a>
+                    <a href="#" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>📅</span> Reservas
+                    </a>
+                    <a href="#" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>📄</span> Requisições
+                    </a>
+                </nav>
+
+                <div id="cardUsuario"
+                    class="mt-auto bg-[#172339] border border-slate-800 rounded-2xl p-4 grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 items-center">
+                    <div id="icone"
+                        class="w-10 h-10 rounded-full bg-blue-200 text-slate-900 text-sm flex items-center justify-center shrink-0">
+                        <span>Ex</span>
+                    </div>
+
+                    <div id="nomeUsuario" class="flex flex-col min-w-0">
+                        <strong class="text-sm font-semibold text-white truncate">Nome Exemplo</strong>
+                        <small class="text-xs text-slate-400 truncate">Aluno(a) - TDS 2026</small>
+                    </div>
+
+                    <a href="../login.html" id="btnSair"
+                        class="col-span-2 flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-white transition-colors pt-1">
+                        <span>→]</span> Sair da conta
+                    </a>
+                </div>
+            </aside>
+
+            <div id="painelDireita" class="flex-1 p-8 flex flex-col gap-6">
+
+                <header class="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <div class="flex flex-col gap-0.5">
+                        <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">MATERIAIS E INSUMO</p>
+                        <h2 class="text-2xl font-bold text-slate-900">Inventário</h2>
+                        <p class="text-xs text-slate-500">Consulte saldos e itens que precisam de atenção.</p>
+                    </div>
+
+                    <div>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl">
+                            + Solicitar material
+                        </button>
+                    </div>
+                </header>
+
+                <div id="conteudoInventarioPrincipal" class="flex gap-3">
+                    <input type="search" placeholder="Buscar por nome do material..."
+                        class="flex-1 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 placeholder-slate-400 outline-none focus:border-blue-500">
+                    <select id="selecao"
+                        class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 outline-none focus:border-blue-500">
+                        <option value="">Todas as categorias</option>
+                        <option value="filamentos">Filamentos</option>
+                        <option value="madeiras">Madeiras</option>
+                        <option value="acrilicos">Acrílicos</option>
+                    </select>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden">
+  <table class="w-full text-left text-sm border-collapse">
+    <thead class="text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+      <tr>
+        <th class="py-4 px-6">Material</th>
+        <th class="py-4 px-6 text-center">Categoria</th>
+        <th class="py-4 px-6 text-center">Saldo</th>
+        <th class="py-4 px-6 text-right">Status</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-100">
+      <tr class="hover:bg-slate-50/50">
+        <td class="py-4 px-6 flex items-center gap-3 font-semibold text-slate-800">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold">
+            #
+          </div>
+          <span>PLA Branco 1.75mm</span>
+        </td>
+        <td class="py-4 px-6 text-center text-slate-400">Filamentos</td>
+        <td class="py-4 px-6 text-center font-bold text-slate-800">120 g</td>
+        <td class="py-4 px-6 text-right">
+          <span class="inline-block px-3 py-1 text-xs font-semibold text-rose-500 bg-rose-50 rounded-full">Critico</span>
+        </td>
+      </tr>
+
+      <tr class="hover:bg-slate-50/50">
+        <td class="py-4 px-6 flex items-center gap-3 font-semibold text-slate-800">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold">
+            #
+          </div>
+          <span>PLA Preto 1.75mm</span>
+        </td>
+        <td class="py-4 px-6 text-center text-slate-400">Filamentos</td>
+        <td class="py-4 px-6 text-center font-bold text-slate-800">850 g</td>
+        <td class="py-4 px-6 text-right">
+          <span class="inline-block px-3 py-1 text-xs font-semibold text-emerald-600 bg-emerald-50 rounded-full">Disponivel</span>
+        </td>
+      </tr>
+
+      <tr class="hover:bg-slate-50/50">
+        <td class="py-4 px-6 flex items-center gap-3 font-semibold text-slate-800">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold">
+            #
+          </div>
+          <span>Placa MDF 3mm</span>
+        </td>
+        <td class="py-4 px-6 text-center text-slate-400">Madeiras</td>
+        <td class="py-4 px-6 text-center font-bold text-slate-800">2 un.</td>
+        <td class="py-4 px-6 text-right">
+          <span class="inline-block px-3 py-1 text-xs font-semibold text-rose-500 bg-rose-50 rounded-full">Critico</span>
+        </td>
+      </tr>
+
+      <tr class="hover:bg-slate-50/50">
+        <td class="py-4 px-6 flex items-center gap-3 font-semibold text-slate-800">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold">
+            #
+          </div>
+          <span>Acrilico Transparente 3mm</span>
+        </td>
+        <td class="py-4 px-6 text-center text-slate-400">Acrilicos</td>
+        <td class="py-4 px-6 text-center font-bold text-slate-800">8 un.</td>
+        <td class="py-4 px-6 text-right">
+          <span class="inline-block px-3 py-1 text-xs font-semibold text-emerald-600 bg-emerald-50 rounded-full">Disponivel</span>
+        </td>
+      </tr>
+
+      <tr class="hover:bg-slate-50/50">
+        <td class="py-4 px-6 flex items-center gap-3 font-semibold text-slate-800">
+          <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold">
+            #
+          </div>
+          <span>Parafuso M3x10</span>
+        </td>
+        <td class="py-4 px-6 text-center text-slate-400">Fixadores</td>
+        <td class="py-4 px-6 text-center font-bold text-slate-800">450 un.</td>
+        <td class="py-4 px-6 text-right">
+          <span class="inline-block px-3 py-1 text-xs font-semibold text-emerald-600 bg-emerald-50 rounded-full">Disponivel</span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+            </div>
+        </div>
+    </main>
+
+</body>
+
+</html>

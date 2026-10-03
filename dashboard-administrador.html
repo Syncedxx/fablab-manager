@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FabLab Manager - Painel do Administrador</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+    <main>
+        <div id="geral" class="flex h-screen overflow-hidden">
+            <!-- Barra Lateral -->
+            <aside id="barraLateral"
+                class="w-64 h-screen shrink-0 bg-[#0d1527] text-white p-6 flex flex-col gap-6 overflow-y-auto">
+                <div class="flex flex-col gap-1">
+                    <!-- Logo -->
+                    <h2 class="text-xl font-bold leading-tight text-white">FabLab Manager</h2>
+                    <p class="text-[10px] text-blue-300 font-semibold tracking-wider uppercase">SENAI — SISTEMA DE GESTÃO</p>
+                </div>
+
+                <hr class="border-slate-800 -mx-6 my-4 -mt-3">
+
+                <nav class="flex flex-col gap-2">
+                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">MENU</p>
+
+                    <a href="admin.html" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-white bg-slate-800/80 rounded-r-lg border-l-4 border-emerald-500 font-semibold text-xs transition-all outline-none">
+                        <span>📊</span> Visão Administrativa
+                    </a>
+                    <a href="usuarios.html" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>👥</span> Controle de Usuários
+                    </a>
+                    <a href="configuracoes.html" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>⚙️</span> Configurações
+                    </a>
+                    <a href="auditoria.html" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>🛡️</span> Auditoria
+                    </a>
+                </nav>
+
+                <!-- Card de Usuário -->
+                <div id="cardUsuario"
+                    class="mt-auto bg-[#172339] border border-slate-800 rounded-2xl p-4 grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 items-center">
+                    <div id="icone"
+                        class="w-10 h-10 rounded-full bg-slate-800 text-white border border-slate-600 text-sm font-bold flex items-center justify-center shrink-0">
+                        <span>AS</span>
+                    </div>
+
+                    <div id="nomeUsuario" class="flex flex-col min-w-0">
+                        <strong class="text-sm font-semibold text-white truncate">Admin Sistema</strong>
+                        <small class="text-xs text-slate-400 truncate">Administrador(a)</small>
+                    </div>
+
+                    <a href="../login.html" id="btnSair"
+                        class="col-span-2 flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-white transition-colors pt-1">
+                        <span>→]</span> Sair da conta
+                    </a>
+                </div>
+            </aside>
+
+            <!-- Painel principal da direita -->
+            <div id="painelDireita" class="flex-1 h-screen overflow-y-auto p-8 flex flex-col gap-6">
+
+                <!-- Header principal -->
+                <header class="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <div class="flex flex-col gap-0.5">
+                        <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">ADMINISTRAÇÃO DO SISTEMA</p>
+                        <h2 class="text-2xl font-bold text-slate-900">Visão administrativa</h2>
+                        <p class="text-sm text-slate-600">Gerencie acessos, monitore a operação e acompanhe a integridade da plataforma.</p>
+                    </div>
+
+                    <!-- Avatar do usuário -->
+                    <div class="w-10 h-10 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shadow-sm">
+                        AS
+                    </div>
+                </header>
+
+                <!-- Banner principal-->
+                <div class="bg-[#1b437c] text-white p-6 rounded-2xl flex justify-between items-center gap-4 shadow-xs">
+                    <div class="flex flex-col gap-2">
+                        <span class="inline-flex items-center gap-2 text-[11px] font-medium text-blue-200 w-fit">
+                            🛡️ Ambiente protegido e operacional
+                        </span>
+                        <h3 class="text-xl font-bold text-white">Controle geral do FabLab</h3>
+                        <p class="text-xs text-blue-100">
+                            Todos os serviços estão disponíveis. Há 4 alertas operacionais que merecem acompanhamento.
+                        </p>
+                    </div>
+                    <a href="alertas.html" class="bg-[#60a5fa] hover:bg-[#3b82f6] text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-all flex items-center gap-2 cursor-pointer shrink-0">
+                        Ver alertas <span>&gt;</span>
+                    </a>
+                </div>
+
+                <!-- Minicards resumo -->
+                <div id="cardsResumo" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- 1. Usuários ativos -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
+                        <div class="w-9 h-9 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
+                            <span class="text-sm">👤</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-slate-900 block leading-none mb-1">86</span>
+                            <h3 class="text-xs font-bold text-slate-800">Usuários ativos</h3>
+                            <p class="text-[11px] text-slate-400">74 alunos - 12 instrutores</p>
+                        </div>
+                    </div>
+
+                    <!-- 2. Equipamentos -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
+                        <div class="w-9 h-9 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
+                            <span class="text-sm">🖨️</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-slate-900 block leading-none mb-1">7</span>
+                            <h3 class="text-xs font-bold text-slate-800">Equipamentos</h3>
+                            <p class="text-[11px] text-slate-400">6 operacionais</p>
+                        </div>
+                    </div>
+
+                    <!-- 3. Alertas ativos -->
+                    <div class="bg-white p-5 rounded-2xl border border-rose-200 shadow-xs flex flex-col justify-between">
+                        <div class="w-9 h-9 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
+                            <span class="text-sm">⚠️</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-slate-900 block leading-none mb-1">4</span>
+                            <h3 class="text-xs font-bold text-slate-800">Alertas ativos</h3>
+                            <p class="text-[11px] text-slate-400">3 estoque - 1 manutenção</p>
+                        </div>
+                    </div>
+
+                    <!-- 4. Disponibilidade -->
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
+                        <div class="w-9 h-9 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
+                            <span class="text-sm">📈</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-slate-900 block leading-none mb-1">99,9%</span>
+                            <h3 class="text-xs font-bold text-slate-800">Disponibilidade</h3>
+                            <p class="text-[11px] text-slate-400">Últimos 30 dias</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção Intermediária (Atividade e Perfis) -->
+                <div class="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-6">
+                    
+                    <!-- Atividade recente -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h3 class="text-base font-bold text-slate-900">Atividade recente</h3>
+                                <p class="text-xs text-slate-400">Eventos relevantes registrados no sistema</p>
+                            </div>
+                            <span class="flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full uppercase tracking-wider">
+                                <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> Ao vivo
+                            </span>
+                        </div>
+
+                        <div class="space-y-4 mt-2">
+                            <!-- Item 1 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-slate-50 text-slate-500 rounded-lg flex items-center justify-center shrink-0 border border-slate-100">
+                                        <span class="text-xs">📋</span>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-700">Carla Menezes aprovou REQ-014</span>
+                                </div>
+                                <span class="text-[11px] text-slate-400">Há 8 min</span>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-rose-50 text-rose-500 rounded-lg flex items-center justify-center shrink-0 border border-rose-100">
+                                        <span class="text-xs">⚠️</span>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-700">Saldo de PLA Branco atingiu nível crítico</span>
+                                </div>
+                                <span class="text-[11px] text-slate-400">Há 24 min</span>
+                            </div>
+
+                            <!-- Item 3 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-slate-50 text-slate-500 rounded-lg flex items-center justify-center shrink-0 border border-slate-100">
+                                        <span class="text-xs">👤</span>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-700">Novo aluno vinculado à turma TDS 2026</span>
+                                </div>
+                                <span class="text-[11px] text-slate-400">Há 1 h</span>
+                            </div>
+
+                            <!-- Item 4 -->
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 bg-emerald-50 text-emerald-500 rounded-lg flex items-center justify-center shrink-0 border border-emerald-100">
+                                        <span class="text-xs">✓</span>
+                                    </div>
+                                    <span class="text-xs font-medium text-slate-700">Reserva R-004 concluída sem ocorrência</span>
+                                </div>
+                                <span class="text-[11px] text-slate-400">Há 2 h</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Perfis e acessos -->
+                    <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-4">
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">Perfis e acessos</h3>
+                            <p class="text-xs text-slate-400">Distribuição dos usuários ativos</p>
+                        </div>
+
+                        <div class="space-y-4 mt-2">
+                            <!-- Alunos -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-semibold text-slate-700">Alunos</span>
+                                    <span class="text-xs font-bold text-slate-900">74</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-1.5">
+                                    <div class="bg-blue-600 h-1.5 rounded-full" style="width: 86%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Instrutores -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-semibold text-slate-700">Instrutores</span>
+                                    <span class="text-xs font-bold text-slate-900">11</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-1.5">
+                                    <div class="bg-blue-400 h-1.5 rounded-full" style="width: 15%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Administradores -->
+                            <div>
+                                <div class="flex justify-between items-center mb-1">
+                                    <span class="text-xs font-semibold text-slate-700">Administradores</span>
+                                    <span class="text-xs font-bold text-slate-900">1</span>
+                                </div>
+                                <div class="w-full bg-slate-100 rounded-full h-1.5">
+                                    <div class="bg-slate-800 h-1.5 rounded-full" style="width: 2%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Box de informação -->
+                        <div class="bg-blue-50 border border-blue-100 rounded-xl p-3 mt-4 text-[11px] text-blue-800">
+                            Para alterar ou conceder permissões de administrador a novos perfis, utilize a aba de <a href="usuarios.html" class="underline font-bold">Controle de Usuários</a>.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gestão dos módulos -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4 mb-4">
+                    <div>
+                        <h3 class="text-base font-bold text-slate-900">Gestão dos módulos</h3>
+                        <p class="text-xs text-slate-400">Acesso rápido às áreas administrativas</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <!-- Módulo 1 -->
+                        <a href="inventario.html" class="p-4 rounded-xl flex items-center gap-3 hover:bg-slate-50 transition border border-slate-100 group">
+                            <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                                <span>📦</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">Inventário e alertas</h4>
+                                <p class="text-[10px] text-slate-400">Saldos e materiais críticos</p>
+                            </div>
+                            <span class="text-slate-300 group-hover:text-blue-600 text-xs transition">&gt;</span>
+                        </a>
+
+                        <!-- Módulo 2 -->
+                        <a href="agenda.html" class="p-4 rounded-xl flex items-center gap-3 hover:bg-slate-50 transition border border-slate-100 group">
+                            <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                                <span>📅</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">Agenda de equipamentos</h4>
+                                <p class="text-[10px] text-slate-400">Reservas de todos os usuários</p>
+                            </div>
+                            <span class="text-slate-300 group-hover:text-blue-600 text-xs transition">&gt;</span>
+                        </a>
+
+                        <!-- Módulo 3 -->
+                        <a href="requisicoes.html" class="p-4 rounded-xl flex items-center gap-3 hover:bg-slate-50 transition border border-slate-100 group">
+                            <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                                <span>📋</span>
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">Requisições</h4>
+                                <p class="text-[10px] text-slate-400">Audite pedidos e aprovações</p>
+                            </div>
+                            <span class="text-slate-300 group-hover:text-blue-600 text-xs transition">&gt;</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
