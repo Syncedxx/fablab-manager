@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FabLab Manager - Dashboard do Instrutor</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased">
+    <main>
+        <div id="geral" class="flex h-screen overflow-hidden">
+            <aside id="barraLateral"
+                class="w-64 h-screen shrink-0 bg-[#0d1527] text-white p-6 flex flex-col gap-6 overflow-y-auto">
+                <div class="flex flex-col gap-1">
+                    <h2 class="text-xl font-bold leading-tight text-white">FabLab Manager</h2>
+                    <p class="text-[10px] text-blue-300 font-semibold tracking-wider uppercase">SENAI — SISTEMA DE GESTÃO</p>
+                </div>
+
+                <hr class="border-slate-800 -mx-6 my-4 -mt-3">
+
+                <nav class="flex flex-col gap-2">
+                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">MENU</p>
+
+                    <a href="dashboard-instrutor.html" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-white bg-slate-800/80 border-l-4 border-emerald-500 rounded-r-lg font-semibold text-xs transition-all outline-none">
+                        <span>📊</span> Visão Geral
+                    </a>
+                    <a href="inventario.html" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>📦</span> Inventário
+                    </a>
+                    <a href="reservas.html" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>📅</span> Reservas
+                    </a>
+                    <a href="pedidos.html" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>📄</span> Pedidos
+                    </a>
+                    <a href="notificacoes.html" tabindex="0"
+                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
+                        <span>🔔</span> Notificações
+                    </a>
+                </nav>
+
+                <div id="cardUsuario"
+                    class="mt-auto bg-[#172339] border border-slate-800 rounded-2xl p-4 grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 items-center">
+                    <div id="icone"
+                        class="w-10 h-10 rounded-full bg-blue-200 text-slate-900 text-sm font-bold flex items-center justify-center shrink-0">
+                        <span>EX</span>
+                    </div>
+
+                    <div id="nomeUsuario" class="flex flex-col min-w-0">
+                        <strong class="text-sm font-semibold text-white truncate">Nome Exemplo</strong>
+                        <small class="text-xs text-slate-400 truncate">Instrutor(a) - TDS 2026</small>
+                    </div>
+
+                    <a href="login.html" id="btnSair"
+                        class="col-span-2 flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-white transition-colors pt-1">
+                        <span>→]</span> Sair da conta
+                    </a>
+                </div>
+            </aside>
+
+            <div id="painelDireita" class="flex-1 h-screen overflow-y-auto p-8 flex flex-col gap-6">
+
+                <div
+                    class="bg-amber-50 border border-amber-200/80 rounded-xl px-4 py-2.5 text-amber-800 text-xs font-medium flex items-center justify-between shadow-xs">
+                    <div class="flex items-center gap-2">
+                        <span>💡</span>
+                        <p><strong>Modo de Demonstração:</strong> As telas utilizam dados estáticos apenas para visualização do fluxo.</p>
+                    </div>
+                    <span
+                        class="text-[10px] bg-amber-200/60 text-amber-900 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider shrink-0">Protótipo</span>
+                </div>
+
+                <header class="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <div class="flex flex-col gap-0.5">
+                        <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">VISÃO GERAL</p>
+                        <h2 class="text-2xl font-bold text-slate-900">Bem-vindo ao Dashboard do Instrutor</h2>
+                        <p class="text-sm text-slate-600">Aqui você pode gerenciar o inventário, reservas e requisições do FabLab.</p>
+                    </div>
+
+                    <div
+                        class="w-9 h-9 rounded-full bg-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center">
+                        CR
+                    </div>
+                </header>
+
+                <div class="bg-[#1b437c] text-white p-6 rounded-2xl flex justify-between items-center gap-4 shadow-xs">
+                    <div class="flex flex-col gap-1.5">
+                        <h3 class="text-xl font-bold text-white">Central de operação</h3>
+                        <p class="text-xs text-blue-100">
+                            Existem pedidos para analisar e 3 materiais em nível crítico. As máquinas estão operando sem conflitos de agenda.
+                        </p>
+                    </div>
+                    <a href="pedidos.html"
+                        class="bg-[#60a5fa] hover:bg-[#3b82f6] text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-all flex items-center gap-2 cursor-pointer shrink-0">
+                        Analisar pedidos <span>&gt;</span>
+                    </a>
+                </div>
+
+                <div id="cardsResumo" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <a href="pedidos.html" id="pedidoAnalise"
+                        class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-blue-300 transition group">
+                        <div
+                            class="w-9 h-9 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
+                            <span class="text-sm">📋</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-slate-900 block leading-none mb-1">2</span>
+                            <h3 class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">Aguardando análise</h3>
+                            <p class="text-[11px] text-slate-400">Pedidos de materiais</p>
+                        </div>
+                    </a>
+
+                    <a href="reservas.html" id="reservaHoje"
+                        class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-blue-300 transition group">
+                        <div
+                            class="w-9 h-9 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
+                            <span class="text-sm">📅</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-slate-900 block leading-none mb-1">12</span>
+                            <h3 class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">Reservas hoje</h3>
+                            <p class="text-[11px] text-slate-400">3 em andamento</p>
+                        </div>
+                    </a>
+
+                    <div id="alunosAtivos"
+                        class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
+                        <div
+                            class="w-9 h-9 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
+                            <span class="text-sm">👤</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-slate-900 block leading-none mb-1">28</span>
+                            <h3 class="text-xs font-bold text-slate-800">Alunos ativos</h3>
+                            <p class="text-[11px] text-slate-400">Em 6 projetos</p>
+                        </div>
+                    </div>
+
+                    <a href="inventario.html?filtro=critico" id="itensCriticos"
+                        class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-rose-300 transition group">
+                        <div
+                            class="w-9 h-9 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
+                            <span class="text-sm">⚠️</span>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-slate-900 block leading-none mb-1">3</span>
+                            <h3 class="text-xs font-bold text-slate-800 group-hover:text-rose-600 transition">Itens críticos</h3>
+                            <p class="text-[11px] text-slate-400">Precisam de reposição</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div id="secaoSuperior" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                    <div id="cardPedidosPrioritarios"
+                        class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-4">
+                        <div id="headerPedidosPrioritarios" class="flex items-center justify-between">
+                            <div id="titulosPedidosPrioritarios">
+                                <h3 id="tituloPedidos" class="text-base font-bold text-slate-900">Pedidos prioritários</h3>
+                                <p id="subtituloPedidos" class="text-xs text-slate-400">Solicitações que precisam de decisão</p>
+                            </div>
+                            <a href="pedidos.html" id="linkVerTodosPedidos"
+                                class="text-xs font-semibold text-blue-600 hover:underline">Ver todos</a>
+                        </div>
+
+                        <div id="listaPedidosPrioritarios" class="space-y-3">
+                            <div id="pedidoItem1"
+                                class="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 transition">
+                                <div id="infoPedido1" class="flex items-center gap-3">
+                                    <div id="iconePedido1"
+                                        class="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
+                                        <span>📋</span>
+                                    </div>
+                                    <div id="textoPedido1">
+                                        <div class="flex items-center gap-2">
+                                            <strong id="nomeMaterial1" class="text-sm font-semibold text-slate-800">PLA Branco 1 kg</strong>
+                                            <span id="codigoRequisicao1"
+                                                class="text-[10px] font-mono text-slate-400 uppercase">REQ-012</span>
+                                        </div>
+                                        <p id="detalhesAluno1" class="text-xs text-slate-400">João Pedro · Projeto integrador</p>
+                                    </div>
+                                </div>
+                                <a href="pedidos.html?id=REQ-012" id="btnRevisarPedido1"
+                                    class="px-4 py-1.5 text-xs font-medium text-blue-600 border border-blue-200 rounded-full hover:bg-blue-50 transition cursor-pointer">Revisar</a>
+                            </div>
+
+                            <div id="pedidoItem2"
+                                class="flex items-center justify-between p-2.5 rounded-xl hover:bg-slate-50 transition">
+                                <div id="infoPedido2" class="flex items-center gap-3">
+                                    <div id="iconePedido2"
+                                        class="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
+                                        <span>📋</span>
+                                    </div>
+                                    <div id="textoPedido2">
+                                        <div class="flex items-center gap-2">
+                                            <strong id="nomeMaterial2"
+                                                class="text-sm font-semibold text-slate-800">Placa MDF 3 mm · 5 un.</strong>
+                                            <span id="codigoRequisicao2"
+                                                class="text-[10px] font-mono text-slate-400 uppercase">REQ-013</span>
+                                        </div>
+                                        <p id="detalhesAluno2" class="text-xs text-slate-400">Higor Cardoso · Protótipo de mobiliário</p>
+                                    </div>
+                                </div>
+                                <a href="pedidos.html?id=REQ-013" id="btnRevisarPedido2"
+                                    class="px-4 py-1.5 text-xs font-medium text-blue-600 border border-blue-200 rounded-full hover:bg-blue-50 transition cursor-pointer">Revisar</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="cardAgoraNoLaboratorio"
+                        class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-4">
+                        <div id="headerLaboratorio">
+                            <h3 id="tituloLaboratorio" class="text-base font-bold text-slate-900">Agora no laboratório</h3>
+                            <p id="subtituloLaboratorio" class="text-xs text-slate-400">Ocupação em tempo real</p>
+                        </div>
+
+                        <div id="painelStatusLaboratorio" class="space-y-2">
+                            <div id="linhaMaquinasEmUso"
+                                class="bg-slate-50 p-3 rounded-xl flex items-center justify-between">
+                                <span id="labelMaquinasEmUso" class="text-xs font-medium text-slate-600">Máquinas em uso</span>
+                                <span id="valorMaquinasEmUso" class="text-base font-bold text-slate-900">3/7</span>
+                            </div>
+
+                            <div id="linhaProximaLiberacao"
+                                class="bg-slate-50 p-3 rounded-xl flex items-center justify-between">
+                                <span id="labelProximaLiberacao" class="text-xs font-medium text-slate-600">Próxima liberação</span>
+                                <span id="valorProximaLiberacao" class="text-xs font-bold text-slate-800">Ender 5 - 15:00</span>
+                            </div>
+                        </div>
+
+                        <a href="reservas.html" id="btnAbrirAgendaCompleta"
+                            class="w-full py-2.5 px-4 border border-slate-200 rounded-xl flex items-center justify-between text-xs font-semibold text-blue-600 hover:bg-slate-50 transition">
+                            <span>Abrir agenda completa</span>
+                            <span id="iconeSetaAgenda">&gt;</span>
+                        </a>
+                    </div>
+
+                </div>
+
+                <div id="cardAcoesGestao"
+                    class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4 mb-4">
+                    <div id="headerAcoesGestao">
+                        <h3 id="tituloAcoesGestao" class="text-base font-bold text-slate-900">Ações de gestão</h3>
+                        <p id="subtituloAcoesGestao" class="text-xs text-slate-400">Atalhos para a rotina do instrutor</p>
+                    </div>
+
+                    <div id="gridAtalhosGestao" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <a href="pedidos.html" id="atalhoAnalisarPedidos"
+                            class="bg-slate-50 p-4 rounded-xl flex items-center justify-between hover:bg-slate-100 transition group border border-slate-100">
+                            <div class="flex items-center gap-3">
+                                <div id="iconeAtalhoPedidos"
+                                    class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                                    <span>📋</span>
+                                </div>
+                                <div id="textoAtalhoPedidos">
+                                    <h4 id="tituloAtalhoPedidos"
+                                        class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
+                                        Analisar pedidos</h4>
+                                    <p id="statusAtalhoPedidos" class="text-[10px] text-slate-400">2 aguardando decisão</p>
+                                </div>
+                            </div>
+                            <span id="setaAtalhoPedidos"
+                                class="text-slate-300 group-hover:text-blue-600 text-xs transition">&gt;</span>
+                        </a>
+
+                        <a href="reservas.html" id="atalhoGerenciarAgenda"
+                            class="bg-slate-50 p-4 rounded-xl flex items-center justify-between hover:bg-slate-100 transition group border border-slate-100">
+                            <div class="flex items-center gap-3">
+                                <div id="iconeAtalhoAgenda"
+                                    class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                                    <span>📅</span>
+                                </div>
+                                <div id="textoAtalhoAgenda">
+                                    <h4 id="tituloAtalhoAgenda"
+                                        class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
+                                        Gerenciar agenda</h4>
+                                    <p id="statusAtalhoAgenda" class="text-[10px] text-slate-400">Veja todas as reservas</p>
+                                </div>
+                            </div>
+                            <span id="setaAtalhoAgenda"
+                                class="text-slate-300 group-hover:text-blue-600 text-xs transition">&gt;</span>
+                        </a>
+
+                        <a href="inventario.html?filtro=critico" id="atalhoVerEstoqueCritico"
+                            class="bg-slate-50 p-4 rounded-xl flex items-center justify-between hover:bg-slate-100 transition group border border-slate-100">
+                            <div class="flex items-center gap-3">
+                                <div id="iconeAtalhoEstoque"
+                                    class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
+                                    <span>📦</span>
+                                </div>
+                                <div id="textoAtalhoEstoque">
+                                    <h4 id="tituloAtalhoEstoque"
+                                        class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
+                                        Ver estoque crítico</h4>
+                                    <p id="statusAtalhoEstoque" class="text-[10px] text-slate-400">3 itens precisam de atenção</p>
+                                </div>
+                            </div>
+                            <span id="setaAtalhoEstoque"
+                                class="text-slate-300 group-hover:text-blue-600 text-xs transition">&gt;</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

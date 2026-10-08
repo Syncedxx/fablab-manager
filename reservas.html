@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FabLab Manager - Reservas</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-slate-50 text-slate-800 font-sans antialiased">
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Barra Lateral Simplificada -->
+        <aside class="w-64 bg-[#0d1527] text-white p-6 flex flex-col justify-between shrink-0">
+            <div class="space-y-6">
+                <div>
+                    <h1 class="text-lg font-bold">FabLab Manager</h1>
+                    <p class="text-[10px] text-blue-300 uppercase">SENAI — GESTÃO</p>
+                </div>
+
+                <nav class="flex flex-col gap-2 text-xs">
+                    <p class="text-[10px] font-bold text-slate-500 uppercase">MENU</p>
+                    <a href="dashboard-instrutor.html" class="p-2 text-slate-400 hover:text-white rounded-lg">📊 Visão Geral</a>
+                    <a href="inventario.html" class="p-2 text-slate-400 hover:text-white rounded-lg">📦 Inventário</a>
+                    <a href="reservas.html" class="p-2 text-white bg-slate-800 border-l-4 border-emerald-500 rounded-r-lg font-bold">📅 Reservas</a>
+                    <a href="pedidos.html" class="p-2 text-slate-400 hover:text-white rounded-lg">📄 Pedidos</a>
+                    <a href="notificacoes.html" class="p-2 text-slate-400 hover:text-white rounded-lg">🔔 Notificações</a>
+                </nav>
+            </div>
+
+            <!-- Perfil / Sair -->
+            <div class="bg-[#172339] p-3 rounded-xl text-xs space-y-2">
+                <p class="font-bold text-white">Nome Exemplo</p>
+                <a href="login.html" class="text-slate-400 hover:text-white block">→ Sair da conta</a>
+            </div>
+        </aside>
+
+        <!-- Conteúdo Principal -->
+        <main class="flex-1 p-8 overflow-y-auto space-y-6">
+            
+            <!-- Cabeçalho -->
+            <header class="flex justify-between items-center pb-4 border-b border-slate-200">
+                <div>
+                    <h2 class="text-xl font-bold text-slate-900">Reservas de Equipamentos</h2>
+                    <p class="text-xs text-slate-500">Agendamentos do laboratório.</p>
+                </div>
+                <button class="bg-blue-600 text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-blue-700">
+                    + Nova Reserva
+                </button>
+            </header>
+
+            <!-- Status Rápido das Máquinas -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-xl border border-slate-200 text-xs space-y-1">
+                    <p class="font-bold text-slate-800">Bambu Lab X1 Carbon</p>
+                    <span class="inline-block px-2 py-0.5 bg-emerald-100 text-emerald-700 font-bold rounded-full text-[10px]">Livre</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 text-xs space-y-1">
+                    <p class="font-bold text-slate-800">Ender 5 Plus</p>
+                    <span class="inline-block px-2 py-0.5 bg-amber-100 text-amber-700 font-bold rounded-full text-[10px]">Em uso até 15h</span>
+                </div>
+                <div class="bg-white p-4 rounded-xl border border-slate-200 text-xs space-y-1">
+                    <p class="font-bold text-slate-800">Laser Cutter K40</p>
+                    <span class="inline-block px-2 py-0.5 bg-rose-100 text-rose-700 font-bold rounded-full text-[10px]">Manutenção</span>
+                </div>
+            </div>
+
+            <!-- Tabela de Agendamentos -->
+            <div class="bg-white border border-slate-200 rounded-xl overflow-hidden">
+                <table class="w-full text-left text-xs">
+                    <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 font-bold uppercase text-[10px]">
+                        <tr>
+                            <th class="p-4">Horário</th>
+                            <th class="p-4">Máquina</th>
+                            <th class="p-4">Aluno</th>
+                            <th class="p-4">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100">
+                        <tr>
+                            <td class="p-4 font-bold">09:00 - 11:00</td>
+                            <td class="p-4">Bambu Lab X1</td>
+                            <td class="p-4">Higor Cardoso</td>
+                            <td class="p-4"><a href="#" class="text-rose-600 font-bold hover:underline">Cancelar</a></td>
+                        </tr>
+                        <tr>
+                            <td class="p-4 font-bold">13:00 - 15:00</td>
+                            <td class="p-4">Ender 5 Plus</td>
+                            <td class="p-4">João Pedro</td>
+                            <td class="p-4"><a href="#" class="text-rose-600 font-bold hover:underline">Cancelar</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+</body>
+
+</html>
