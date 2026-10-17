@@ -12,29 +12,8 @@
     <div class="flex h-screen overflow-hidden">
         
         <!-- Barra Lateral Simplificada -->
-        <aside class="w-64 bg-[#0d1527] text-white p-6 flex flex-col justify-between shrink-0">
-            <div class="space-y-6">
-                <div>
-                    <h1 class="text-lg font-bold">FabLab Manager</h1>
-                    <p class="text-[10px] text-blue-300 uppercase">SENAI — GESTÃO</p>
-                </div>
-
-                <nav class="flex flex-col gap-2 text-xs">
-                    <p class="text-[10px] font-bold text-slate-500 uppercase">MENU</p>
-                    <a href="dashboard-instrutor.html" class="p-2 text-slate-400 hover:text-white rounded-lg">📊 Visão Geral</a>
-                    <a href="inventario.html" class="p-2 text-slate-400 hover:text-white rounded-lg">📦 Inventário</a>
-                    <a href="reservas.html" class="p-2 text-white bg-slate-800 border-l-4 border-emerald-500 rounded-r-lg font-bold">📅 Reservas</a>
-                    <a href="pedidos.html" class="p-2 text-slate-400 hover:text-white rounded-lg">📄 Pedidos</a>
-                    <a href="notificacoes.html" class="p-2 text-slate-400 hover:text-white rounded-lg">🔔 Notificações</a>
-                </nav>
-            </div>
-
-            <!-- Perfil / Sair -->
-            <div class="bg-[#172339] p-3 rounded-xl text-xs space-y-2">
-                <p class="font-bold text-white">Nome Exemplo</p>
-                <a href="login.html" class="text-slate-400 hover:text-white block">→ Sair da conta</a>
-            </div>
-        </aside>
+        <!-- Menu montado pelo menu.js conforme o perfil -->
+        <aside id="barraLateral"></aside>
 
         <!-- Conteúdo Principal -->
         <main class="flex-1 p-8 overflow-y-auto space-y-6">
@@ -96,6 +75,7 @@
 
         </main>
     </div>
+<script src="menu.js"></script>
 </body>
 
 </html>

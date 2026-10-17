@@ -13,59 +13,8 @@
         <div id="geral" class="flex h-screen overflow-hidden">
             
             <!-- Barra Lateral Fixa -->
-            <aside id="barraLateral"
-                class="w-64 h-screen shrink-0 bg-[#0d1527] text-white p-6 flex flex-col gap-6 overflow-y-auto">
-                <div class="flex flex-col gap-1">
-                    <h2 class="text-xl font-bold leading-tight text-white">FabLab Manager</h2>
-                    <p class="text-[10px] text-blue-300 font-semibold tracking-wider uppercase">SENAI — SISTEMA DE GESTÃO</p>
-                </div>
-
-                <hr class="border-slate-800 -mx-6 my-4 -mt-3">
-
-                <nav class="flex flex-col gap-2">
-                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">MENU</p>
-
-                    <a href="dashboard-instrutor.html" tabindex="0"
-                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white">
-                        <span>📊</span> Visão Geral
-                    </a>
-                    <a href="inventario.html" tabindex="0"
-                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white">
-                        <span>📦</span> Inventário
-                    </a>
-                    <a href="reservas.html" tabindex="0"
-                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white">
-                        <span>📅</span> Reservas
-                    </a>
-                    <a href="pedidos.html" tabindex="0"
-                        class="flex items-center gap-3 px-3 py-2 text-white bg-slate-800/80 border-l-4 border-emerald-500 rounded-r-lg font-semibold text-xs transition-all outline-none">
-                        <span>📄</span> Pedidos
-                    </a>
-                    <a href="notificacoes.html" tabindex="0"
-                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white">
-                        <span>🔔</span> Notificações
-                    </a>
-                </nav>
-
-                <!-- Perfil do Utilizador -->
-                <div id="cardUsuario"
-                    class="mt-auto bg-[#172339] border border-slate-800 rounded-2xl p-4 grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 items-center">
-                    <div id="icone"
-                        class="w-10 h-10 rounded-full bg-blue-200 text-slate-900 text-sm font-bold flex items-center justify-center shrink-0">
-                        <span>EX</span>
-                    </div>
-
-                    <div id="nomeUsuario" class="flex flex-col min-w-0">
-                        <strong class="text-sm font-semibold text-white truncate">Nome Exemplo</strong>
-                        <small class="text-xs text-slate-400 truncate">Instrutor(a) - TDS 2026</small>
-                    </div>
-
-                    <a href="login.html" id="btnSair"
-                        class="col-span-2 flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-white transition-colors pt-1">
-                        <span>→]</span> Sair da conta
-                    </a>
-                </div>
-            </aside>
+            <!-- Menu montado pelo menu.js conforme o perfil -->
+            <aside id="barraLateral"></aside>
 
             <!-- Painel Principal da Direita -->
             <div id="painelDireita" class="flex-1 h-screen overflow-y-auto p-8 flex flex-col gap-6">
@@ -223,6 +172,7 @@
             </div>
         </div>
     </main>
+<script src="menu.js"></script>
 </body>
 
 </html>

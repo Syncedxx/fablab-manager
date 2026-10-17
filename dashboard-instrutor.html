@@ -11,76 +11,17 @@
 <body class="bg-slate-50 text-slate-800 antialiased">
     <main>
         <div id="geral" class="flex h-screen overflow-hidden">
-            <aside id="barraLateral"
-                class="w-64 h-screen shrink-0 bg-[#0d1527] text-white p-6 flex flex-col gap-6 overflow-y-auto">
-                <div class="flex flex-col gap-1">
-                    <h2 class="text-xl font-bold leading-tight text-white">FabLab Manager</h2>
-                    <p class="text-[10px] text-blue-300 font-semibold tracking-wider uppercase">SENAI — SISTEMA DE GESTÃO</p>
-                </div>
-
-                <hr class="border-slate-800 -mx-6 my-4 -mt-3">
-
-                <nav class="flex flex-col gap-2">
-                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">MENU</p>
-
-                    <a href="dashboard-instrutor.html" tabindex="0"
-                        class="flex items-center gap-3 px-3 py-2 text-white bg-slate-800/80 border-l-4 border-emerald-500 rounded-r-lg font-semibold text-xs transition-all outline-none">
-                        <span>📊</span> Visão Geral
-                    </a>
-                    <a href="inventario.html" tabindex="0"
-                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
-                        <span>📦</span> Inventário
-                    </a>
-                    <a href="reservas.html" tabindex="0"
-                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
-                        <span>📅</span> Reservas
-                    </a>
-                    <a href="pedidos.html" tabindex="0"
-                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
-                        <span>📄</span> Pedidos
-                    </a>
-                    <a href="notificacoes.html" tabindex="0"
-                        class="flex items-center gap-3 px-3 py-2 text-slate-400 rounded-lg text-xs font-medium transition-all outline-none hover:bg-slate-800/60 hover:text-white focus:bg-slate-800/80 focus:text-white focus:border-l-4 focus:border-emerald-500 focus:rounded-r-lg focus:rounded-l-none focus:font-semibold">
-                        <span>🔔</span> Notificações
-                    </a>
-                </nav>
-
-                <div id="cardUsuario"
-                    class="mt-auto bg-[#172339] border border-slate-800 rounded-2xl p-4 grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 items-center">
-                    <div id="icone"
-                        class="w-10 h-10 rounded-full bg-blue-200 text-slate-900 text-sm font-bold flex items-center justify-center shrink-0">
-                        <span>EX</span>
-                    </div>
-
-                    <div id="nomeUsuario" class="flex flex-col min-w-0">
-                        <strong class="text-sm font-semibold text-white truncate">Nome Exemplo</strong>
-                        <small class="text-xs text-slate-400 truncate">Instrutor(a) - TDS 2026</small>
-                    </div>
-
-                    <a href="login.html" id="btnSair"
-                        class="col-span-2 flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-white transition-colors pt-1">
-                        <span>→]</span> Sair da conta
-                    </a>
-                </div>
-            </aside>
+            <!-- Menu montado pelo menu.js conforme o perfil -->
+            <aside id="barraLateral"></aside>
 
             <div id="painelDireita" class="flex-1 h-screen overflow-y-auto p-8 flex flex-col gap-6">
-
-                <div
-                    class="bg-amber-50 border border-amber-200/80 rounded-xl px-4 py-2.5 text-amber-800 text-xs font-medium flex items-center justify-between shadow-xs">
-                    <div class="flex items-center gap-2">
-                        <span>💡</span>
-                        <p><strong>Modo de Demonstração:</strong> As telas utilizam dados estáticos apenas para visualização do fluxo.</p>
-                    </div>
-                    <span
-                        class="text-[10px] bg-amber-200/60 text-amber-900 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider shrink-0">Protótipo</span>
-                </div>
 
                 <header class="flex justify-between items-center pb-4 border-b border-slate-200">
                     <div class="flex flex-col gap-0.5">
                         <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">VISÃO GERAL</p>
                         <h2 class="text-2xl font-bold text-slate-900">Bem-vindo ao Dashboard do Instrutor</h2>
-                        <p class="text-sm text-slate-600">Aqui você pode gerenciar o inventário, reservas e requisições do FabLab.</p>
+                        <p class="text-sm text-slate-600">Aqui você pode gerenciar o inventário, reservas e requisições
+                            do FabLab.</p>
                     </div>
 
                     <div
@@ -93,7 +34,8 @@
                     <div class="flex flex-col gap-1.5">
                         <h3 class="text-xl font-bold text-white">Central de operação</h3>
                         <p class="text-xs text-blue-100">
-                            Existem pedidos para analisar e 3 materiais em nível crítico. As máquinas estão operando sem conflitos de agenda.
+                            Existem pedidos para analisar e 3 materiais em nível crítico. As máquinas estão operando sem
+                            conflitos de agenda.
                         </p>
                     </div>
                     <a href="pedidos.html"
@@ -111,7 +53,8 @@
                         </div>
                         <div>
                             <span class="text-2xl font-bold text-slate-900 block leading-none mb-1">2</span>
-                            <h3 class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">Aguardando análise</h3>
+                            <h3 class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">Aguardando
+                                análise</h3>
                             <p class="text-[11px] text-slate-400">Pedidos de materiais</p>
                         </div>
                     </a>
@@ -124,7 +67,8 @@
                         </div>
                         <div>
                             <span class="text-2xl font-bold text-slate-900 block leading-none mb-1">12</span>
-                            <h3 class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">Reservas hoje</h3>
+                            <h3 class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">Reservas
+                                hoje</h3>
                             <p class="text-[11px] text-slate-400">3 em andamento</p>
                         </div>
                     </a>
@@ -150,7 +94,8 @@
                         </div>
                         <div>
                             <span class="text-2xl font-bold text-slate-900 block leading-none mb-1">3</span>
-                            <h3 class="text-xs font-bold text-slate-800 group-hover:text-rose-600 transition">Itens críticos</h3>
+                            <h3 class="text-xs font-bold text-slate-800 group-hover:text-rose-600 transition">Itens
+                                críticos</h3>
                             <p class="text-[11px] text-slate-400">Precisam de reposição</p>
                         </div>
                     </a>
@@ -162,8 +107,10 @@
                         class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-4">
                         <div id="headerPedidosPrioritarios" class="flex items-center justify-between">
                             <div id="titulosPedidosPrioritarios">
-                                <h3 id="tituloPedidos" class="text-base font-bold text-slate-900">Pedidos prioritários</h3>
-                                <p id="subtituloPedidos" class="text-xs text-slate-400">Solicitações que precisam de decisão</p>
+                                <h3 id="tituloPedidos" class="text-base font-bold text-slate-900">Pedidos prioritários
+                                </h3>
+                                <p id="subtituloPedidos" class="text-xs text-slate-400">Solicitações que precisam de
+                                    decisão</p>
                             </div>
                             <a href="pedidos.html" id="linkVerTodosPedidos"
                                 class="text-xs font-semibold text-blue-600 hover:underline">Ver todos</a>
@@ -179,11 +126,13 @@
                                     </div>
                                     <div id="textoPedido1">
                                         <div class="flex items-center gap-2">
-                                            <strong id="nomeMaterial1" class="text-sm font-semibold text-slate-800">PLA Branco 1 kg</strong>
+                                            <strong id="nomeMaterial1" class="text-sm font-semibold text-slate-800">PLA
+                                                Branco 1 kg</strong>
                                             <span id="codigoRequisicao1"
                                                 class="text-[10px] font-mono text-slate-400 uppercase">REQ-012</span>
                                         </div>
-                                        <p id="detalhesAluno1" class="text-xs text-slate-400">João Pedro · Projeto integrador</p>
+                                        <p id="detalhesAluno1" class="text-xs text-slate-400">João Pedro · Projeto
+                                            integrador</p>
                                     </div>
                                 </div>
                                 <a href="pedidos.html?id=REQ-012" id="btnRevisarPedido1"
@@ -200,11 +149,13 @@
                                     <div id="textoPedido2">
                                         <div class="flex items-center gap-2">
                                             <strong id="nomeMaterial2"
-                                                class="text-sm font-semibold text-slate-800">Placa MDF 3 mm · 5 un.</strong>
+                                                class="text-sm font-semibold text-slate-800">Placa MDF 3 mm · 5
+                                                un.</strong>
                                             <span id="codigoRequisicao2"
                                                 class="text-[10px] font-mono text-slate-400 uppercase">REQ-013</span>
                                         </div>
-                                        <p id="detalhesAluno2" class="text-xs text-slate-400">Higor Cardoso · Protótipo de mobiliário</p>
+                                        <p id="detalhesAluno2" class="text-xs text-slate-400">Higor Cardoso · Protótipo
+                                            de mobiliário</p>
                                     </div>
                                 </div>
                                 <a href="pedidos.html?id=REQ-013" id="btnRevisarPedido2"
@@ -216,21 +167,25 @@
                     <div id="cardAgoraNoLaboratorio"
                         class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-4">
                         <div id="headerLaboratorio">
-                            <h3 id="tituloLaboratorio" class="text-base font-bold text-slate-900">Agora no laboratório</h3>
+                            <h3 id="tituloLaboratorio" class="text-base font-bold text-slate-900">Agora no laboratório
+                            </h3>
                             <p id="subtituloLaboratorio" class="text-xs text-slate-400">Ocupação em tempo real</p>
                         </div>
 
                         <div id="painelStatusLaboratorio" class="space-y-2">
                             <div id="linhaMaquinasEmUso"
                                 class="bg-slate-50 p-3 rounded-xl flex items-center justify-between">
-                                <span id="labelMaquinasEmUso" class="text-xs font-medium text-slate-600">Máquinas em uso</span>
+                                <span id="labelMaquinasEmUso" class="text-xs font-medium text-slate-600">Máquinas em
+                                    uso</span>
                                 <span id="valorMaquinasEmUso" class="text-base font-bold text-slate-900">3/7</span>
                             </div>
 
                             <div id="linhaProximaLiberacao"
                                 class="bg-slate-50 p-3 rounded-xl flex items-center justify-between">
-                                <span id="labelProximaLiberacao" class="text-xs font-medium text-slate-600">Próxima liberação</span>
-                                <span id="valorProximaLiberacao" class="text-xs font-bold text-slate-800">Ender 5 - 15:00</span>
+                                <span id="labelProximaLiberacao" class="text-xs font-medium text-slate-600">Próxima
+                                    liberação</span>
+                                <span id="valorProximaLiberacao" class="text-xs font-bold text-slate-800">Ender 5 -
+                                    15:00</span>
                             </div>
                         </div>
 
@@ -247,7 +202,8 @@
                     class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4 mb-4">
                     <div id="headerAcoesGestao">
                         <h3 id="tituloAcoesGestao" class="text-base font-bold text-slate-900">Ações de gestão</h3>
-                        <p id="subtituloAcoesGestao" class="text-xs text-slate-400">Atalhos para a rotina do instrutor</p>
+                        <p id="subtituloAcoesGestao" class="text-xs text-slate-400">Atalhos para a rotina do instrutor
+                        </p>
                     </div>
 
                     <div id="gridAtalhosGestao" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -262,7 +218,8 @@
                                     <h4 id="tituloAtalhoPedidos"
                                         class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
                                         Analisar pedidos</h4>
-                                    <p id="statusAtalhoPedidos" class="text-[10px] text-slate-400">2 aguardando decisão</p>
+                                    <p id="statusAtalhoPedidos" class="text-[10px] text-slate-400">2 aguardando decisão
+                                    </p>
                                 </div>
                             </div>
                             <span id="setaAtalhoPedidos"
@@ -280,7 +237,8 @@
                                     <h4 id="tituloAtalhoAgenda"
                                         class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
                                         Gerenciar agenda</h4>
-                                    <p id="statusAtalhoAgenda" class="text-[10px] text-slate-400">Veja todas as reservas</p>
+                                    <p id="statusAtalhoAgenda" class="text-[10px] text-slate-400">Veja todas as reservas
+                                    </p>
                                 </div>
                             </div>
                             <span id="setaAtalhoAgenda"
@@ -298,7 +256,8 @@
                                     <h4 id="tituloAtalhoEstoque"
                                         class="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
                                         Ver estoque crítico</h4>
-                                    <p id="statusAtalhoEstoque" class="text-[10px] text-slate-400">3 itens precisam de atenção</p>
+                                    <p id="statusAtalhoEstoque" class="text-[10px] text-slate-400">3 itens precisam de
+                                        atenção</p>
                                 </div>
                             </div>
                             <span id="setaAtalhoEstoque"
@@ -310,6 +269,7 @@
             </div>
         </div>
     </main>
+    <script src="menu.js"></script>
 </body>
 
 </html>
