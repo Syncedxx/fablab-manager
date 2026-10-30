@@ -27,7 +27,7 @@
 
                     <!-- Avatar do usuário -->
                     <div
-                        class="w-9 h-9 rounded-full bg-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center">
+                        class="size-9 rounded-full bg-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center">
                         JP
                     </div>
                 </header>
@@ -38,14 +38,14 @@
                     <div class="flex flex-col gap-2 z-10">
                         <span
                             class="inline-flex items-center gap-2 text-[11px] bg-emerald-500/20 text-emerald-300 font-medium px-2.5 py-0.5 rounded-full w-fit">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Laboratório aberto
+                            <span class="size-1.5 rounded-full bg-emerald-400"></span> Laboratório aberto
                         </span>
                         <h3 class="text-xl font-bold">Pronto para criar?</h3>
                         <p class="text-xs text-blue-100">Há 4 máquinas disponíveis e nenhum conflito na sua agenda de
                             hoje.</p>
                     </div>
 
-                    <button type="button" onclick="document.getElementById('modalReserva').classList.remove('hidden')"
+                    <button type="button" onclick="document.getElementById('modalReserva').classList.replace('hidden', 'flex')"
                         class="bg-blue-400 hover:bg-blue-300 text-slate-900 font-semibold text-xs px-4 py-2.5 rounded-lg transition-colors z-10 flex items-center gap-1.5 cursor-pointer">
                         <span>+</span> Nova reserva
                     </button>
@@ -204,7 +204,7 @@
 
     <!--popup-->
     <div id="modalReserva"
-        class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 items-center justify-center p-4">
         <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 flex flex-col gap-4">
 
             <!--Cabeçalho-->
@@ -215,7 +215,7 @@
                         <p class="text-[11px] text-slate-400">Escolha o equipamento, data e horário.</p>
                     </div>
                     <!--botao fechar-->
-                    <button type="button" onclick="document.getElementById('modalReserva').classList.add('hidden')"
+                    <button type="button" onclick="document.getElementById('modalReserva').classList.replace('flex', 'hidden')"
                         class="text-slate-400 hover:text-slate-700 text-sm font-bold p-1">
                         ✕
                     </button>
@@ -246,7 +246,7 @@
                     </div>
 
                     <div class="flex justify-end gap-2 pt-3 border-t border-slate-100">
-                        <button type="button" onclick="document.getElementById('modalReserva').classList.add('hidden')"
+                        <button type="button" onclick="document.getElementById('modalReserva').classList.replace('flex', 'hidden')"
                             class="px-3 py-2 rounded-lg border border-slate-200 text-xs text-slate-600 hover:bg-slate-50 font-medium">
                             Cancelar
                         </button>

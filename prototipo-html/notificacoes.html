@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notificações - FabLab Manager</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased font-sans">
+    <main>
+        <div id="geral" class="flex min-h-screen">
+            <!-- Barra Lateral: montada pelo menu.js conforme o perfil -->
+            <aside id="barraLateral"></aside>
+
+            <div id="painelDireita" class="flex-1 p-8 flex flex-col gap-6">
+
+                <!-- Cabeçalho -->
+                <header class="flex justify-between items-center pb-4 border-b border-slate-200">
+                    <div class="flex flex-col gap-0.5">
+                        <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">ALERTAS DO SISTEMA</p>
+                        <h2 class="text-2xl font-bold text-slate-900">Notificações</h2>
+                        <p id="contadorNaoLidas" class="text-xs text-slate-500"></p>
+                    </div>
+
+                    <div>
+                        <button id="btnMarcarLidas" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl">
+                            Marcar todas como lidas
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Filtro -->
+                <div id="conteudoNotificacoesPrincipal" class="flex gap-3">
+                    <select id="selecao"
+                        class="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 outline-none focus:border-blue-500">
+                        <option value="">Todos os alertas</option>
+                        <option value="estoque">Estoque crítico</option>
+                        <option value="conflito">Conflito de reserva</option>
+                    </select>
+                </div>
+
+                <!-- Lista de Notificações: desenhada pelo script lá embaixo -->
+                <div id="listaNotificacoes" class="flex flex-col gap-3"></div>
+            </div>
+        </div>
+    </main>
+
+<script src="menu.js"></script>
+<script>
+    // dados de exemplo (depois vêm do sistema)
+    var notificacoes = [
+        { tipo: 'estoque', titulo: 'Estoque crítico: PLA Branco 1.75mm', texto: 'Restam apenas 120 g. Solicite reposição.', hora: 'Há 10 min', lida: false },
+        { tipo: 'conflito', titulo: 'Conflito de reserva: Ender 5 Plus', texto: 'Dois agendamentos para hoje às 14h. Ajuste um dos horários.', hora: 'Há 1 h', lida: false },
+        { tipo: 'estoque', titulo: 'Estoque crítico: Placa MDF 3mm', texto: 'Restam apenas 2 un.', hora: 'Há 3 h', lida: false },
+        { tipo: 'conflito', titulo: 'Conflito de reserva: Laser Cutter K40', texto: 'Existe uma reserva em uma máquina em manutenção.', hora: 'Ontem', lida: true }
+    ];
+
+    // cor, ícone e link de cada tipo de alerta
+    var tipos = {
+        estoque: { icone: '📦', cor: 'bg-rose-50 text-rose-500', link: 'inventario.html', textoLink: 'Ver inventário' },
+        conflito: { icone: '📅', cor: 'bg-amber-50 text-amber-600', link: 'reservas.html', textoLink: 'Ver reservas' }
+    };
+
+    var lista = document.getElementById('listaNotificacoes');
+    var selecao = document.getElementById('selecao');
+
+    // monta a lista na tela, respeitando o filtro
+    function desenhar() {
+        var html = '';
+        var naoLidas = 0;
+
+        for (var i = 0; i < notificacoes.length; i++) {
+            var n = notificacoes[i];
+            if (!n.lida) naoLidas++;
+            if (selecao.value !== '' && n.tipo !== selecao.value) continue;
+
+            var t = tipos[n.tipo];
+            html += '<div class="bg-white border border-slate-200 rounded-2xl p-5 flex items-center justify-between gap-4' + (n.lida ? ' opacity-60' : '') + '">' +
+                '<div class="flex items-center gap-4">' +
+                '<div class="w-10 h-10 rounded-lg ' + t.cor + ' flex items-center justify-center shrink-0">' + t.icone + '</div>' +
+                '<div class="flex flex-col gap-0.5">' +
+                '<p class="text-sm font-semibold text-slate-800">' + n.titulo + (n.lida ? '' : ' <span class="inline-block w-2 h-2 rounded-full bg-blue-600"></span>') + '</p>' +
+                '<p class="text-xs text-slate-500">' + n.texto + '</p>' +
+                '<p class="text-[10px] text-slate-400">' + n.hora + '</p>' +
+                '</div>' +
+                '</div>' +
+                '<a href="' + t.link + '" class="text-xs font-semibold text-blue-600 hover:underline shrink-0">' + t.textoLink + '</a>' +
+                '</div>';
+        }
+
+        if (html === '') {
+            html = '<p class="text-sm text-slate-400 text-center py-10">Nenhum alerta por aqui.</p>';
+        }
+        lista.innerHTML = html;
+        document.getElementById('contadorNaoLidas').textContent = naoLidas === 0 ? 'Tudo em dia.' : naoLidas + ' alerta(s) não lido(s).';
+    }
+
+    // marca tudo como lido e redesenha
+    document.getElementById('btnMarcarLidas').addEventListener('click', function () {
+        for (var i = 0; i < notificacoes.length; i++) {
+            notificacoes[i].lida = true;
+        }
+        desenhar();
+    });
+
+    selecao.addEventListener('change', desenhar);
+    desenhar();
+</script>
+</body>
+
+</html>

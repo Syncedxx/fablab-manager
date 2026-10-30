@@ -17,7 +17,8 @@
                 <div class="w-full max-w-md flex flex-col gap-8">
                     <div id="logo" class="flex flex-col gap-0.5">
                         <h2 class="text-xl font-bold tracking-wide text-white">FabLab Manager</h2>
-                        <p class="text-xs font-semibold text-blue-300 uppercase tracking-wider">SENAI -SISTEMA DE GESTÃO</p>
+                        <p class="text-xs font-semibold text-blue-300 uppercase tracking-wider">SENAI — SISTEMA DE
+                            GESTÃO</p>
                     </div>
 
                     <div id="infoEsq" class="flex flex-col gap-5">
@@ -60,7 +61,7 @@
                     </div>
 
                     <!-- Formulário -->
-                    <form id="formulario" action="login.html" method="POST" class="space-y-4">
+                    <form id="formulario" method="POST" class="space-y-4">
                         <div>
                             <p class="titulo-opcao text-xs font-semibold text-slate-700 mb-2">Perfil de acesso</p>
                             <div class="campos-perfil grid grid-cols-2 gap-1.5 bg-slate-200/80 p-1 rounded-xl">
@@ -108,6 +109,17 @@
 
         </div>
     </main>
+<script>
+    // ainda sem backend: confere as senhas e vai para o login (nada aparece na URL)
+    document.getElementById('formulario').addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (document.getElementById('txtsenha').value !== document.getElementById('txtconfsenha').value) {
+            alert('As senhas não conferem.');
+            return;
+        }
+        window.location.href = 'login.html';
+    });
+</script>
 </body>
 
 </html>
