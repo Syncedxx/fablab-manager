@@ -10,21 +10,23 @@
 
 <body class="bg-slate-50 text-slate-800 font-sans antialiased">
     <div class="flex h-screen overflow-hidden">
-        
+
         <!-- Barra Lateral Simplificada -->
         <!-- Menu montado pelo menu.js conforme o perfil -->
         <aside id="barraLateral"></aside>
 
         <!-- Conteúdo Principal -->
         <main class="flex-1 p-8 overflow-y-auto space-y-6">
-            
+
             <!-- Cabeçalho -->
             <header class="flex justify-between items-center pb-4 border-b border-slate-200">
-                <div>
-                    <h2 class="text-xl font-bold text-slate-900">Reservas de Equipamentos</h2>
+                <div class="flex flex-col gap-0.5">
+                    <p class="text-[10px] font-bold text-blue-600 uppercase tracking-wider">AGENDA DO LABORATÓRIO</p>
+                    <h2 class="text-2xl font-bold text-slate-900">Reservas de Equipamentos</h2>
                     <p class="text-xs text-slate-500">Agendamentos do laboratório.</p>
                 </div>
-                <button class="bg-blue-600 text-white text-xs font-bold px-4 py-2 rounded-lg hover:bg-blue-700">
+                <button onclick="abrirModal()"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl">
                     + Nova Reserva
                 </button>
             </header>
@@ -33,15 +35,19 @@
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div class="bg-white p-4 rounded-xl border border-slate-200 text-xs space-y-1">
                     <p class="font-bold text-slate-800">Bambu Lab X1 Carbon</p>
-                    <span class="inline-block px-2 py-0.5 bg-emerald-100 text-emerald-700 font-bold rounded-full text-[10px]">Livre</span>
+                    <span
+                        class="inline-block px-2 py-0.5 bg-emerald-100 text-emerald-700 font-bold rounded-full text-[10px]">Livre</span>
                 </div>
                 <div class="bg-white p-4 rounded-xl border border-slate-200 text-xs space-y-1">
                     <p class="font-bold text-slate-800">Ender 5 Plus</p>
-                    <span class="inline-block px-2 py-0.5 bg-amber-100 text-amber-700 font-bold rounded-full text-[10px]">Em uso até 15h</span>
+                    <span
+                        class="inline-block px-2 py-0.5 bg-amber-100 text-amber-700 font-bold rounded-full text-[10px]">Em
+                        uso até 15h</span>
                 </div>
                 <div class="bg-white p-4 rounded-xl border border-slate-200 text-xs space-y-1">
                     <p class="font-bold text-slate-800">Laser Cutter K40</p>
-                    <span class="inline-block px-2 py-0.5 bg-rose-100 text-rose-700 font-bold rounded-full text-[10px]">Manutenção</span>
+                    <span
+                        class="inline-block px-2 py-0.5 bg-rose-100 text-rose-700 font-bold rounded-full text-[10px]">Manutenção</span>
                 </div>
             </div>
 
@@ -56,18 +62,20 @@
                             <th class="p-4">Ação</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-slate-100">
-                        <tr>
+                    <tbody id="listaReservas" class="divide-y divide-slate-100">
+                        <tr data-maquina="Bambu Lab X1 Carbon" data-inicio="09:00" data-fim="11:00">
                             <td class="p-4 font-bold">09:00 - 11:00</td>
                             <td class="p-4">Bambu Lab X1</td>
                             <td class="p-4">Higor Cardoso</td>
-                            <td class="p-4"><a href="#" class="text-rose-600 font-bold hover:underline">Cancelar</a></td>
+                            <td class="p-4"><a href="#"
+                                    class="btnCancelar text-rose-600 font-bold hover:underline">Cancelar</a></td>
                         </tr>
-                        <tr>
+                        <tr data-maquina="Ender 5 Plus" data-inicio="13:00" data-fim="15:00">
                             <td class="p-4 font-bold">13:00 - 15:00</td>
                             <td class="p-4">Ender 5 Plus</td>
                             <td class="p-4">João Pedro</td>
-                            <td class="p-4"><a href="#" class="text-rose-600 font-bold hover:underline">Cancelar</a></td>
+                            <td class="p-4"><a href="#"
+                                    class="btnCancelar text-rose-600 font-bold hover:underline">Cancelar</a></td>
                         </tr>
                     </tbody>
                 </table>
@@ -75,7 +83,163 @@
 
         </main>
     </div>
-<script src="menu.js"></script>
+    <!-- Popup: nova reserva -->
+    <div id="modalReserva"
+        class="hidden fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 flex flex-col gap-4">
+
+            <!-- Cabeçalho -->
+            <div class="flex justify-between items-center border-b border-slate-100 pb-3">
+                <div>
+                    <h3 class="font-bold text-slate-900 text-sm">Nova reserva</h3>
+                    <p class="text-[11px] text-slate-400">Escolha a máquina, a data e o horário.</p>
+                </div>
+                <!-- Botão fechar -->
+                <button type="button" onclick="fecharModal()"
+                    class="text-slate-400 hover:text-slate-700 text-sm font-bold p-1">
+                    ✕
+                </button>
+            </div>
+
+            <!-- Formulário -->
+            <form id="formReserva" class="flex flex-col gap-3">
+                <div class="flex flex-col gap-1">
+                    <label for="campoMaquina" class="text-xs font-semibold text-slate-700">Máquina</label>
+                    <select id="campoMaquina"
+                        class="w-full border border-slate-200 rounded-lg p-2 text-xs outline-none focus:ring-2 focus:ring-blue-600">
+                        <option>Bambu Lab X1 Carbon</option>
+                        <option>Ender 5 Plus</option>
+                        <option disabled>Laser Cutter K40 (em manutenção)</option>
+                    </select>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="campoData" class="text-xs font-semibold text-slate-700">Data</label>
+                    <input id="campoData" type="date" required
+                        class="w-full border border-slate-200 rounded-lg p-2 text-xs outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="flex flex-col gap-1">
+                        <label for="campoInicio" class="text-xs font-semibold text-slate-700">Início</label>
+                        <input id="campoInicio" type="time" required
+                            class="w-full border border-slate-200 rounded-lg p-2 text-xs outline-none focus:ring-2 focus:ring-blue-600">
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <label for="campoFim" class="text-xs font-semibold text-slate-700">Fim</label>
+                        <input id="campoFim" type="time" required
+                            class="w-full border border-slate-200 rounded-lg p-2 text-xs outline-none focus:ring-2 focus:ring-blue-600">
+                    </div>
+                </div>
+                <div class="flex flex-col gap-1">
+                    <label for="campoAluno" class="text-xs font-semibold text-slate-700">Aluno</label>
+                    <input id="campoAluno" type="text" required
+                        class="w-full border border-slate-200 rounded-lg p-2 text-xs outline-none focus:ring-2 focus:ring-blue-600">
+                </div>
+
+                <!-- Aviso de conflito ou erro de horário -->
+                <p id="avisoConflito" class="hidden text-xs font-semibold text-rose-600 bg-rose-50 rounded-lg p-2"></p>
+
+                <div class="flex justify-end gap-2 pt-3 border-t border-slate-100">
+                    <button type="button" onclick="fecharModal()"
+                        class="px-3 py-2 rounded-lg border border-slate-200 text-xs text-slate-600 hover:bg-slate-50 font-medium">
+                        Cancelar
+                    </button>
+                    <button type="submit"
+                        class="px-3 py-2 rounded-lg bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700">
+                        Confirmar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="menu.js"></script>
+    <script>
+        var lista = document.getElementById('listaReservas');
+        var modal = document.getElementById('modalReserva');
+        var aviso = document.getElementById('avisoConflito');
+
+        // data de hoje no formato do campo de data (AAAA-MM-DD)
+        var d = new Date();
+        var hoje = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+        document.getElementById('campoData').min = hoje;
+        document.getElementById('campoData').defaultValue = hoje;
+
+        function abrirModal() {
+            aviso.classList.add('hidden');
+            modal.classList.replace('hidden', 'flex');
+        }
+
+        function fecharModal() {
+            modal.classList.replace('flex', 'hidden');
+        }
+
+        // evita que texto digitado vire HTML na tela
+        function limpar(texto) {
+            return texto.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+
+        function mostrarAviso(texto) {
+            aviso.textContent = texto;
+            aviso.classList.remove('hidden');
+        }
+
+        // procura reserva da mesma máquina, no mesmo dia, que se cruza com o horário pedido
+        function acharConflito(maquina, data, inicio, fim) {
+            var linhas = lista.querySelectorAll('tr');
+            for (var i = 0; i < linhas.length; i++) {
+                var l = linhas[i];
+                if (l.dataset.maquina !== maquina) continue;
+                if ((l.dataset.data || hoje) !== data) continue;
+                if (inicio < l.dataset.fim && fim > l.dataset.inicio) return l;
+            }
+            return null;
+        }
+
+        // confere o horário, avisa se houver conflito e, se estiver livre, cria a linha
+        document.getElementById('formReserva').addEventListener('submit', function (e) {
+            e.preventDefault();
+            var maquina = document.getElementById('campoMaquina').value;
+            var data = document.getElementById('campoData').value;
+            var inicio = document.getElementById('campoInicio').value;
+            var fim = document.getElementById('campoFim').value;
+            var aluno = document.getElementById('campoAluno').value;
+
+            if (fim <= inicio) {
+                mostrarAviso('O horário final precisa ser depois do inicial.');
+                return;
+            }
+
+            var conflito = acharConflito(maquina, data, inicio, fim);
+            if (conflito) {
+                mostrarAviso('Conflito: ' + maquina + ' já está reservada das ' + conflito.dataset.inicio + ' às ' + conflito.dataset.fim + '.');
+                return;
+            }
+
+            // só mostra a data na tabela quando não for hoje
+            var dataExtra = data !== hoje ? '<span class="block text-[10px] font-normal text-slate-400">' + data.split('-').reverse().join('/') + '</span>' : '';
+
+            lista.insertAdjacentHTML('beforeend',
+                '<tr data-maquina="' + maquina + '" data-data="' + data + '" data-inicio="' + inicio + '" data-fim="' + fim + '">' +
+                '<td class="p-4 font-bold">' + inicio + ' - ' + fim + dataExtra + '</td>' +
+                '<td class="p-4">' + maquina + '</td>' +
+                '<td class="p-4">' + limpar(aluno) + '</td>' +
+                '<td class="p-4"><a href="#" class="btnCancelar text-rose-600 font-bold hover:underline">Cancelar</a></td>' +
+                '</tr>');
+
+            this.reset();
+            fecharModal();
+        });
+
+        // cancela a reserva da linha clicada
+        lista.addEventListener('click', function (e) {
+            var link = e.target.closest('.btnCancelar');
+            if (!link) return;
+            e.preventDefault();
+            if (confirm('Cancelar esta reserva?')) {
+                link.closest('tr').remove();
+            }
+        });
+    </script>
 </body>
 
 </html>
