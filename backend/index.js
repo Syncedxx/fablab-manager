@@ -6,6 +6,17 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+const authRoutes = require('./routes/auth')
+const { autenticar, exigirPerfil } = require('./middleware/auth')
+
+app.use('/auth', authRoutes)
+
+// rotas só para testar o RBAC (podem ser apagadas depois)
+app.get('/eu', autenticar, (req, res) => res.json(req.usuario))
+app.get('/admin-teste', autenticar, exigirPerfil('administrador'), (req, res) => {
+  res.json({ ok: 'Você é administrador.' })
+})
+
 app.get('/', (req, res) => {
   res.json({ status: 'ok' })
 })
