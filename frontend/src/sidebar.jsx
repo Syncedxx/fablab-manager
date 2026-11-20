@@ -36,6 +36,7 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
       {/* Fundo escuro (só no celular): clicar fecha o menu */}
       {aberto && (
         <div
+          aria-hidden="true"
           onClick={aoFechar}
           className="fixed inset-0 z-30 bg-black/50 lg:hidden"
         />
@@ -43,6 +44,7 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
 
       {/* Celular: abre por cima da página | PC: desliza e empurra o conteúdo */}
       <aside
+        id="menu-lateral"
         inert={!aberto}
         className={`fixed top-0 bottom-0 left-0 z-40 w-64 h-dvh shrink-0 bg-[#0d1527] text-white p-6 flex flex-col gap-6 overflow-y-auto transition-transform duration-300 lg:transition-[margin] lg:sticky lg:bottom-auto lg:left-auto lg:z-auto lg:translate-x-0 ${
           aberto ? 'translate-x-0 lg:ml-0' : '-translate-x-full lg:-ml-64'
@@ -51,9 +53,9 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
 
         <div className="flex items-start justify-between gap-2">
           <div className="flex flex-col gap-1">
-            <h2 className="text-xl font-bold leading-tight text-white">
+            <p className="text-xl font-bold leading-tight text-white">
               FabLab Manager
-            </h2>
+            </p>
 
             <p className="text-[10px] text-blue-300 font-semibold tracking-wider uppercase">
               SENAI — SISTEMA DE GESTÃO
@@ -62,9 +64,10 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
 
           {/* Botão fechar */}
           <button
+            type="button"
             onClick={aoFechar}
             aria-label="Fechar menu"
-            className="text-slate-400 hover:text-white text-lg leading-none cursor-pointer"
+            className="p-2 -m-2 text-slate-400 hover:text-white text-lg leading-none cursor-pointer"
           >
             ✕
           </button>
@@ -72,8 +75,8 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
 
         <hr className="border-slate-800 -mx-6" />
 
-        <nav className="flex flex-col gap-2">
-          <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1">
+        <nav aria-label="Menu principal" className="flex flex-col gap-2">
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
             MENU
           </p>
 
@@ -90,7 +93,7 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
                 }`
               }
             >
-              <span>{icone}</span>
+              <span aria-hidden="true">{icone}</span>
               {nome}
             </NavLink>
           ))}
@@ -98,7 +101,10 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
 
         <div className="mt-auto bg-[#172339] border border-slate-800 rounded-2xl p-4 grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 items-center">
 
-          <div className="w-10 h-10 rounded-full bg-blue-200 text-slate-900 text-sm font-bold flex items-center justify-center shrink-0">
+          <div
+            aria-hidden="true"
+            className="w-10 h-10 rounded-full bg-blue-200 text-slate-900 text-sm font-bold flex items-center justify-center shrink-0"
+          >
             EX
           </div>
 
@@ -113,10 +119,11 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
           </div>
 
           <button
+            type="button"
             onClick={sair}
-            className="col-span-2 flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-white transition-colors pt-1"
+            className="col-span-2 flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-white transition-colors py-1.5"
           >
-            <span>🚪</span>
+            <span aria-hidden="true">🚪</span>
             Sair da conta
           </button>
 

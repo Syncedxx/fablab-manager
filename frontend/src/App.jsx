@@ -61,8 +61,23 @@ function Layout() {
     }
   }
 
+  // Pula o menu e leva o foco direto para o conteúdo da página
+  function pularParaConteudo(event) {
+    event.preventDefault()
+    document.getElementById('conteudo-principal').focus()
+  }
+
   return (
     <div className="flex min-h-screen bg-slate-950">
+      {/* Link para pular o menu (só aparece ao receber foco pelo teclado) */}
+      <a
+        href="#conteudo-principal"
+        onClick={pularParaConteudo}
+        className="fixed top-2 left-2 z-50 -translate-y-24 focus:translate-y-0 bg-white text-slate-900 font-semibold text-sm px-4 py-2 rounded-lg shadow-lg"
+      >
+        Pular para o conteúdo
+      </a>
+
       <Sidebar
         aberto={menuAberto}
         aoNavegar={aoNavegar}
@@ -74,10 +89,12 @@ function Layout() {
         {/* Barra do topo com o botão do menu */}
         <header className="sticky top-0 z-20 h-12 shrink-0 flex items-center gap-3 px-4 bg-[#0d1527] border-b border-slate-800">
           <button
+            type="button"
             onClick={() => setMenuAberto(!menuAberto)}
             aria-label="Abrir ou fechar menu"
             aria-expanded={menuAberto}
-            className="text-white text-xl leading-none cursor-pointer"
+            aria-controls="menu-lateral"
+            className="p-2 -m-2 text-white text-xl leading-none cursor-pointer"
           >
             ☰
           </button>
@@ -87,7 +104,7 @@ function Layout() {
           </span>
         </header>
 
-        <main className="flex-1">
+        <main id="conteudo-principal" tabIndex={-1} className="flex-1 outline-none">
           <Outlet />
         </main>
       </div>
