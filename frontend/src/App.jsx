@@ -15,6 +15,10 @@ import DashboardAluno from './pages/dashboard-aluno.jsx'
 import DashboardInstrutor from './pages/dashboard-instrutor.jsx'
 import DashboardAdministrador from './pages/dashboard-administrador.jsx'
 import RecuperacaoSenha from './pages/recuperacao-senha.jsx'
+import Equipamentos from './pages/equipamentos.jsx'
+import Inventario from './pages/inventario.jsx'
+import Reservas from './pages/reservas.jsx'
+import Pedidos from './pages/pedidos.jsx'
 
 const RESTRITO = {
   '/pedidos': ['instrutor', 'administrador'],
@@ -70,10 +74,10 @@ function App() {
               <Route path="/dashboard-instrutor" element={<DashboardInstrutor />} />
               <Route path="/dashboard-administrador" element={<DashboardAdministrador />} />
 
-              <Route path="/inventario" element={<div>Inventário</div>} />
-              <Route path="/equipamentos" element={<div>Equipamentos</div>} />
-              <Route path="/reservas" element={<div>Reservas</div>} />
-              <Route path="/pedidos" element={<div>Pedidos</div>} />
+              <Route path="/inventario" element={<Inventario />} />
+              <Route path="/equipamentos" element={<Equipamentos />} />
+              <Route path="/reservas" element={<Reservas />} />
+              <Route path="/pedidos" element={<Pedidos />} />
               <Route path="/notificacoes" element={<div>Notificações</div>} />
               <Route path="/usuarios" element={<div>Usuários</div>} />
             </Route>
