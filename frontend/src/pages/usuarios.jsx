@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const PERFIS = {
   aluno: {
@@ -76,6 +76,33 @@ function Usuarios() {
 
   const proximoId = useRef(6)
 
+  // Guardam o botão que abre o popup e o primeiro campo dele.
+  const botaoAbrirRef = useRef(null)
+  const campoNomeRef = useRef(null)
+
+  // Com o popup aberto: foca o primeiro campo e fecha com Esc.
+  // Ao fechar, o foco volta para o botão que abriu.
+  useEffect(() => {
+    if (!modalAberto) return
+
+    const botaoQueAbriu = botaoAbrirRef.current
+
+    campoNomeRef.current.focus()
+
+    function aoApertarTecla(event) {
+      if (event.key === 'Escape') {
+        setModalAberto(false)
+      }
+    }
+
+    window.addEventListener('keydown', aoApertarTecla)
+
+    return () => {
+      window.removeEventListener('keydown', aoApertarTecla)
+      botaoQueAbriu.focus()
+    }
+  }, [modalAberto])
+
   const usuariosFiltrados = usuarios.filter((usuario) => {
     const texto = busca.toLowerCase()
 
@@ -131,9 +158,9 @@ function Usuarios() {
             ADMINISTRAÇÃO
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-900">
+          <h1 className="text-2xl font-bold text-slate-900">
             Usuários
-          </h2>
+          </h1>
 
           <p className="text-xs text-slate-500">
             Gerencie quem acessa o sistema e com qual perfil.
@@ -143,6 +170,7 @@ function Usuarios() {
         <div>
           <button
             type="button"
+            ref={botaoAbrirRef}
             onClick={() => setModalAberto(true)}
             className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl"
           >
@@ -155,16 +183,18 @@ function Usuarios() {
       <div className="flex gap-3">
         <input
           type="search"
+          aria-label="Buscar usuário"
           value={busca}
           onChange={(event) => setBusca(event.target.value)}
           placeholder="Buscar por nome ou e-mail..."
-          className="flex-1 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 placeholder-slate-400 outline-none focus:border-blue-500"
+          className="flex-1 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 placeholder-slate-500 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-600"
         />
 
         <select
+          aria-label="Filtrar por perfil"
           value={selecao}
           onChange={(event) => setSelecao(event.target.value)}
-          className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-600"
         >
           <option value="">Todos os perfis</option>
           <option value="aluno">Aluno</option>
@@ -176,12 +206,14 @@ function Usuarios() {
       {/* Tabela de usuários */}
       <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <table className="w-full text-left text-sm border-collapse">
-          <thead className="text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+          <caption className="sr-only">Lista de usuários</caption>
+
+          <thead className="text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-100">
             <tr>
-              <th className="py-4 px-6">Usuário</th>
-              <th className="py-4 px-6 text-center">Perfil</th>
-              <th className="py-4 px-6 text-center">Status</th>
-              <th className="py-4 px-6 text-right">Ação</th>
+              <th scope="col" className="py-4 px-6">Usuário</th>
+              <th scope="col" className="py-4 px-6 text-center">Perfil</th>
+              <th scope="col" className="py-4 px-6 text-center">Status</th>
+              <th scope="col" className="py-4 px-6 text-right">Ação</th>
             </tr>
           </thead>
 
@@ -196,14 +228,17 @@ function Usuarios() {
                     className="hover:bg-slate-50/50"
                   >
                     <td className="py-4 px-6 flex items-center gap-3 font-semibold text-slate-800">
-                      <div className="size-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold">
+                      <div
+                        aria-hidden="true"
+                        className="size-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold"
+                      >
                         {obterIniciais(usuario.nome)}
                       </div>
 
                       <div className="flex flex-col">
                         <span>{usuario.nome}</span>
 
-                        <span className="text-[11px] font-normal text-slate-400">
+                        <span className="text-[11px] font-normal text-slate-500">
                           {usuario.email}
                         </span>
                       </div>
@@ -219,11 +254,11 @@ function Usuarios() {
 
                     <td className="py-4 px-6 text-center">
                       {usuario.ativo ? (
-                        <span className="inline-block px-3 py-1 text-xs font-semibold text-emerald-600 bg-emerald-50 rounded-full">
+                        <span className="inline-block px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-full">
                           Ativo
                         </span>
                       ) : (
-                        <span className="inline-block px-3 py-1 text-xs font-semibold text-rose-500 bg-rose-50 rounded-full">
+                        <span className="inline-block px-3 py-1 text-xs font-semibold text-rose-700 bg-rose-50 rounded-full">
                           Inativo
                         </span>
                       )}
@@ -233,6 +268,7 @@ function Usuarios() {
                       <button
                         type="button"
                         onClick={() => alterarStatus(usuario.id)}
+                        aria-label={`${usuario.ativo ? 'Desativar' : 'Ativar'} ${usuario.nome}`}
                         className="text-xs font-semibold text-blue-600 hover:underline"
                       >
                         {usuario.ativo ? 'Desativar' : 'Ativar'}
@@ -245,7 +281,7 @@ function Usuarios() {
               <tr>
                 <td
                   colSpan={4}
-                  className="py-10 text-center text-sm text-slate-400"
+                  className="py-10 text-center text-sm text-slate-500"
                 >
                   Nenhum usuário encontrado.
                 </td>
@@ -261,16 +297,24 @@ function Usuarios() {
           modalAberto ? 'flex' : 'hidden'
         } fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 items-center justify-center p-4`}
       >
-        <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 flex flex-col gap-4">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="tituloModalUsuario"
+          className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 flex flex-col gap-4"
+        >
 
           {/* Cabeçalho do popup */}
           <div className="flex justify-between items-center border-b border-slate-100 pb-3">
             <div>
-              <h3 className="font-bold text-slate-900 text-sm">
+              <h3
+                id="tituloModalUsuario"
+                className="font-bold text-slate-900 text-sm"
+              >
                 Novo usuário
               </h3>
 
-              <p className="text-[11px] text-slate-400">
+              <p className="text-[11px] text-slate-500">
                 Informe os dados e escolha o perfil de acesso.
               </p>
             </div>
@@ -278,7 +322,8 @@ function Usuarios() {
             <button
               type="button"
               onClick={() => setModalAberto(false)}
-              className="text-slate-400 hover:text-slate-700 text-sm font-bold p-1"
+              aria-label="Fechar"
+              className="text-slate-500 hover:text-slate-700 text-sm font-bold p-2"
             >
               ✕
             </button>
@@ -299,6 +344,7 @@ function Usuarios() {
 
               <input
                 id="campoNome"
+                ref={campoNomeRef}
                 type="text"
                 required
                 value={nome}

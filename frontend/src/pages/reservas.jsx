@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function obterDataHoje() {
   const data = new Date()
@@ -47,6 +47,33 @@ function Reservas() {
   const [aluno, setAluno] = useState('')
 
   const proximoId = useRef(3)
+
+  // Guardam o botão que abre o popup e o primeiro campo dele.
+  const botaoAbrirRef = useRef(null)
+  const campoMaquinaRef = useRef(null)
+
+  // Com o popup aberto: foca o primeiro campo e fecha com Esc.
+  // Ao fechar, o foco volta para o botão que abriu.
+  useEffect(() => {
+    if (!modalAberto) return
+
+    const botaoQueAbriu = botaoAbrirRef.current
+
+    campoMaquinaRef.current.focus()
+
+    function aoApertarTecla(event) {
+      if (event.key === 'Escape') {
+        setModalAberto(false)
+      }
+    }
+
+    window.addEventListener('keydown', aoApertarTecla)
+
+    return () => {
+      window.removeEventListener('keydown', aoApertarTecla)
+      botaoQueAbriu.focus()
+    }
+  }, [modalAberto])
 
   function abrirModal() {
     setAvisoConflito('')
@@ -139,9 +166,9 @@ function Reservas() {
             AGENDA DO LABORATÓRIO
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-900">
+          <h1 className="text-2xl font-bold text-slate-900">
             Reservas de Equipamentos
-          </h2>
+          </h1>
 
           <p className="text-xs text-slate-500">
             Agendamentos do laboratório.
@@ -150,6 +177,7 @@ function Reservas() {
 
         <button
           type="button"
+          ref={botaoAbrirRef}
           onClick={abrirModal}
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl"
         >
@@ -195,13 +223,14 @@ function Reservas() {
       {/* Tabela de agendamentos */}
       <div className="bg-white border border-slate-200 rounded-xl overflow-hidden">
         <table className="w-full text-left text-xs">
+          <caption className="sr-only">Agendamentos do laboratório</caption>
 
           <thead className="bg-slate-50 border-b border-slate-200 text-slate-500 font-bold uppercase text-[10px]">
             <tr>
-              <th className="p-4">Horário</th>
-              <th className="p-4">Máquina</th>
-              <th className="p-4">Aluno</th>
-              <th className="p-4">Ação</th>
+              <th scope="col" className="p-4">Horário</th>
+              <th scope="col" className="p-4">Máquina</th>
+              <th scope="col" className="p-4">Aluno</th>
+              <th scope="col" className="p-4">Ação</th>
             </tr>
           </thead>
 
@@ -218,7 +247,7 @@ function Reservas() {
                   {reserva.inicio} - {reserva.fim}
 
                   {reserva.data && reserva.data !== hoje && (
-                    <span className="block text-[10px] font-normal text-slate-400">
+                    <span className="block text-[10px] font-normal text-slate-500">
                       {formatarData(reserva.data)}
                     </span>
                   )}
@@ -236,6 +265,7 @@ function Reservas() {
                   <button
                     type="button"
                     onClick={() => cancelarReserva(reserva.id)}
+                    aria-label={`Cancelar reserva de ${reserva.nomeMaquina} das ${reserva.inicio} às ${reserva.fim}`}
                     className="text-rose-600 font-bold hover:underline"
                   >
                     Cancelar
@@ -252,16 +282,24 @@ function Reservas() {
       <div
         className={`${modalAberto ? 'flex' : 'hidden'} fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 items-center justify-center p-4`}
       >
-        <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 flex flex-col gap-4">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="tituloModalReserva"
+          className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 flex flex-col gap-4"
+        >
 
           {/* Cabeçalho do modal */}
           <div className="flex justify-between items-center border-b border-slate-100 pb-3">
             <div>
-              <h3 className="font-bold text-slate-900 text-sm">
+              <h3
+                id="tituloModalReserva"
+                className="font-bold text-slate-900 text-sm"
+              >
                 Nova reserva
               </h3>
 
-              <p className="text-[11px] text-slate-400">
+              <p className="text-[11px] text-slate-500">
                 Escolha a máquina, a data e o horário.
               </p>
             </div>
@@ -269,7 +307,8 @@ function Reservas() {
             <button
               type="button"
               onClick={fecharModal}
-              className="text-slate-400 hover:text-slate-700 text-sm font-bold p-1"
+              aria-label="Fechar"
+              className="text-slate-500 hover:text-slate-700 text-sm font-bold p-2"
             >
               ✕
             </button>
@@ -291,6 +330,7 @@ function Reservas() {
 
               <select
                 id="campoMaquina"
+                ref={campoMaquinaRef}
                 value={maquina}
                 onChange={(event) => setMaquina(event.target.value)}
                 className="w-full border border-slate-200 rounded-lg p-2 text-xs outline-none focus:ring-2 focus:ring-blue-600"
@@ -387,11 +427,13 @@ function Reservas() {
             </div>
 
             {/* Aviso de conflito ou erro de horário */}
-            {avisoConflito && (
-              <p className="text-xs font-semibold text-rose-600 bg-rose-50 rounded-lg p-2">
-                {avisoConflito}
-              </p>
-            )}
+            <div role="alert" className="empty:hidden">
+              {avisoConflito && (
+                <p className="text-xs font-semibold text-rose-700 bg-rose-50 rounded-lg p-2">
+                  {avisoConflito}
+                </p>
+              )}
+            </div>
 
             <div className="flex justify-end gap-2 pt-3 border-t border-slate-100">
 

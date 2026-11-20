@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const MATERIAIS_INICIAIS = [
   {
@@ -109,6 +109,10 @@ function Inventario() {
 
   const [avisoPedido, setAvisoPedido] = useState('')
 
+  // Guardam o botão que abre o popup e o primeiro campo dele.
+  const botaoAbrirRef = useRef(null)
+  const campoMaterialRef = useRef(null)
+
   // Esconde o aviso de solicitação depois de 6 segundos.
   useEffect(() => {
     if (!avisoPedido) return
@@ -119,6 +123,29 @@ function Inventario() {
 
     return () => clearTimeout(temporizador)
   }, [avisoPedido])
+
+  // Com o popup aberto: foca o primeiro campo e fecha com Esc.
+  // Ao fechar, o foco volta para o botão que abriu.
+  useEffect(() => {
+    if (!modalAberto) return
+
+    const botaoQueAbriu = botaoAbrirRef.current
+
+    campoMaterialRef.current.focus()
+
+    function aoApertarTecla(event) {
+      if (event.key === 'Escape') {
+        setModalAberto(false)
+      }
+    }
+
+    window.addEventListener('keydown', aoApertarTecla)
+
+    return () => {
+      window.removeEventListener('keydown', aoApertarTecla)
+      botaoQueAbriu.focus()
+    }
+  }, [modalAberto])
 
   // Identifica os materiais com estoque crítico.
   const materiaisCriticos = materiais.filter(
@@ -176,9 +203,9 @@ function Inventario() {
               MATERIAIS E INSUMO
             </p>
 
-            <h2 className="text-2xl font-bold text-slate-900">
+            <h1 className="text-2xl font-bold text-slate-900">
               Inventário
-            </h2>
+            </h1>
 
             <p className="text-xs text-slate-500">
               Consulte saldos e itens que precisam de atenção.
@@ -188,6 +215,7 @@ function Inventario() {
           <div>
             <button
               type="button"
+              ref={botaoAbrirRef}
               onClick={abrirModal}
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl"
             >
@@ -196,16 +224,18 @@ function Inventario() {
           </div>
         </header>
 
-        {/* Aviso de solicitação registrada */}
-        {avisoPedido && (
-          <p className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-xl p-3">
-            {avisoPedido}
-          </p>
-        )}
+        {/* Aviso de solicitação registrada (a área fica sempre na tela para o leitor de tela anunciar) */}
+        <div role="status" className="empty:hidden">
+          {avisoPedido && (
+            <p className="text-xs font-semibold text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-xl p-3">
+              {avisoPedido}
+            </p>
+          )}
+        </div>
 
         {/* Aviso de estoque crítico */}
         {materiaisCriticos.length > 0 && (
-          <p className="text-xs font-semibold text-rose-600 bg-rose-50 border border-rose-100 rounded-xl p-3">
+          <p className="text-xs font-semibold text-rose-700 bg-rose-50 border border-rose-100 rounded-xl p-3">
             Estoque crítico ({materiaisCriticos.length}):{' '}
             {materiaisCriticos.map(material => material.nome).join(', ')}.
           </p>
@@ -215,16 +245,18 @@ function Inventario() {
         <div id="conteudoInventarioPrincipal" className="flex gap-3">
           <input
             type="search"
+            aria-label="Buscar material"
             placeholder="Buscar por nome do material..."
             value={busca}
             onChange={event => setBusca(event.target.value)}
-            className="flex-1 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 placeholder-slate-400 outline-none focus:border-blue-500"
+            className="flex-1 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 placeholder-slate-500 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-600"
           />
 
           <select
+            aria-label="Filtrar por categoria"
             value={categoriaSelecionada}
             onChange={event => setCategoriaSelecionada(event.target.value)}
-            className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 outline-none focus:border-blue-500"
+            className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-600"
           >
             <option value="">Todas as categorias</option>
             <option value="filamentos">Filamentos</option>
@@ -237,12 +269,14 @@ function Inventario() {
         {/* Tabela de materiais */}
         <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
           <table className="w-full text-left text-sm border-collapse">
-            <thead className="text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+            <caption className="sr-only">Lista de materiais</caption>
+
+            <thead className="text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-100">
               <tr>
-                <th className="py-4 px-6">Material</th>
-                <th className="py-4 px-6 text-center">Categoria</th>
-                <th className="py-4 px-6 text-center">Saldo</th>
-                <th className="py-4 px-6 text-right">Status</th>
+                <th scope="col" className="py-4 px-6">Material</th>
+                <th scope="col" className="py-4 px-6 text-center">Categoria</th>
+                <th scope="col" className="py-4 px-6 text-center">Saldo</th>
+                <th scope="col" className="py-4 px-6 text-right">Status</th>
               </tr>
             </thead>
 
@@ -253,14 +287,17 @@ function Inventario() {
                   className="hover:bg-slate-50/50"
                 >
                   <td className="py-4 px-6 flex items-center gap-3 font-semibold text-slate-800">
-                    <div className="size-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold">
+                    <div
+                      aria-hidden="true"
+                      className="size-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold"
+                    >
                       #
                     </div>
 
                     <span>{material.nome}</span>
                   </td>
 
-                  <td className="py-4 px-6 text-center text-slate-400">
+                  <td className="py-4 px-6 text-center text-slate-500">
                     {material.categoriaNome}
                   </td>
 
@@ -272,8 +309,8 @@ function Inventario() {
                     <span
                       className={
                         material.status === 'Crítico'
-                          ? 'inline-block px-3 py-1 text-xs font-semibold text-rose-500 bg-rose-50 rounded-full'
-                          : 'inline-block px-3 py-1 text-xs font-semibold text-emerald-600 bg-emerald-50 rounded-full'
+                          ? 'inline-block px-3 py-1 text-xs font-semibold text-rose-700 bg-rose-50 rounded-full'
+                          : 'inline-block px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-full'
                       }
                     >
                       {material.status}
@@ -288,9 +325,9 @@ function Inventario() {
         {/* Histórico de movimentações */}
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-0.5">
-            <h3 className="text-sm font-bold text-slate-900">
+            <h2 className="text-sm font-bold text-slate-900">
               Histórico de movimentações
-            </h3>
+            </h2>
 
             <p className="text-xs text-slate-500">
               Últimas entradas e saídas de material.
@@ -299,13 +336,17 @@ function Inventario() {
 
           <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
             <table className="w-full text-left text-sm border-collapse">
-              <thead className="text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
+              <caption className="sr-only">
+                Histórico de movimentações de material
+              </caption>
+
+              <thead className="text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-100">
                 <tr>
-                  <th className="py-4 px-6">Data</th>
-                  <th className="py-4 px-6">Material</th>
-                  <th className="py-4 px-6 text-center">Tipo</th>
-                  <th className="py-4 px-6 text-center">Quantidade</th>
-                  <th className="py-4 px-6 text-right">Projeto / Origem</th>
+                  <th scope="col" className="py-4 px-6">Data</th>
+                  <th scope="col" className="py-4 px-6">Material</th>
+                  <th scope="col" className="py-4 px-6 text-center">Tipo</th>
+                  <th scope="col" className="py-4 px-6 text-center">Quantidade</th>
+                  <th scope="col" className="py-4 px-6 text-right">Projeto / Origem</th>
                 </tr>
               </thead>
 
@@ -315,7 +356,7 @@ function Inventario() {
                     key={movimentacao.id}
                     className="hover:bg-slate-50/50"
                   >
-                    <td className="py-4 px-6 text-slate-400">
+                    <td className="py-4 px-6 text-slate-500">
                       {movimentacao.data}
                     </td>
 
@@ -328,7 +369,7 @@ function Inventario() {
                         className={
                           movimentacao.tipo === 'Saída'
                             ? 'inline-block px-3 py-1 text-xs font-semibold text-blue-600 bg-blue-50 rounded-full'
-                            : 'inline-block px-3 py-1 text-xs font-semibold text-emerald-600 bg-emerald-50 rounded-full'
+                            : 'inline-block px-3 py-1 text-xs font-semibold text-emerald-700 bg-emerald-50 rounded-full'
                         }
                       >
                         {movimentacao.tipo}
@@ -339,7 +380,7 @@ function Inventario() {
                       {movimentacao.quantidade}
                     </td>
 
-                    <td className="py-4 px-6 text-right text-slate-400">
+                    <td className="py-4 px-6 text-right text-slate-500">
                       {movimentacao.origem}
                     </td>
                   </tr>
@@ -357,16 +398,24 @@ function Inventario() {
           modalAberto ? 'flex' : 'hidden'
         } fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 items-center justify-center p-4`}
       >
-        <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 flex flex-col gap-4">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="tituloModalSolicitar"
+          className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 flex flex-col gap-4"
+        >
 
           {/* Cabeçalho do popup */}
           <div className="flex justify-between items-center border-b border-slate-100 pb-3">
             <div>
-              <h3 className="font-bold text-slate-900 text-sm">
+              <h3
+                id="tituloModalSolicitar"
+                className="font-bold text-slate-900 text-sm"
+              >
                 Solicitar material
               </h3>
 
-              <p className="text-[11px] text-slate-400">
+              <p className="text-[11px] text-slate-500">
                 Escolha o material, a quantidade e o projeto.
               </p>
             </div>
@@ -374,7 +423,8 @@ function Inventario() {
             <button
               type="button"
               onClick={fecharModal}
-              className="text-slate-400 hover:text-slate-700 text-sm font-bold p-1"
+              aria-label="Fechar"
+              className="text-slate-500 hover:text-slate-700 text-sm font-bold p-2"
             >
               ✕
             </button>
@@ -395,6 +445,7 @@ function Inventario() {
 
               <select
                 id="campoMaterial"
+                ref={campoMaterialRef}
                 value={materialSelecionado}
                 onChange={event =>
                   setMaterialSelecionado(event.target.value)
