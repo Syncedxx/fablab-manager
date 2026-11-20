@@ -19,6 +19,9 @@ import Equipamentos from './pages/equipamentos.jsx'
 import Inventario from './pages/inventario.jsx'
 import Reservas from './pages/reservas.jsx'
 import Pedidos from './pages/pedidos.jsx'
+import Notificacoes from './pages/notificacoes.jsx'
+import Usuarios from './pages/usuarios.jsx'
+import AcessoNegado from './pages/403.jsx'
 
 const RESTRITO = {
   '/pedidos': ['instrutor', 'administrador'],
@@ -65,7 +68,7 @@ function App() {
 
           <Route path="/login" element={<Login />} />
           <Route path="/cadastro" element={<Cadastro />} />
-          <Route path="/403" element={<div>403 - Acesso negado</div>} />
+          <Route path="/403" element={<AcessoNegado />} />
           <Route path="/recuperacao-senha" element={<RecuperacaoSenha />} />
 
           <Route element={<RotaProtegida />}>
@@ -78,8 +81,8 @@ function App() {
               <Route path="/equipamentos" element={<Equipamentos />} />
               <Route path="/reservas" element={<Reservas />} />
               <Route path="/pedidos" element={<Pedidos />} />
-              <Route path="/notificacoes" element={<div>Notificações</div>} />
-              <Route path="/usuarios" element={<div>Usuários</div>} />
+              <Route path="/notificacoes" element={<Notificacoes />} />
+              <Route path="/usuarios" element={<Usuarios />} />
             </Route>
           </Route>
 
