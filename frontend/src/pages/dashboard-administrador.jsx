@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom'
 
 function DashboardAdministrador() {
@@ -60,9 +59,9 @@ function DashboardAdministrador() {
             ADMINISTRAÇÃO DO SISTEMA
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-900">
+          <h1 className="text-2xl font-bold text-slate-900">
             Visão administrativa
-          </h2>
+          </h1>
 
           <p className="text-sm text-slate-600">
             Gerencie acessos, monitore a operação e acompanhe a integridade da plataforma.
@@ -70,7 +69,10 @@ function DashboardAdministrador() {
         </div>
 
         {/* Avatar do usuário */}
-        <div className="w-10 h-10 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shadow-sm">
+        <div
+          aria-hidden="true"
+          className="w-10 h-10 rounded-full bg-slate-900 text-white font-bold text-xs flex items-center justify-center shadow-sm"
+        >
           AS
         </div>
       </header>
@@ -78,13 +80,13 @@ function DashboardAdministrador() {
       {/* Banner principal */}
       <div className="bg-[#1b437c] text-white p-6 rounded-2xl flex justify-between items-center gap-4 shadow-xs">
         <div className="flex flex-col gap-2">
-          <span className="inline-flex items-center gap-2 text-[11px] font-medium text-blue-200 w-fit">
-            🛡️ Ambiente protegido e operacional
+          <span className="inline-flex items-center gap-1 text-[11px] font-medium text-blue-200 w-fit">
+            <span aria-hidden="true">🛡️</span> Ambiente protegido e operacional
           </span>
 
-          <h3 className="text-xl font-bold text-white">
+          <h2 className="text-xl font-bold text-white">
             Controle geral do FabLab
-          </h3>
+          </h2>
 
           <p className="text-xs text-blue-100">
             Todos os serviços estão disponíveis. Há 4 alertas operacionais que merecem acompanhamento.
@@ -95,7 +97,7 @@ function DashboardAdministrador() {
           to="/notificacoes"
           className="bg-[#60a5fa] hover:bg-[#3b82f6] text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-all flex items-center gap-2 cursor-pointer shrink-0"
         >
-          Ver alertas <span>&gt;</span>
+          Ver alertas <span aria-hidden="true">&gt;</span>
         </Link>
       </div>
 
@@ -105,7 +107,7 @@ function DashboardAdministrador() {
         {/* Usuários ativos */}
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div className="w-9 h-9 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span className="text-sm">👤</span>
+            <span aria-hidden="true" className="text-sm">👤</span>
           </div>
 
           <div>
@@ -113,11 +115,11 @@ function DashboardAdministrador() {
               86
             </span>
 
-            <h3 className="text-xs font-bold text-slate-800">
+            <h2 className="text-xs font-bold text-slate-800">
               Usuários ativos
-            </h3>
+            </h2>
 
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500">
               74 alunos - 12 instrutores
             </p>
           </div>
@@ -126,7 +128,7 @@ function DashboardAdministrador() {
         {/* Equipamentos */}
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div className="w-9 h-9 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span className="text-sm">🖨️</span>
+            <span aria-hidden="true" className="text-sm">🖨️</span>
           </div>
 
           <div>
@@ -134,11 +136,11 @@ function DashboardAdministrador() {
               7
             </span>
 
-            <h3 className="text-xs font-bold text-slate-800">
+            <h2 className="text-xs font-bold text-slate-800">
               Equipamentos
-            </h3>
+            </h2>
 
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500">
               6 operacionais
             </p>
           </div>
@@ -147,7 +149,7 @@ function DashboardAdministrador() {
         {/* Alertas ativos */}
         <div className="bg-white p-5 rounded-2xl border border-rose-200 shadow-xs flex flex-col justify-between">
           <div className="w-9 h-9 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span className="text-sm">⚠️</span>
+            <span aria-hidden="true" className="text-sm">⚠️</span>
           </div>
 
           <div>
@@ -155,11 +157,11 @@ function DashboardAdministrador() {
               4
             </span>
 
-            <h3 className="text-xs font-bold text-slate-800">
+            <h2 className="text-xs font-bold text-slate-800">
               Alertas ativos
-            </h3>
+            </h2>
 
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500">
               3 estoque - 1 manutenção
             </p>
           </div>
@@ -168,7 +170,7 @@ function DashboardAdministrador() {
         {/* Disponibilidade */}
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div className="w-9 h-9 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span className="text-sm">📈</span>
+            <span aria-hidden="true" className="text-sm">📈</span>
           </div>
 
           <div>
@@ -176,11 +178,11 @@ function DashboardAdministrador() {
               99,9%
             </span>
 
-            <h3 className="text-xs font-bold text-slate-800">
+            <h2 className="text-xs font-bold text-slate-800">
               Disponibilidade
-            </h3>
+            </h2>
 
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500">
               Últimos 30 dias
             </p>
           </div>
@@ -196,17 +198,17 @@ function DashboardAdministrador() {
 
           <div className="flex items-center justify-between">
             <div>
-              <h3 className="text-base font-bold text-slate-900">
+              <h2 className="text-base font-bold text-slate-900">
                 Atividade recente
-              </h3>
+              </h2>
 
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-slate-500">
                 Eventos relevantes registrados no sistema
               </p>
             </div>
 
-            <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full uppercase tracking-wider">
-              <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
+            <span className="flex items-center gap-1.5 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-1 rounded-full uppercase tracking-wider">
+              <span aria-hidden="true" className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
               Ao vivo
             </span>
           </div>
@@ -219,7 +221,7 @@ function DashboardAdministrador() {
               >
                 <div className="flex items-center gap-3">
                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border ${atividade.estilo}`}>
-                    <span className="text-xs">
+                    <span aria-hidden="true" className="text-xs">
                       {atividade.icone}
                     </span>
                   </div>
@@ -229,7 +231,7 @@ function DashboardAdministrador() {
                   </span>
                 </div>
 
-                <span className="text-[11px] text-slate-400">
+                <span className="text-[11px] text-slate-500">
                   {atividade.tempo}
                 </span>
               </div>
@@ -241,11 +243,11 @@ function DashboardAdministrador() {
         <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-4">
 
           <div>
-            <h3 className="text-base font-bold text-slate-900">
+            <h2 className="text-base font-bold text-slate-900">
               Perfis e acessos
-            </h3>
+            </h2>
 
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500">
               Distribuição dos usuários ativos
             </p>
           </div>
@@ -264,7 +266,7 @@ function DashboardAdministrador() {
                 </span>
               </div>
 
-              <div className="w-full bg-slate-100 rounded-full h-1.5">
+              <div aria-hidden="true" className="w-full bg-slate-100 rounded-full h-1.5">
                 <div
                   className="bg-blue-600 h-1.5 rounded-full"
                   style={{ width: '86%' }}
@@ -284,7 +286,7 @@ function DashboardAdministrador() {
                 </span>
               </div>
 
-              <div className="w-full bg-slate-100 rounded-full h-1.5">
+              <div aria-hidden="true" className="w-full bg-slate-100 rounded-full h-1.5">
                 <div
                   className="bg-blue-400 h-1.5 rounded-full"
                   style={{ width: '15%' }}
@@ -304,7 +306,7 @@ function DashboardAdministrador() {
                 </span>
               </div>
 
-              <div className="w-full bg-slate-100 rounded-full h-1.5">
+              <div aria-hidden="true" className="w-full bg-slate-100 rounded-full h-1.5">
                 <div
                   className="bg-slate-800 h-1.5 rounded-full"
                   style={{ width: '2%' }}
@@ -326,11 +328,11 @@ function DashboardAdministrador() {
       <div className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4 mb-4">
 
         <div>
-          <h3 className="text-base font-bold text-slate-900">
+          <h2 className="text-base font-bold text-slate-900">
             Gestão dos módulos
-          </h3>
+          </h2>
 
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-slate-500">
             Acesso rápido às áreas administrativas
           </p>
         </div>
@@ -343,20 +345,23 @@ function DashboardAdministrador() {
               className="p-4 rounded-xl flex items-center gap-3 hover:bg-slate-50 transition border border-slate-100 group"
             >
               <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
-                <span>{modulo.icone}</span>
+                <span aria-hidden="true">{modulo.icone}</span>
               </div>
 
               <div className="flex-1">
-                <h4 className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
+                <h3 className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
                   {modulo.titulo}
-                </h4>
+                </h3>
 
-                <p className="text-[10px] text-slate-400">
+                <p className="text-[10px] text-slate-500">
                   {modulo.descricao}
                 </p>
               </div>
 
-              <span className="text-slate-300 group-hover:text-blue-600 text-xs transition">
+              <span
+                aria-hidden="true"
+                className="text-slate-300 group-hover:text-blue-600 text-xs transition"
+              >
                 &gt;
               </span>
             </Link>

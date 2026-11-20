@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -34,9 +33,9 @@ export default function Cadastro() {
           <div className="w-full max-w-md flex flex-col gap-8">
 
             <div id="logo" className="flex flex-col gap-0.5">
-              <h2 className="text-xl font-bold tracking-wide text-white">
+              <p className="text-xl font-bold tracking-wide text-white">
                 FabLab Manager
-              </h2>
+              </p>
 
               <p className="text-xs font-semibold text-blue-300 uppercase tracking-wider">
                 SENAI — SISTEMA DE GESTÃO
@@ -44,9 +43,9 @@ export default function Cadastro() {
             </div>
 
             <div id="infoEsq" className="flex flex-col gap-5">
-              <h1 className="text-3xl font-bold text-white leading-tight">
+              <p className="text-3xl font-bold text-white leading-tight">
                 Crie sua conta no <br />FabLab Manager
-              </h1>
+              </p>
 
               <p className="text-blue-200 text-sm leading-relaxed">
                 Cadastre-se para solicitar insumos, reservar equipamentos e acompanhar suas requisições em uma plataforma integrada.
@@ -54,28 +53,40 @@ export default function Cadastro() {
 
               <ul className="recursos flex flex-col gap-3 text-sm text-blue-100 mt-2">
                 <li className="flex items-center gap-3">
-                  <span className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
+                  <span
+                    aria-hidden="true"
+                    className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
+                  >
                     🎓
                   </span>
                   Acesso personalizado conforme seu perfil
                 </li>
 
                 <li className="flex items-center gap-3">
-                  <span className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
+                  <span
+                    aria-hidden="true"
+                    className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
+                  >
                     🖨️
                   </span>
                   Agendamento autônomo de máquinas
                 </li>
 
                 <li className="flex items-center gap-3">
-                  <span className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
+                  <span
+                    aria-hidden="true"
+                    className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
+                  >
                     📦
                   </span>
                   Solicitação de materiais para projetos
                 </li>
 
                 <li className="flex items-center gap-3">
-                  <span className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
+                  <span
+                    aria-hidden="true"
+                    className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
+                  >
                     🔔
                   </span>
                   Acompanhamento de requisições em tempo real
@@ -98,9 +109,9 @@ export default function Cadastro() {
                 Criar nova conta
               </h1>
 
-              <h2 className="text-xs text-slate-500 mt-1">
+              <p className="text-xs text-slate-500 mt-1">
                 Preencha seus dados para solicitar acesso ao laboratório.
-              </h2>
+              </p>
             </div>
 
             {/* Formulário */}
@@ -110,12 +121,12 @@ export default function Cadastro() {
               onSubmit={finalizarCadastro}
             >
 
-              <div>
-                <p className="titulo-opcao text-xs font-semibold text-slate-700 mb-2">
+              <fieldset>
+                <legend className="titulo-opcao text-xs font-semibold text-slate-700 mb-2">
                   Perfil de acesso
-                </p>
+                </legend>
 
-                <div className="campos-perfil grid grid-cols-2 gap-1.5 bg-slate-200/80 p-1 rounded-xl">
+                <div className="campos-perfil relative grid grid-cols-2 gap-1.5 bg-slate-200/80 p-1 rounded-xl">
 
                   <input
                     type="radio"
@@ -124,12 +135,12 @@ export default function Cadastro() {
                     value="aluno"
                     checked={perfilSelecionado === 'aluno'}
                     onChange={(ev) => setPerfilSelecionado(ev.target.value)}
-                    className="hidden peer/aluno"
+                    className="sr-only peer/aluno"
                   />
 
                   <label
                     htmlFor="aluno"
-                    className="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/aluno:bg-blue-600 peer-checked/aluno:text-white peer-checked/aluno:shadow-sm transition-all"
+                    className="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/aluno:bg-blue-600 peer-checked/aluno:text-white peer-checked/aluno:shadow-sm peer-focus-visible/aluno:ring-2 peer-focus-visible/aluno:ring-blue-900 peer-focus-visible/aluno:ring-offset-1 transition-all"
                   >
                     Aluno
                   </label>
@@ -141,18 +152,18 @@ export default function Cadastro() {
                     value="professor"
                     checked={perfilSelecionado === 'professor'}
                     onChange={(ev) => setPerfilSelecionado(ev.target.value)}
-                    className="hidden peer/prof"
+                    className="sr-only peer/prof"
                   />
 
                   <label
                     htmlFor="professor"
-                    className="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/prof:bg-blue-600 peer-checked/prof:text-white peer-checked/prof:shadow-sm transition-all"
+                    className="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/prof:bg-blue-600 peer-checked/prof:text-white peer-checked/prof:shadow-sm peer-focus-visible/prof:ring-2 peer-focus-visible/prof:ring-blue-900 peer-focus-visible/prof:ring-offset-1 transition-all"
                   >
                     Professor
                   </label>
 
                 </div>
-              </div>
+              </fieldset>
 
               <div className="campos flex flex-col gap-1">
                 <label
@@ -166,9 +177,10 @@ export default function Cadastro() {
                   type="text"
                   id="txtnome"
                   name="nome"
+                  autoComplete="name"
                   required
                   placeholder="Ex.: João P. Gonçalves"
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
                 />
               </div>
 
@@ -184,9 +196,10 @@ export default function Cadastro() {
                   type="email"
                   id="txtemail"
                   name="email"
+                  autoComplete="email"
                   required
                   placeholder="usuario@aluno.senai.br"
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
                 />
               </div>
 
@@ -202,9 +215,10 @@ export default function Cadastro() {
                   type="password"
                   id="txtsenha"
                   name="senha"
+                  autoComplete="new-password"
                   required
                   placeholder="••••••••"
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
                 />
               </div>
 
@@ -220,9 +234,10 @@ export default function Cadastro() {
                   type="password"
                   id="txtconfsenha"
                   name="confirmar_senha"
+                  autoComplete="new-password"
                   required
                   placeholder="••••••••"
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
                 />
               </div>
 
@@ -243,6 +258,13 @@ export default function Cadastro() {
                   className="text-blue-600 hover:underline font-semibold"
                 >
                   Fazer Login
+                </Link>
+              </p>
+
+              {/* Política de Privacidade */}
+              <p className="text-[10px] text-slate-500 mt-3">
+                <Link to="/privacidade" className="hover:underline">
+                  Política de Privacidade
                 </Link>
               </p>
             </div>

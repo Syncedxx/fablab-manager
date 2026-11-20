@@ -1,4 +1,3 @@
-
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { usePerfil } from '../perfilcontext.jsx'
@@ -39,9 +38,9 @@ export default function Login() {
           <div className="w-full max-w-md flex flex-col gap-8">
 
             <div id="logo" className="flex flex-col gap-0.5">
-              <h2 className="text-xl font-bold tracking-wide text-white">
+              <p className="text-xl font-bold tracking-wide text-white">
                 FabLab Manager
-              </h2>
+              </p>
 
               <p className="text-xs font-semibold text-blue-300 uppercase tracking-wider">
                 SENAI — SISTEMA DE GESTÃO
@@ -49,9 +48,9 @@ export default function Login() {
             </div>
 
             <div id="infoEsq" className="flex flex-col gap-5">
-              <h1 className="text-3xl font-bold text-white leading-tight">
+              <p className="text-3xl font-bold text-white leading-tight">
                 Laboratório Digital<br />de Fabricação
-              </h1>
+              </p>
 
               <p className="text-blue-200 text-sm leading-relaxed">
                 Gerencie inventário, reservas de equipamentos e requisições de insumos em uma plataforma
@@ -60,28 +59,40 @@ export default function Login() {
 
               <ul className="recursos flex flex-col gap-3 text-sm text-blue-100 mt-2">
                 <li className="flex items-center gap-3">
-                  <span className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
+                  <span
+                    aria-hidden="true"
+                    className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
+                  >
                     📦
                   </span>
                   Controle de estoque em tempo real
                 </li>
 
                 <li className="flex items-center gap-3">
-                  <span className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
+                  <span
+                    aria-hidden="true"
+                    className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
+                  >
                     🖨️
                   </span>
                   Reserva de impressoras 3D, laser e CNC
                 </li>
 
                 <li className="flex items-center gap-3">
-                  <span className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
+                  <span
+                    aria-hidden="true"
+                    className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
+                  >
                     ✅
                   </span>
                   Fluxo de aprovação de requisições
                 </li>
 
                 <li className="flex items-center gap-3">
-                  <span className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
+                  <span
+                    aria-hidden="true"
+                    className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
+                  >
                     🔔
                   </span>
                   Alertas de manutenção e estoque crítico
@@ -104,9 +115,9 @@ export default function Login() {
                 Acesse o sistema
               </h1>
 
-              <h2 className="text-xs text-slate-500 mt-1">
+              <p className="text-xs text-slate-500 mt-1">
                 Selecione seu perfil e insira suas credenciais.
-              </h2>
+              </p>
             </div>
 
             {/* Formulário */}
@@ -116,12 +127,12 @@ export default function Login() {
               onSubmit={entrarNoSistema}
             >
 
-              <div>
-                <p className="titulo-opcao text-xs font-semibold text-slate-700 mb-2">
+              <fieldset>
+                <legend className="titulo-opcao text-xs font-semibold text-slate-700 mb-2">
                   Perfil de acesso
-                </p>
+                </legend>
 
-                <div className="campos-perfil grid grid-cols-3 gap-1.5 bg-slate-200/80 p-1 rounded-xl">
+                <div className="campos-perfil relative grid grid-cols-3 gap-1.5 bg-slate-200/80 p-1 rounded-xl">
 
                   <input
                     type="radio"
@@ -130,12 +141,12 @@ export default function Login() {
                     value="aluno"
                     checked={perfilSelecionado === 'aluno'}
                     onChange={(ev) => setPerfilSelecionado(ev.target.value)}
-                    className="hidden peer/aluno"
+                    className="sr-only peer/aluno"
                   />
 
                   <label
                     htmlFor="aluno"
-                    className="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/aluno:bg-blue-600 peer-checked/aluno:text-white peer-checked/aluno:shadow-sm transition-all"
+                    className="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/aluno:bg-blue-600 peer-checked/aluno:text-white peer-checked/aluno:shadow-sm peer-focus-visible/aluno:ring-2 peer-focus-visible/aluno:ring-blue-900 peer-focus-visible/aluno:ring-offset-1 transition-all"
                   >
                     Aluno
                   </label>
@@ -147,12 +158,12 @@ export default function Login() {
                     value="professor"
                     checked={perfilSelecionado === 'professor'}
                     onChange={(ev) => setPerfilSelecionado(ev.target.value)}
-                    className="hidden peer/prof"
+                    className="sr-only peer/prof"
                   />
 
                   <label
                     htmlFor="professor"
-                    className="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/prof:bg-blue-600 peer-checked/prof:text-white peer-checked/prof:shadow-sm transition-all"
+                    className="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/prof:bg-blue-600 peer-checked/prof:text-white peer-checked/prof:shadow-sm peer-focus-visible/prof:ring-2 peer-focus-visible/prof:ring-blue-900 peer-focus-visible/prof:ring-offset-1 transition-all"
                   >
                     Professor
                   </label>
@@ -164,18 +175,18 @@ export default function Login() {
                     value="admin"
                     checked={perfilSelecionado === 'admin'}
                     onChange={(ev) => setPerfilSelecionado(ev.target.value)}
-                    className="hidden peer/admin"
+                    className="sr-only peer/admin"
                   />
 
                   <label
                     htmlFor="admin"
-                    className="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/admin:bg-blue-600 peer-checked/admin:text-white peer-checked/admin:shadow-sm transition-all"
+                    className="text-center py-2 text-xs font-semibold text-slate-600 rounded-lg cursor-pointer peer-checked/admin:bg-blue-600 peer-checked/admin:text-white peer-checked/admin:shadow-sm peer-focus-visible/admin:ring-2 peer-focus-visible/admin:ring-blue-900 peer-focus-visible/admin:ring-offset-1 transition-all"
                   >
                     Administrador
                   </label>
 
                 </div>
-              </div>
+              </fieldset>
 
               <div className="campos flex flex-col gap-1">
                 <label
@@ -189,8 +200,9 @@ export default function Login() {
                   type="email"
                   id="txtemail"
                   name="email"
+                  autoComplete="email"
                   placeholder="usuario@aluno.senai.br"
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
                 />
               </div>
 
@@ -215,8 +227,9 @@ export default function Login() {
                   type="password"
                   id="txtsenha"
                   name="senha"
+                  autoComplete="current-password"
                   placeholder="••••••••"
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
                 />
               </div>
 
@@ -243,9 +256,14 @@ export default function Login() {
               {/* Atalhos Demo */}
               <div
                 id="demonstracao"
+                role="group"
+                aria-labelledby="tituloDemonstracao"
                 className="border border-slate-200 rounded-xl p-3 text-center bg-white"
               >
-                <p className="text-[10px] font-bold text-slate-400 tracking-wider mb-2 uppercase">
+                <p
+                  id="tituloDemonstracao"
+                  className="text-[10px] font-bold text-slate-500 tracking-wider mb-2 uppercase"
+                >
                   ACESSO DE DEMONSTRAÇÃO
                 </p>
 
@@ -253,6 +271,7 @@ export default function Login() {
                   <button
                     type="button"
                     onClick={() => entrarComo('aluno')}
+                    aria-label="Entrar como Aluno (demonstração)"
                     className="py-1.5 px-2 text-xs text-blue-900 bg-blue-50 hover:bg-blue-100 rounded-lg font-medium transition-colors border border-blue-100"
                   >
                     Aluno
@@ -261,6 +280,7 @@ export default function Login() {
                   <button
                     type="button"
                     onClick={() => entrarComo('instrutor')}
+                    aria-label="Entrar como Professor (demonstração)"
                     className="py-1.5 px-2 text-xs text-blue-900 bg-blue-50 hover:bg-blue-100 rounded-lg font-medium transition-colors border border-blue-100"
                   >
                     Professor
@@ -269,12 +289,20 @@ export default function Login() {
                   <button
                     type="button"
                     onClick={() => entrarComo('administrador')}
+                    aria-label="Entrar como Administrador (demonstração)"
                     className="py-1.5 px-2 text-xs text-blue-900 bg-blue-50 hover:bg-blue-100 rounded-lg font-medium transition-colors border border-blue-100"
                   >
                     Administrador
                   </button>
                 </div>
               </div>
+
+              {/* Política de Privacidade */}
+              <p className="text-[10px] text-slate-500 mt-4">
+                <Link to="/privacidade" className="hover:underline">
+                  Política de Privacidade
+                </Link>
+              </p>
 
             </div>
           </div>

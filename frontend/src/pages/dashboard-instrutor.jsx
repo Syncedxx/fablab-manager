@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom'
 
 function DashboardInstrutor() {
@@ -46,16 +45,19 @@ function DashboardInstrutor() {
             VISÃO GERAL
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-900">
+          <h1 className="text-2xl font-bold text-slate-900">
             Bem-vindo ao Dashboard do Instrutor
-          </h2>
+          </h1>
 
           <p className="text-sm text-slate-600">
             Aqui você pode gerenciar o inventário, reservas e requisições do FabLab.
           </p>
         </div>
 
-        <div className="w-9 h-9 rounded-full bg-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center">
+        <div
+          aria-hidden="true"
+          className="w-9 h-9 rounded-full bg-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center"
+        >
           CR
         </div>
       </header>
@@ -63,9 +65,9 @@ function DashboardInstrutor() {
       {/* Banner principal */}
       <div className="bg-[#1b437c] text-white p-6 rounded-2xl flex justify-between items-center gap-4 shadow-xs">
         <div className="flex flex-col gap-1.5">
-          <h3 className="text-xl font-bold text-white">
+          <h2 className="text-xl font-bold text-white">
             Central de operação
-          </h3>
+          </h2>
 
           <p className="text-xs text-blue-100">
             Existem pedidos para analisar e 3 materiais em nível crítico. As máquinas estão operando sem conflitos de agenda.
@@ -76,7 +78,7 @@ function DashboardInstrutor() {
           to="/pedidos"
           className="bg-[#60a5fa] hover:bg-[#3b82f6] text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-all flex items-center gap-2 cursor-pointer shrink-0"
         >
-          Analisar pedidos <span>&gt;</span>
+          Analisar pedidos <span aria-hidden="true">&gt;</span>
         </Link>
       </div>
 
@@ -89,7 +91,7 @@ function DashboardInstrutor() {
           className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-blue-300 transition group"
         >
           <div className="w-9 h-9 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span className="text-sm">📋</span>
+            <span aria-hidden="true" className="text-sm">📋</span>
           </div>
 
           <div>
@@ -97,11 +99,11 @@ function DashboardInstrutor() {
               2
             </span>
 
-            <h3 className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
+            <h2 className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
               Aguardando análise
-            </h3>
+            </h2>
 
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500">
               Pedidos de materiais
             </p>
           </div>
@@ -113,7 +115,7 @@ function DashboardInstrutor() {
           className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-blue-300 transition group"
         >
           <div className="w-9 h-9 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span className="text-sm">📅</span>
+            <span aria-hidden="true" className="text-sm">📅</span>
           </div>
 
           <div>
@@ -121,11 +123,11 @@ function DashboardInstrutor() {
               12
             </span>
 
-            <h3 className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
+            <h2 className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
               Reservas hoje
-            </h3>
+            </h2>
 
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500">
               3 em andamento
             </p>
           </div>
@@ -136,7 +138,7 @@ function DashboardInstrutor() {
           className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between"
         >
           <div className="w-9 h-9 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span className="text-sm">👤</span>
+            <span aria-hidden="true" className="text-sm">👤</span>
           </div>
 
           <div>
@@ -144,11 +146,11 @@ function DashboardInstrutor() {
               28
             </span>
 
-            <h3 className="text-xs font-bold text-slate-800">
+            <h2 className="text-xs font-bold text-slate-800">
               Alunos ativos
-            </h3>
+            </h2>
 
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500">
               Em 6 projetos
             </p>
           </div>
@@ -160,7 +162,7 @@ function DashboardInstrutor() {
           className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-rose-300 transition group"
         >
           <div className="w-9 h-9 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span className="text-sm">⚠️</span>
+            <span aria-hidden="true" className="text-sm">⚠️</span>
           </div>
 
           <div>
@@ -168,11 +170,11 @@ function DashboardInstrutor() {
               3
             </span>
 
-            <h3 className="text-xs font-bold text-slate-800 group-hover:text-rose-600 transition">
+            <h2 className="text-xs font-bold text-slate-800 group-hover:text-rose-600 transition">
               Itens críticos
-            </h3>
+            </h2>
 
-            <p className="text-[11px] text-slate-400">
+            <p className="text-[11px] text-slate-500">
               Precisam de reposição
             </p>
           </div>
@@ -190,11 +192,11 @@ function DashboardInstrutor() {
         >
           <div id="headerPedidosPrioritarios" className="flex items-center justify-between">
             <div id="titulosPedidosPrioritarios">
-              <h3 id="tituloPedidos" className="text-base font-bold text-slate-900">
+              <h2 id="tituloPedidos" className="text-base font-bold text-slate-900">
                 Pedidos prioritários
-              </h3>
+              </h2>
 
-              <p id="subtituloPedidos" className="text-xs text-slate-400">
+              <p id="subtituloPedidos" className="text-xs text-slate-500">
                 Solicitações que precisam de decisão
               </p>
             </div>
@@ -216,7 +218,7 @@ function DashboardInstrutor() {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
-                    <span>📋</span>
+                    <span aria-hidden="true">📋</span>
                   </div>
 
                   <div>
@@ -225,12 +227,12 @@ function DashboardInstrutor() {
                         {pedido.material}
                       </strong>
 
-                      <span className="text-[10px] font-mono text-slate-400 uppercase">
+                      <span className="text-[10px] font-mono text-slate-500 uppercase">
                         {pedido.codigo}
                       </span>
                     </div>
 
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-slate-500">
                       {pedido.aluno}
                     </p>
                   </div>
@@ -238,6 +240,7 @@ function DashboardInstrutor() {
 
                 <Link
                   to={`/pedidos?id=${pedido.codigo}`}
+                  aria-label={`Revisar pedido ${pedido.codigo}`}
                   className="px-4 py-1.5 text-xs font-medium text-blue-600 border border-blue-200 rounded-full hover:bg-blue-50 transition cursor-pointer"
                 >
                   Revisar
@@ -253,11 +256,11 @@ function DashboardInstrutor() {
           className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between space-y-4"
         >
           <div id="headerLaboratorio">
-            <h3 id="tituloLaboratorio" className="text-base font-bold text-slate-900">
+            <h2 id="tituloLaboratorio" className="text-base font-bold text-slate-900">
               Agora no laboratório
-            </h3>
+            </h2>
 
-            <p id="subtituloLaboratorio" className="text-xs text-slate-400">
+            <p id="subtituloLaboratorio" className="text-xs text-slate-500">
               Ocupação em tempo real
             </p>
           </div>
@@ -296,7 +299,7 @@ function DashboardInstrutor() {
             className="w-full py-2.5 px-4 border border-slate-200 rounded-xl flex items-center justify-between text-xs font-semibold text-blue-600 hover:bg-slate-50 transition"
           >
             <span>Abrir agenda completa</span>
-            <span id="iconeSetaAgenda">&gt;</span>
+            <span id="iconeSetaAgenda" aria-hidden="true">&gt;</span>
           </Link>
         </div>
 
@@ -308,11 +311,11 @@ function DashboardInstrutor() {
         className="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-xs space-y-4 mb-4"
       >
         <div id="headerAcoesGestao">
-          <h3 id="tituloAcoesGestao" className="text-base font-bold text-slate-900">
+          <h2 id="tituloAcoesGestao" className="text-base font-bold text-slate-900">
             Ações de gestão
-          </h3>
+          </h2>
 
-          <p id="subtituloAcoesGestao" className="text-xs text-slate-400">
+          <p id="subtituloAcoesGestao" className="text-xs text-slate-500">
             Atalhos para a rotina do instrutor
           </p>
         </div>
@@ -326,21 +329,24 @@ function DashboardInstrutor() {
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
-                  <span>{acao.icone}</span>
+                  <span aria-hidden="true">{acao.icone}</span>
                 </div>
 
                 <div>
-                  <h4 className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
+                  <h3 className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition">
                     {acao.titulo}
-                  </h4>
+                  </h3>
 
-                  <p className="text-[10px] text-slate-400">
+                  <p className="text-[10px] text-slate-500">
                     {acao.descricao}
                   </p>
                 </div>
               </div>
 
-              <span className="text-slate-300 group-hover:text-blue-600 text-xs transition">
+              <span
+                aria-hidden="true"
+                className="text-slate-300 group-hover:text-blue-600 text-xs transition"
+              >
                 &gt;
               </span>
             </Link>
