@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Icone } from '../icones.jsx'
 
 function RecuperacaoSenha() {
   return (
@@ -36,14 +37,14 @@ function RecuperacaoSenha() {
               <ul className="flex flex-col gap-3 text-sm text-blue-100 mt-2">
                 <li className="flex items-center gap-3">
                   <span aria-hidden="true" className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
-                    🔒
+                    <Icone nome="cadeado" className="w-4 h-4" />
                   </span>
                   Processo seguro de redefinição
                 </li>
 
                 <li className="flex items-center gap-3">
                   <span aria-hidden="true" className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
-                    ✉️
+                    <Icone nome="email" className="w-4 h-4" />
                   </span>
                   Instruções enviadas para o e-mail institucional
                 </li>

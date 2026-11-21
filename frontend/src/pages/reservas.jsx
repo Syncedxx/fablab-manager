@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Icone } from '../icones.jsx'
 
 function obterDataHoje() {
   const data = new Date()
@@ -310,7 +311,7 @@ function Reservas() {
               aria-label="Fechar"
               className="text-slate-500 hover:text-slate-700 text-sm font-bold p-2"
             >
-              ✕
+              <Icone nome="fechar" className="w-4 h-4" />
             </button>
           </div>
 

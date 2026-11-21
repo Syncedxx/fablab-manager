@@ -10,6 +10,7 @@ import {
 
 import { PerfilProvider, usePerfil } from './perfilcontext.jsx'
 import Sidebar from './sidebar.jsx'
+import { Icone } from './icones.jsx'
 import Login from './pages/login.jsx'
 import Cadastro from './pages/cadastro.jsx'
 import DashboardAluno from './pages/dashboard-aluno.jsx'
@@ -94,9 +95,9 @@ function Layout() {
             aria-label="Abrir ou fechar menu"
             aria-expanded={menuAberto}
             aria-controls="menu-lateral"
-            className="p-2 -m-2 text-white text-xl leading-none cursor-pointer"
+            className="p-2 -m-2 text-white leading-none cursor-pointer"
           >
-            ☰
+            <Icone nome="menu" className="w-5 h-5" />
           </button>
 
           <span className="text-sm font-semibold text-white">
