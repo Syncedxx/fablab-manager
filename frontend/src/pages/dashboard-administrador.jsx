@@ -99,7 +99,7 @@ function DashboardAdministrador() {
           to="/notificacoes"
           className="bg-[#60a5fa] hover:bg-[#3b82f6] text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-all flex items-center gap-2 cursor-pointer shrink-0"
         >
-          Ver alertas <span aria-hidden="true">&gt;</span>
+          Ver alertas <Icone nome="seta" className="w-4 h-4" />
         </Link>
       </div>
 
@@ -362,7 +362,7 @@ function DashboardAdministrador() {
                 aria-hidden="true"
                 className="text-slate-300 group-hover:text-blue-600 text-xs transition"
               >
-                &gt;
+                <Icone nome="seta" className="w-4 h-4" />
               </span>
             </Link>
           ))}

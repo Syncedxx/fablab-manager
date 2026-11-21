@@ -173,9 +173,10 @@ function Usuarios() {
             type="button"
             ref={botaoAbrirRef}
             onClick={() => setModalAberto(true)}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl"
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl flex items-center gap-2"
           >
-            + Novo usuário
+            <Icone nome="mais" className="w-4 h-4" />
+            Novo usuário
           </button>
         </div>
       </header>

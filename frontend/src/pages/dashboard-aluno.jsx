@@ -132,7 +132,7 @@ function DashboardAluno() {
             onClick={() => setModalAberto(true)}
             className="bg-blue-400 hover:bg-blue-300 text-slate-900 font-semibold text-xs px-4 py-2.5 rounded-lg transition-colors z-10 flex items-center gap-1.5 cursor-pointer"
           >
-            <span>+</span> Nova reserva
+            <Icone nome="mais" className="w-4 h-4" /> Nova reserva
           </button>
         </div>
 
@@ -263,7 +263,7 @@ function DashboardAluno() {
                     aria-hidden="true"
                     className="text-slate-300 text-xs group-hover:translate-x-0.5 transition-transform"
                   >
-                    ›
+                    <Icone nome="seta" className="w-4 h-4" />
                   </span>
                 </Link>
               ))}

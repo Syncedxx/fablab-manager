@@ -79,7 +79,7 @@ function DashboardInstrutor() {
           to="/pedidos"
           className="bg-[#60a5fa] hover:bg-[#3b82f6] text-slate-950 font-bold text-xs px-5 py-3 rounded-xl transition-all flex items-center gap-2 cursor-pointer shrink-0"
         >
-          Analisar pedidos <span aria-hidden="true">&gt;</span>
+          Analisar pedidos <Icone nome="seta" className="w-4 h-4" />
         </Link>
       </div>
 
@@ -300,7 +300,7 @@ function DashboardInstrutor() {
             className="w-full py-2.5 px-4 border border-slate-200 rounded-xl flex items-center justify-between text-xs font-semibold text-blue-600 hover:bg-slate-50 transition"
           >
             <span>Abrir agenda completa</span>
-            <span id="iconeSetaAgenda" aria-hidden="true">&gt;</span>
+            <span id="iconeSetaAgenda" aria-hidden="true"><Icone nome="seta" className="w-4 h-4" /></span>
           </Link>
         </div>
 
@@ -348,7 +348,7 @@ function DashboardInstrutor() {
                 aria-hidden="true"
                 className="text-slate-300 group-hover:text-blue-600 text-xs transition"
               >
-                &gt;
+                <Icone nome="seta" className="w-4 h-4" />
               </span>
             </Link>
           ))}

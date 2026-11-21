@@ -1,5 +1,4 @@
-// Ícones em SVG (só traço, herdam a cor do texto).
-// Desenhos do Lucide (licença ISC): https://lucide.dev
+// Ícones do sistema (desenhos do Lucide, licença ISC)
 // Uso: <Icone nome="cadeado" className="w-5 h-5" />
 
 var ICONES = {
@@ -8,6 +7,17 @@ var ICONES = {
       <path d="M4 5h16" />
       <path d="M4 12h16" />
       <path d="M4 19h16" />
+    </>
+  ),
+  mais: (
+    <>
+      <path d="M5 12h14" />
+      <path d="M12 5v14" />
+    </>
+  ),
+  seta: (
+    <>
+      <path d="m9 18 6-6-6-6" />
     </>
   ),
   fechar: (

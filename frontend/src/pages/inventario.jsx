@@ -218,9 +218,10 @@ function Inventario() {
               type="button"
               ref={botaoAbrirRef}
               onClick={abrirModal}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl flex items-center gap-2"
             >
-              + Solicitar material
+              <Icone nome="mais" className="w-4 h-4" />
+              Solicitar material
             </button>
           </div>
         </header>
@@ -292,7 +293,7 @@ function Inventario() {
                       aria-hidden="true"
                       className="size-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold"
                     >
-                      #
+                      <Icone nome="pacote" className="w-4 h-4" />
                     </div>
 
                     <span>{material.nome}</span>

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Icone } from '../icones.jsx'
 
 const pedidosIniciais = [
   {
@@ -116,20 +117,7 @@ function Pedidos() {
               <div className="flex items-center gap-3">
 
                 <div className="size-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 border border-blue-100">
-                  <svg
-                    aria-hidden="true"
-                    className="size-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.8"
-                      d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"
-                    />
-                  </svg>
+                  <Icone nome="pacote" className="w-5 h-5" />
                 </div>
 
                 <div>

@@ -175,9 +175,10 @@ export default function Equipamentos() {
               type="button"
               ref={botaoAbrirRef}
               onClick={() => setModalAberto(true)}
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl flex items-center gap-2"
             >
-              + Cadastrar equipamento
+              <Icone nome="mais" className="w-4 h-4" />
+              Cadastrar equipamento
             </button>
           </div>
         )}
@@ -249,7 +250,7 @@ export default function Equipamentos() {
                         aria-hidden="true"
                         className="size-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold"
                       >
-                        #
+                        <Icone nome="impressora" className="w-4 h-4" />
                       </div>
 
                       <span>{equipamento.nome}</span>
