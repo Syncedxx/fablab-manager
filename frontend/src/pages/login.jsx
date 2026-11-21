@@ -33,7 +33,7 @@ export default function Login() {
         {/* Painel Esquerdo */}
         <div
           id="painelEsquerda"
-          className="flex flex-col gap-8 justify-center items-center w-1/2 p-12 bg-blue-950 text-white border-r border-blue-900"
+          className="hidden lg:flex flex-col gap-8 justify-center items-center w-1/2 p-12 bg-blue-950 text-white border-r border-blue-900"
         >
 
           <div className="w-full max-w-md flex flex-col gap-8">
@@ -106,7 +106,7 @@ export default function Login() {
         {/* Painel Direito */}
         <div
           id="painelDireita"
-          className="w-1/2 min-h-screen bg-slate-50 p-12 flex flex-col justify-center items-center"
+          className="w-full lg:w-1/2 min-h-screen bg-slate-50 p-6 md:p-12 flex flex-col justify-center items-center"
         >
 
           <div className="w-full max-w-sm space-y-6">

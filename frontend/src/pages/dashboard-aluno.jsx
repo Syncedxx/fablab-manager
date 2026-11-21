@@ -163,10 +163,10 @@ function DashboardAluno() {
         </div>
 
         {/* Seção inferior */}
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
           {/* Status das máquinas */}
-          <div className="col-span-2 bg-white p-5 rounded-xl border border-slate-100 shadow-xs flex flex-col gap-4">
+          <div className="lg:col-span-2 bg-white p-5 rounded-xl border border-slate-100 shadow-xs flex flex-col gap-4">
 
             <div className="flex justify-between items-center">
               <div>
