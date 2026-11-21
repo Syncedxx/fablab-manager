@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { usePerfil } from '../perfilcontext.jsx'
 
 const CATEGORIAS = {
@@ -40,14 +40,14 @@ const EQUIPAMENTOS_INICIAIS = [
 
 function classeStatus(status) {
   if (status === 'Livre') {
-    return 'text-emerald-600 bg-emerald-50'
+    return 'text-emerald-700 bg-emerald-50'
   }
 
   if (status === 'Manutenção') {
-    return 'text-rose-500 bg-rose-50'
+    return 'text-rose-700 bg-rose-50'
   }
 
-  return 'text-amber-600 bg-amber-50'
+  return 'text-amber-700 bg-amber-50'
 }
 
 export default function Equipamentos() {
@@ -66,6 +66,33 @@ export default function Equipamentos() {
   const [novoStatus, setNovoStatus] = useState('Livre')
 
   const [proximoId, setProximoId] = useState(5)
+
+  // Guardam o botão que abre o popup e o primeiro campo dele.
+  const botaoAbrirRef = useRef(null)
+  const campoNomeRef = useRef(null)
+
+  // Com o popup aberto: foca o primeiro campo e fecha com Esc.
+  // Ao fechar, o foco volta para o botão que abriu.
+  useEffect(() => {
+    if (!modalAberto) return
+
+    const botaoQueAbriu = botaoAbrirRef.current
+
+    campoNomeRef.current.focus()
+
+    function aoApertarTecla(event) {
+      if (event.key === 'Escape') {
+        setModalAberto(false)
+      }
+    }
+
+    window.addEventListener('keydown', aoApertarTecla)
+
+    return () => {
+      window.removeEventListener('keydown', aoApertarTecla)
+      botaoQueAbriu.focus()
+    }
+  }, [modalAberto])
 
   const podeCadastrar =
     perfil === 'instrutor' || perfil === 'administrador'
@@ -132,9 +159,9 @@ export default function Equipamentos() {
             MÁQUINAS DO LABORATÓRIO
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-900">
+          <h1 className="text-2xl font-bold text-slate-900">
             Equipamentos
-          </h2>
+          </h1>
 
           <p className="text-xs text-slate-500">
             Consulte a disponibilidade das máquinas.
@@ -145,6 +172,7 @@ export default function Equipamentos() {
           <div>
             <button
               type="button"
+              ref={botaoAbrirRef}
               onClick={() => setModalAberto(true)}
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-xl"
             >
@@ -161,16 +189,18 @@ export default function Equipamentos() {
       >
         <input
           type="search"
+          aria-label="Buscar equipamento"
           value={busca}
           onChange={(event) => setBusca(event.target.value)}
           placeholder="Buscar por nome do equipamento..."
-          className="flex-1 min-w-0 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 placeholder-slate-400 outline-none focus:border-blue-500"
+          className="flex-1 min-w-0 px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 placeholder:text-slate-500 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-600"
         />
 
         <select
+          aria-label="Filtrar por categoria"
           value={categoriaSelecionada}
           onChange={(event) => setCategoriaSelecionada(event.target.value)}
-          className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 outline-none focus:border-blue-500"
+          className="px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-600"
         >
           <option value="">Todas as categorias</option>
           <option value="impressoras">Impressoras 3D</option>
@@ -183,19 +213,21 @@ export default function Equipamentos() {
       <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm border-collapse">
-            <thead className="text-[11px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-100">
-              <tr>
-                <th className="py-4 px-6">Equipamento</th>
+            <caption className="sr-only">Lista de equipamentos</caption>
 
-                <th className="py-4 px-6 text-center">
+            <thead className="text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-100">
+              <tr>
+                <th scope="col" className="py-4 px-6">Equipamento</th>
+
+                <th scope="col" className="py-4 px-6 text-center">
                   Categoria
                 </th>
 
-                <th className="py-4 px-6 text-center">
+                <th scope="col" className="py-4 px-6 text-center">
                   Limite por dia
                 </th>
 
-                <th className="py-4 px-6 text-right">
+                <th scope="col" className="py-4 px-6 text-right">
                   Status
                 </th>
               </tr>
@@ -212,7 +244,10 @@ export default function Equipamentos() {
                 >
                   <td className="py-4 px-6 font-semibold text-slate-800">
                     <div className="flex items-center gap-3">
-                      <div className="size-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold">
+                      <div
+                        aria-hidden="true"
+                        className="size-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 text-xs font-bold"
+                      >
                         #
                       </div>
 
@@ -220,7 +255,7 @@ export default function Equipamentos() {
                     </div>
                   </td>
 
-                  <td className="py-4 px-6 text-center text-slate-400">
+                  <td className="py-4 px-6 text-center text-slate-500">
                     {CATEGORIAS[equipamento.categoria]}
                   </td>
 
@@ -248,16 +283,24 @@ export default function Equipamentos() {
           modalAberto ? 'flex' : 'hidden'
         }`}
       >
-        <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 flex flex-col gap-4">
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="tituloModalEquipamento"
+          className="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 flex flex-col gap-4"
+        >
 
           {/* Cabeçalho */}
           <div className="flex justify-between items-center border-b border-slate-100 pb-3">
             <div>
-              <h3 className="font-bold text-slate-900 text-sm">
+              <h2
+                id="tituloModalEquipamento"
+                className="font-bold text-slate-900 text-sm"
+              >
                 Cadastrar equipamento
-              </h3>
+              </h2>
 
-              <p className="text-[11px] text-slate-400">
+              <p className="text-[11px] text-slate-500">
                 Informe os dados da máquina.
               </p>
             </div>
@@ -265,7 +308,7 @@ export default function Equipamentos() {
             <button
               type="button"
               onClick={() => setModalAberto(false)}
-              className="text-slate-400 hover:text-slate-700 text-sm font-bold p-1"
+              className="text-slate-500 hover:text-slate-700 text-sm font-bold p-2"
               aria-label="Fechar"
             >
               ✕
@@ -288,6 +331,7 @@ export default function Equipamentos() {
 
               <input
                 id="campoNome"
+                ref={campoNomeRef}
                 type="text"
                 value={novoNome}
                 onChange={(event) => setNovoNome(event.target.value)}

@@ -69,7 +69,7 @@ function Pedidos() {
     }
 
     if (status === 'Recusado') {
-      return 'bg-rose-50 text-rose-600 border-rose-200/60'
+      return 'bg-rose-50 text-rose-700 border-rose-200/60'
     }
 
     return 'bg-amber-50 text-amber-700 border-amber-200/60'
@@ -85,16 +85,19 @@ function Pedidos() {
             FLUXO DE MATERIAIS
           </p>
 
-          <h2 className="text-2xl font-bold text-slate-900">
+          <h1 className="text-2xl font-bold text-slate-900">
             Pedidos para análise
-          </h2>
+          </h1>
 
           <p className="text-sm text-slate-600">
             Aprove ou recuse solicitações dos alunos.
           </p>
         </div>
 
-        <div className="size-9 rounded-full bg-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center">
+        <div
+          aria-hidden="true"
+          className="size-9 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center"
+        >
           CR
         </div>
       </header>
@@ -114,6 +117,7 @@ function Pedidos() {
 
                 <div className="size-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 border border-blue-100">
                   <svg
+                    aria-hidden="true"
                     className="size-5"
                     fill="none"
                     stroke="currentColor"
@@ -133,7 +137,7 @@ function Pedidos() {
                     {pedido.material}
                   </h3>
 
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-slate-500">
                     {pedido.aluno} · {pedido.codigo}
                   </p>
                 </div>
@@ -163,7 +167,8 @@ function Pedidos() {
                 <button
                   type="button"
                   onClick={() => atualizarPedido(pedido.id, 'recusar')}
-                  className="w-full py-2.5 px-4 rounded-xl border border-rose-300 text-rose-600 hover:bg-rose-50 text-xs font-bold transition cursor-pointer"
+                  aria-label={`Recusar pedido ${pedido.codigo}`}
+                  className="w-full py-2.5 px-4 rounded-xl border border-rose-300 text-rose-700 hover:bg-rose-50 text-xs font-bold transition cursor-pointer"
                 >
                   Recusar
                 </button>
@@ -171,7 +176,8 @@ function Pedidos() {
                 <button
                   type="button"
                   onClick={() => atualizarPedido(pedido.id, 'aprovar')}
-                  className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition cursor-pointer"
+                  aria-label={`Aprovar pedido ${pedido.codigo}`}
+                  className="w-full py-2.5 px-4 rounded-xl bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition cursor-pointer"
                 >
                   Aprovar pedido
                 </button>
