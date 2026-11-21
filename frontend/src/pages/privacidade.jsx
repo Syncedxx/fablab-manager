@@ -46,9 +46,9 @@ export default function Privacidade() {
 
         {/* Logo */}
         <div className="flex flex-col gap-0.5">
-          <h2 className="text-xl font-bold tracking-wide text-slate-900">
+          <p className="text-xl font-bold tracking-wide text-slate-900">
             FabLab Manager
-          </h2>
+          </p>
 
           <p className="text-xs font-semibold text-blue-600 uppercase tracking-wider">
             SENAI — SISTEMA DE GESTÃO
@@ -70,9 +70,9 @@ export default function Privacidade() {
 
           {SECOES.map((secao) => (
             <section key={secao.titulo} className="space-y-1">
-              <h3 className="text-sm font-bold text-slate-900">
+              <h2 className="text-sm font-bold text-slate-900">
                 {secao.titulo}
-              </h3>
+              </h2>
 
               <p className="text-xs text-slate-600 leading-relaxed">
                 {secao.texto}

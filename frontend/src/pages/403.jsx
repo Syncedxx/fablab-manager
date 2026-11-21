@@ -6,7 +6,7 @@ function AcessoNegado() {
 
       <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm max-w-sm w-full text-center space-y-4">
 
-        <div className="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-xl font-bold mx-auto">
+        <div aria-hidden="true" className="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-xl font-bold mx-auto">
           🔒
         </div>
 
