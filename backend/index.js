@@ -1,37 +1,22 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const { Pool } = require('pg');
-const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+
+const pool = require('./db');
+const authRoutes = require('./routes/auth');
+const { autenticar, exigirPerfil } = require('./middleware/auth');
+
+if (!process.env.JWT_SECRET) {
+  throw new Error('JWT_SECRET não definido. Configure no .env (local) ou nas variáveis da Vercel.');
+}
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-const JWT_SECRET = process.env.JWT_SECRET || 'chave-secreta-fablab-2026';
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: { rejectUnauthorized: false }
-});
-
-// MIDDLEWARE DE SEGURANÇA (RBAC) E AUDITORIA (FASE 3)
-
-const verificarToken = (req, res, next) => {
-  const authHeader = req.headers['authorization'];
-  if (!authHeader) {
-    return res.status(403).json({ erro: 'Acesso negado. Token não fornecido.' });
-  }
-
-  const token = authHeader.split(' ')[1] || authHeader;
-
-  jwt.verify(token, JWT_SECRET, (err, decodificado) => {
-    if (err) {
-      return res.status(401).json({ erro: 'Token inválido ou expirado.' });
-    }
-    req.usuario = decodificado;
-    next();
-  });
-};
+// Nome usado pelas rotas abaixo; agora aponta para o middleware seguro
+const verificarToken = autenticar;
 
 // Grava trilha imutável na tabela logs_auditoria (Fase 3)
 async function registrarAuditoria(client, { ator_id, acao, entidade_tipo, entidade_id, estado_anterior, estado_novo, motivo, detalhes }) {
@@ -53,52 +38,29 @@ async function registrarAuditoria(client, { ator_id, acao, entidade_tipo, entida
   );
 }
 
-// FASE 1: AUTENTICAÇÃO E USUÁRIOS
+// AUTENTICAÇÃO: /api/auth/cadastro e /api/auth/login
+app.use('/api/auth', authRoutes);
 
-app.post('/api/login', async (req, res) => {
-  const { email, senha } = req.body;
-
-  try {
-    const result = await pool.query(
-      'SELECT id, nome, email, perfil, ativo FROM usuarios WHERE email = $1 AND senha_hash = $2',
-      [email, senha]
-    );
-
-    if (result.rows.length === 0) {
-      return res.status(401).json({ erro: 'Email ou senha inválidos.' });
-    }
-
-    const usuario = result.rows[0];
-    if (!usuario.ativo) {
-      return res.status(403).json({ erro: 'Usuário desativado.' });
-    }
-
-    const token = jwt.sign(
-      { id: usuario.id, perfil: usuario.perfil },
-      JWT_SECRET,
-      { expiresIn: '8h' }
-    );
-
-    res.json({
-      mensagem: 'Login realizado com sucesso',
-      token,
-      usuario: { id: usuario.id, nome: usuario.nome, email: usuario.email, perfil: usuario.perfil }
-    });
-  } catch (err) {
-    res.status(500).json({ erro: 'Erro interno no servidor.' });
-  }
-});
-
-app.post('/api/usuarios', verificarToken, async (req, res) => {
-  if (req.usuario.perfil !== 'administrador') {
-    return res.status(403).json({ erro: 'Apenas administradores podem cadastrar usuários.' });
-  }
+// Administrador cria usuário (senha com bcrypt)
+app.post('/api/usuarios', autenticar, exigirPerfil('administrador'), async (req, res) => {
   const { nome, email, senha, perfil } = req.body;
+
+  if (!nome || !email || !senha) {
+    return res.status(400).json({ erro: 'Preencha nome, e-mail e senha.' });
+  }
+  if (senha.length < 8) {
+    return res.status(400).json({ erro: 'A senha precisa ter pelo menos 8 caracteres.' });
+  }
+  if (perfil && !['aluno', 'instrutor', 'administrador'].includes(perfil)) {
+    return res.status(400).json({ erro: 'Perfil inválido.' });
+  }
+
   try {
+    const senhaHash = await bcrypt.hash(senha, 10);
     const result = await pool.query(
-      `INSERT INTO usuarios (nome, email, senha_hash, perfil) 
+      `INSERT INTO usuarios (nome, email, senha_hash, perfil)
        VALUES ($1, $2, $3, $4) RETURNING id, nome, email, perfil, ativo`,
-      [nome, email, senha, perfil || 'aluno']
+      [nome, email.toLowerCase(), senhaHash, perfil || 'aluno']
     );
     await registrarAuditoria(null, {
       ator_id: req.usuario.id,
@@ -109,13 +71,16 @@ app.post('/api/usuarios', verificarToken, async (req, res) => {
     });
     res.status(201).json(result.rows[0]);
   } catch (err) {
-    res.status(400).json({ erro: err.message });
+    if (err.code === '23505') {
+      return res.status(409).json({ erro: 'Este e-mail já está cadastrado.' });
+    }
+    console.error(err);
+    res.status(400).json({ erro: 'Não foi possível criar o usuário.' });
   }
 });
-
 // FASE 1: PROJETOS
 
-app.get('/api/projetos', async (req, res) => {
+app.get('/api/projetos', verificarToken, async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT p.*, u.nome AS criador_nome, t.nome AS turma_nome
@@ -146,7 +111,7 @@ app.post('/api/projetos', verificarToken, async (req, res) => {
 
 // FASE 1: EQUIPAMENTOS E RESERVAS (Bloqueio GIST)
 
-app.get('/api/equipamentos', async (req, res) => {
+app.get('/api/equipamentos', verificarToken, async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM equipamentos ORDER BY nome ASC');
     res.json(result.rows);
@@ -155,7 +120,7 @@ app.get('/api/equipamentos', async (req, res) => {
   }
 });
 
-app.get('/api/reservas', async (req, res) => {
+app.get('/api/reservas', verificarToken, async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT r.*, e.nome AS equipamento_nome, u.nome AS usuario_nome, p.titulo AS projeto_titulo
@@ -218,7 +183,7 @@ app.patch('/api/reservas/:id/cancelar', verificarToken, async (req, res) => {
 
 // FASE 1 & 2: INVENTÁRIO E MOVIMENTAÇÕES DE ESTOQUE
 
-app.get('/api/inventario', async (req, res) => {
+app.get('/api/inventario', verificarToken, async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT 
@@ -272,7 +237,7 @@ app.post('/api/inventario', verificarToken, async (req, res) => {
 
 // FASE 1 & 2: REQUISIÇÕES (Solicitar, Avaliar e Entregar)
 
-app.get('/api/requisicoes', async (req, res) => {
+app.get('/api/requisicoes', verificarToken, async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT 
@@ -510,7 +475,7 @@ app.post('/api/turmas/:id/matricular', verificarToken, async (req, res) => {
 
 // FASE 2: MANUTENÇÃO E CHECKLISTS
 
-app.get('/api/manutencoes', async (req, res) => {
+app.get('/api/manutencoes', verificarToken, async (req, res) => {
   try {
     const result = await pool.query(`
       SELECT m.*, e.nome AS equipamento_nome
