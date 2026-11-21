@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Icone } from '../icones.jsx'
 
 function DashboardAluno() {
   const [modalAberto, setModalAberto] = useState(false)
@@ -60,19 +61,19 @@ function DashboardAluno() {
 
   const acoesRapidas = [
     {
-      icone: '📅',
+      icone: 'calendario',
       titulo: 'Reservar máquina',
       descricao: 'Escolha uma data e horário',
       destino: '/reservas'
     },
     {
-      icone: '📦',
+      icone: 'pacote',
       titulo: 'Solicitar material',
       descricao: 'Crie um novo pedido',
       destino: '/inventario'
     },
     {
-      icone: '🔍',
+      icone: 'busca',
       titulo: 'Consultar estoque',
       descricao: 'Confira saldos disponíveis',
       destino: '/inventario'
@@ -139,21 +140,21 @@ function DashboardAluno() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
 
           <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-xs flex flex-col items-center text-center gap-1">
-            <span aria-hidden="true" className="text-blue-500 text-sm">📅</span>
+            <Icone nome="calendario" className="w-4 h-4 text-blue-500" />
             <span className="text-2xl font-bold text-slate-900 mt-1">12</span>
             <span className="text-xs font-semibold text-slate-800">Reservas hoje</span>
             <span className="text-[10px] text-slate-500">4 ainda disponíveis</span>
           </div>
 
           <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-xs flex flex-col items-center text-center gap-1">
-            <span aria-hidden="true" className="text-amber-500 text-sm">📋</span>
+            <Icone nome="prancheta" className="w-4 h-4 text-amber-500" />
             <span className="text-2xl font-bold text-slate-900 mt-1">5</span>
             <span className="text-xs font-semibold text-slate-800">Pedidos abertos</span>
             <span className="text-[10px] text-slate-500">2 são seus</span>
           </div>
 
           <div className="bg-white p-4 rounded-xl border border-slate-100 shadow-xs flex flex-col items-center text-center gap-1">
-            <span aria-hidden="true" className="text-emerald-500 text-sm">🖨️</span>
+            <Icone nome="impressora" className="w-4 h-4 text-emerald-500" />
             <span className="text-2xl font-bold text-slate-900 mt-1">4</span>
             <span className="text-xs font-semibold text-slate-800">Máquinas livres</span>
             <span className="text-[10px] text-slate-500">de 7 equipamentos</span>
@@ -195,9 +196,9 @@ function DashboardAluno() {
                   <div className="flex items-center gap-3">
                     <span
                       aria-hidden="true"
-                      className="p-2 bg-slate-50 rounded-lg text-slate-500 text-xs"
+                      className="p-2 bg-slate-50 rounded-lg text-slate-500"
                     >
-                      🖨️
+                      <Icone nome="impressora" className="w-4 h-4" />
                     </span>
 
                     <div>
@@ -242,9 +243,9 @@ function DashboardAluno() {
                   <div className="flex items-center gap-3">
                     <span
                       aria-hidden="true"
-                      className="p-2 bg-blue-50 text-blue-600 rounded-lg text-xs"
+                      className="p-2 bg-blue-50 text-blue-600 rounded-lg"
                     >
-                      {acao.icone}
+                      <Icone nome={acao.icone} className="w-4 h-4" />
                     </span>
 
                     <div>
@@ -305,7 +306,7 @@ function DashboardAluno() {
                 className="text-slate-500 hover:text-slate-700 text-sm font-bold p-2"
                 aria-label="Fechar modal"
               >
-                ✕
+                <Icone nome="fechar" className="w-4 h-4" />
               </button>
             </div>
 

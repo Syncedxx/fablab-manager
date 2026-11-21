@@ -1,15 +1,16 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Icone } from '../icones.jsx'
 
 const TIPOS_NOTIFICACAO = {
   estoque: {
-    icone: '📦',
+    icone: 'pacote',
     cor: 'bg-rose-50 text-rose-700',
     link: '/inventario',
     textoLink: 'Ver inventário'
   },
   conflito: {
-    icone: '📅',
+    icone: 'calendario',
     cor: 'bg-amber-50 text-amber-700',
     link: '/reservas',
     textoLink: 'Ver reservas'
@@ -135,7 +136,7 @@ function Notificacoes() {
                     aria-hidden="true"
                     className={`w-10 h-10 rounded-lg ${tipo.cor} flex items-center justify-center shrink-0`}
                   >
-                    {tipo.icone}
+                    <Icone nome={tipo.icone} className="w-5 h-5" />
                   </div>
 
                   <div className="flex flex-col gap-0.5">

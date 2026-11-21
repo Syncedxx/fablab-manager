@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { usePerfil } from '../perfilcontext.jsx'
+import { Icone } from '../icones.jsx'
 
 export default function Login() {
   const [perfilSelecionado, setPerfilSelecionado] = useState('aluno')
@@ -63,7 +64,7 @@ export default function Login() {
                     aria-hidden="true"
                     className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
                   >
-                    📦
+                    <Icone nome="pacote" className="w-4 h-4" />
                   </span>
                   Controle de estoque em tempo real
                 </li>
@@ -73,7 +74,7 @@ export default function Login() {
                     aria-hidden="true"
                     className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
                   >
-                    🖨️
+                    <Icone nome="impressora" className="w-4 h-4" />
                   </span>
                   Reserva de impressoras 3D, laser e CNC
                 </li>
@@ -83,7 +84,7 @@ export default function Login() {
                     aria-hidden="true"
                     className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
                   >
-                    ✅
+                    <Icone nome="check" className="w-4 h-4" />
                   </span>
                   Fluxo de aprovação de requisições
                 </li>
@@ -93,7 +94,7 @@ export default function Login() {
                     aria-hidden="true"
                     className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
                   >
-                    🔔
+                    <Icone nome="sino" className="w-4 h-4" />
                   </span>
                   Alertas de manutenção e estoque crítico
                 </li>

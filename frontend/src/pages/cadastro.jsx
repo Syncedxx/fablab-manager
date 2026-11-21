@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { Icone } from '../icones.jsx'
 
 export default function Cadastro() {
   const [perfilSelecionado, setPerfilSelecionado] = useState('aluno')
@@ -57,7 +58,7 @@ export default function Cadastro() {
                     aria-hidden="true"
                     className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
                   >
-                    🎓
+                    <Icone nome="formatura" className="w-4 h-4" />
                   </span>
                   Acesso personalizado conforme seu perfil
                 </li>
@@ -67,7 +68,7 @@ export default function Cadastro() {
                     aria-hidden="true"
                     className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
                   >
-                    🖨️
+                    <Icone nome="impressora" className="w-4 h-4" />
                   </span>
                   Agendamento autônomo de máquinas
                 </li>
@@ -77,7 +78,7 @@ export default function Cadastro() {
                     aria-hidden="true"
                     className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
                   >
-                    📦
+                    <Icone nome="pacote" className="w-4 h-4" />
                   </span>
                   Solicitação de materiais para projetos
                 </li>
@@ -87,7 +88,7 @@ export default function Cadastro() {
                     aria-hidden="true"
                     className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs"
                   >
-                    🔔
+                    <Icone nome="sino" className="w-4 h-4" />
                   </span>
                   Acompanhamento de requisições em tempo real
                 </li>

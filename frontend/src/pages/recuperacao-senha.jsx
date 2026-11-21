@@ -1,4 +1,3 @@
-
 import { Link } from 'react-router-dom'
 
 function RecuperacaoSenha() {
@@ -14,9 +13,9 @@ function RecuperacaoSenha() {
           <div className="w-full max-w-md flex flex-col gap-8">
 
             <div id="logo" className="flex flex-col gap-0.5">
-              <h2 className="text-xl font-bold tracking-wide text-white">
+              <p className="text-xl font-bold tracking-wide text-white">
                 FabLab Manager
-              </h2>
+              </p>
 
               <p className="text-xs font-semibold text-blue-300 uppercase tracking-wider">
                 SENAI — SISTEMA DE GESTÃO
@@ -24,9 +23,9 @@ function RecuperacaoSenha() {
             </div>
 
             <div id="infoEsq" className="flex flex-col gap-5">
-              <h1 className="text-3xl font-bold text-white leading-tight">
+              <p className="text-3xl font-bold text-white leading-tight">
                 Recuperação de Acesso
-              </h1>
+              </p>
 
               <p className="text-blue-200 text-sm leading-relaxed">
                 Esqueceu a sua palavra-passe? Não se preocupe. Introduza o seu
@@ -36,14 +35,14 @@ function RecuperacaoSenha() {
 
               <ul className="flex flex-col gap-3 text-sm text-blue-100 mt-2">
                 <li className="flex items-center gap-3">
-                  <span className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
+                  <span aria-hidden="true" className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
                     🔒
                   </span>
                   Processo seguro de redefinição
                 </li>
 
                 <li className="flex items-center gap-3">
-                  <span className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
+                  <span aria-hidden="true" className="bg-blue-900/80 p-1.5 rounded text-blue-300 text-xs">
                     ✉️
                   </span>
                   Instruções enviadas para o e-mail institucional
@@ -66,9 +65,9 @@ function RecuperacaoSenha() {
                 Recuperar senha
               </h1>
 
-              <h2 className="text-xs text-slate-500 mt-1">
+              <p className="text-xs text-slate-500 mt-1">
                 Informe o seu e-mail cadastrado para receber as instruções.
-              </h2>
+              </p>
             </div>
 
             {/* Formulário */}
@@ -90,9 +89,10 @@ function RecuperacaoSenha() {
                   type="email"
                   id="txtemail"
                   name="email"
+                  autoComplete="email"
                   required
                   placeholder="usuario@aluno.senai.br"
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-600 bg-white"
                 />
               </div>
 

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Icone } from '../icones.jsx'
 
 function DashboardInstrutor() {
   const pedidosPrioritarios = [
@@ -16,19 +17,19 @@ function DashboardInstrutor() {
 
   const acoesGestao = [
     {
-      icone: '📋',
+      icone: 'prancheta',
       titulo: 'Analisar pedidos',
       descricao: '2 aguardando decisão',
       destino: '/pedidos'
     },
     {
-      icone: '📅',
+      icone: 'calendario',
       titulo: 'Gerenciar agenda',
       descricao: 'Veja todas as reservas',
       destino: '/reservas'
     },
     {
-      icone: '📦',
+      icone: 'pacote',
       titulo: 'Ver estoque crítico',
       descricao: '3 itens precisam de atenção',
       destino: '/inventario?filtro=critico'
@@ -91,7 +92,7 @@ function DashboardInstrutor() {
           className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-blue-300 transition group"
         >
           <div className="w-9 h-9 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span aria-hidden="true" className="text-sm">📋</span>
+            <Icone nome="prancheta" className="w-4 h-4" />
           </div>
 
           <div>
@@ -115,7 +116,7 @@ function DashboardInstrutor() {
           className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-blue-300 transition group"
         >
           <div className="w-9 h-9 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span aria-hidden="true" className="text-sm">📅</span>
+            <Icone nome="calendario" className="w-4 h-4" />
           </div>
 
           <div>
@@ -138,7 +139,7 @@ function DashboardInstrutor() {
           className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between"
         >
           <div className="w-9 h-9 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span aria-hidden="true" className="text-sm">👤</span>
+            <Icone nome="usuario" className="w-4 h-4" />
           </div>
 
           <div>
@@ -162,7 +163,7 @@ function DashboardInstrutor() {
           className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between hover:border-rose-300 transition group"
         >
           <div className="w-9 h-9 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span aria-hidden="true" className="text-sm">⚠️</span>
+            <Icone nome="alerta" className="w-4 h-4" />
           </div>
 
           <div>
@@ -218,7 +219,7 @@ function DashboardInstrutor() {
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center shrink-0">
-                    <span aria-hidden="true">📋</span>
+                    <Icone nome="prancheta" className="w-4 h-4" />
                   </div>
 
                   <div>
@@ -329,7 +330,7 @@ function DashboardInstrutor() {
             >
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
-                  <span aria-hidden="true">{acao.icone}</span>
+                  <Icone nome={acao.icone} className="w-4 h-4" />
                 </div>
 
                 <div>

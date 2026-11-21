@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Icone } from '../icones.jsx'
 
 function AcessoNegado() {
   return (
@@ -6,8 +7,11 @@ function AcessoNegado() {
 
       <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm max-w-sm w-full text-center space-y-4">
 
-        <div aria-hidden="true" className="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-xl font-bold mx-auto">
-          🔒
+        <div
+          aria-hidden="true"
+          className="w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center mx-auto"
+        >
+          <Icone nome="cadeado" className="w-6 h-6" />
         </div>
 
         <div className="space-y-1">

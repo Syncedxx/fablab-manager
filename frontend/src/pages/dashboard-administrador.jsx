@@ -1,27 +1,28 @@
 import { Link } from 'react-router-dom'
+import { Icone } from '../icones.jsx'
 
 function DashboardAdministrador() {
   const atividades = [
     {
-      icone: '📋',
+      icone: 'prancheta',
       estilo: 'bg-slate-50 text-slate-500 border-slate-100',
       descricao: 'Carla Menezes aprovou REQ-014',
       tempo: 'Há 8 min'
     },
     {
-      icone: '⚠️',
+      icone: 'alerta',
       estilo: 'bg-rose-50 text-rose-500 border-rose-100',
       descricao: 'Saldo de PLA Branco atingiu nível crítico',
       tempo: 'Há 24 min'
     },
     {
-      icone: '👤',
+      icone: 'usuario',
       estilo: 'bg-slate-50 text-slate-500 border-slate-100',
       descricao: 'Novo aluno vinculado à turma TDS 2026',
       tempo: 'Há 1 h'
     },
     {
-      icone: '✓',
+      icone: 'check',
       estilo: 'bg-emerald-50 text-emerald-500 border-emerald-100',
       descricao: 'Reserva R-004 concluída sem ocorrência',
       tempo: 'Há 2 h'
@@ -30,19 +31,19 @@ function DashboardAdministrador() {
 
   const modulos = [
     {
-      icone: '📦',
+      icone: 'pacote',
       titulo: 'Inventário e alertas',
       descricao: 'Saldos e materiais críticos',
       destino: '/inventario'
     },
     {
-      icone: '📅',
+      icone: 'calendario',
       titulo: 'Agenda de equipamentos',
       descricao: 'Reservas de todos os usuários',
       destino: '/reservas'
     },
     {
-      icone: '📋',
+      icone: 'prancheta',
       titulo: 'Requisições',
       descricao: 'Audite pedidos e aprovações',
       destino: '/pedidos'
@@ -81,7 +82,8 @@ function DashboardAdministrador() {
       <div className="bg-[#1b437c] text-white p-6 rounded-2xl flex justify-between items-center gap-4 shadow-xs">
         <div className="flex flex-col gap-2">
           <span className="inline-flex items-center gap-1 text-[11px] font-medium text-blue-200 w-fit">
-            <span aria-hidden="true">🛡️</span> Ambiente protegido e operacional
+            <Icone nome="escudo" className="w-4 h-4" />
+            Ambiente protegido e operacional
           </span>
 
           <h2 className="text-xl font-bold text-white">
@@ -107,7 +109,7 @@ function DashboardAdministrador() {
         {/* Usuários ativos */}
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div className="w-9 h-9 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span aria-hidden="true" className="text-sm">👤</span>
+            <Icone nome="usuario" className="w-4 h-4" />
           </div>
 
           <div>
@@ -128,7 +130,7 @@ function DashboardAdministrador() {
         {/* Equipamentos */}
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div className="w-9 h-9 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span aria-hidden="true" className="text-sm">🖨️</span>
+            <Icone nome="impressora" className="w-4 h-4" />
           </div>
 
           <div>
@@ -149,7 +151,7 @@ function DashboardAdministrador() {
         {/* Alertas ativos */}
         <div className="bg-white p-5 rounded-2xl border border-rose-200 shadow-xs flex flex-col justify-between">
           <div className="w-9 h-9 bg-rose-50 text-rose-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span aria-hidden="true" className="text-sm">⚠️</span>
+            <Icone nome="alerta" className="w-4 h-4" />
           </div>
 
           <div>
@@ -170,7 +172,7 @@ function DashboardAdministrador() {
         {/* Disponibilidade */}
         <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs flex flex-col justify-between">
           <div className="w-9 h-9 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0 mb-3">
-            <span aria-hidden="true" className="text-sm">📈</span>
+            <Icone nome="tendencia" className="w-4 h-4" />
           </div>
 
           <div>
@@ -221,9 +223,7 @@ function DashboardAdministrador() {
               >
                 <div className="flex items-center gap-3">
                   <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 border ${atividade.estilo}`}>
-                    <span aria-hidden="true" className="text-xs">
-                      {atividade.icone}
-                    </span>
+                    <Icone nome={atividade.icone} className="w-4 h-4" />
                   </div>
 
                   <span className="text-xs font-medium text-slate-700">
@@ -345,7 +345,7 @@ function DashboardAdministrador() {
               className="p-4 rounded-xl flex items-center gap-3 hover:bg-slate-50 transition border border-slate-100 group"
             >
               <div className="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center shrink-0">
-                <span aria-hidden="true">{modulo.icone}</span>
+                <Icone nome={modulo.icone} className="w-5 h-5" />
               </div>
 
               <div className="flex-1">
