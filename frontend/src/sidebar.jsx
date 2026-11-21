@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { usePerfil } from './perfilcontext.jsx'
+import { Icone } from './icones.jsx'
 
 const PERFIS = {
   aluno: 'Aluno(a) - TDS 2026',
@@ -12,20 +13,20 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
   const { perfil, sair } = usePerfil()
 
   const itens = [
-    ['📊', 'Visão Geral', `/dashboard-${perfil}`],
-    ['📦', 'Inventário', '/inventario'],
-    ['🛠️', 'Equipamentos', '/equipamentos'],
-    ['📅', 'Reservas', '/reservas']
+    ['grafico', 'Visão Geral', `/dashboard-${perfil}`],
+    ['pacote', 'Inventário', '/inventario'],
+    ['ferramenta', 'Equipamentos', '/equipamentos'],
+    ['calendario', 'Reservas', '/reservas']
   ]
 
   if (perfil !== 'aluno') {
-    itens.push(['📄', 'Requisições', '/pedidos'])
+    itens.push(['documento', 'Requisições', '/pedidos'])
   }
 
-  itens.push(['🔔', 'Notificações', '/notificacoes'])
+  itens.push(['sino', 'Notificações', '/notificacoes'])
 
   if (perfil === 'administrador') {
-    itens.push(['👥', 'Usuários', '/usuarios'])
+    itens.push(['usuarios', 'Usuários', '/usuarios'])
   }
 
   const base =
@@ -67,9 +68,9 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
             type="button"
             onClick={aoFechar}
             aria-label="Fechar menu"
-            className="p-2 -m-2 text-slate-400 hover:text-white text-lg leading-none cursor-pointer"
+            className="p-2 -m-2 text-slate-400 hover:text-white leading-none cursor-pointer"
           >
-            ✕
+            <Icone nome="fechar" className="w-5 h-5" />
           </button>
         </div>
 
@@ -93,7 +94,7 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
                 }`
               }
             >
-              <span aria-hidden="true">{icone}</span>
+              <Icone nome={icone} className="w-4 h-4" />
               {nome}
             </NavLink>
           ))}
@@ -123,7 +124,7 @@ export default function Sidebar({ aberto, aoNavegar, aoFechar }) {
             onClick={sair}
             className="col-span-2 flex items-center gap-2 text-xs font-medium text-slate-400 hover:text-white transition-colors py-1.5"
           >
-            <span aria-hidden="true">🚪</span>
+            <Icone nome="sair" className="w-4 h-4" />
             Sair da conta
           </button>
 
